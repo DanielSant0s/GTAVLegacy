@@ -1,0 +1,14 @@
+; Title		:	Surface.dat
+; Author	:	Junior_Djjr - MixMods.com.br
+; Date		:	02/11/21
+;
+;	Currently WheelBase is the surface used for the tyres
+;
+;               Rubber          Hard           Road             Loose        Sand       Wet
+;
+Rubber          6.0
+Hard            3.0             2.0
+Road            4.2             2.0            3.0
+Loose           2.2             1.5            2.0              0.8
+Sand			2.5             2.0            2.0              1.0          1.0
+Wet             2.0             1.5            1.0              0.8          0.8        0.4

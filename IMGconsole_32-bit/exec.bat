@@ -1,0 +1,1 @@
+fastman92ImgConsole32.exe -script "script.txt"

@@ -1,0 +1,9 @@
+-open "GTA3.IMG"
+-importFromDirectory "gta3\\"
+-rebuild
+-close
+-open "GTA_INT.IMG"
+-importFromDirectory "gta_int\\"
+-rebuild
+-close
+-exit

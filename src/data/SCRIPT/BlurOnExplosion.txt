@@ -1,0 +1,121 @@
+{$CLEO}
+
+CONST
+    ExplosionBlur = 0@
+    pCamera = 0x6FE530 // OK
+    
+    pShakeStartTime = 1@
+    pShakeIntensity = 2@                    
+    ShakeStartTime = 3@
+    ShakeIntensity = 4@
+    TimeInMilliseconds = 5@    
+    x = 6@
+        
+    i = 1@
+    k = 2@
+    n = 3@
+END
+VAR
+    // Variables set #1 (Main)
+    ExplosionBlur : Float
+    ShakeStartTime : Int
+    k : Int
+    n : Int
+    ShakeIntensity : Float
+    x : Float
+    TimeInMilliseconds : Int
+    
+    // Variables set #2 (@Patch)
+    i : Int
+    k : Int
+    n : Int
+END
+
+GOSUB @PATCH
+ExplosionBlur = 0.0
+pShakeIntensity = pCamera + 0x12C
+pShakeStartTime = pCamera + 0x5C
+
+
+WHILE NOT IS_GERMAN_GAME
+    WAIT 0
+    
+    READ_MEMORY pShakeIntensity 4 FALSE (ShakeIntensity)
+    READ_MEMORY pShakeStartTime 4 FALSE (ShakeStartTime) 
+    READ_MEMORY 0xB7CB84 4 FALSE (TimeInMilliseconds)
+    
+    TimeInMilliseconds -= ShakeStartTime    
+    x =# TimeInMilliseconds
+    x *= 0.00028
+    ShakeIntensity -= x    
+    
+    IF ShakeIntensity > 0.0
+    THEN
+        ExplosionBlur +=@ 1.0
+        IF ExplosionBlur > 1.0
+        THEN
+            ExplosionBlur = 1.0
+        END
+    ELSE
+        IF ExplosionBlur > 0.0
+        THEN
+            ExplosionBlur -=@ 0.05        
+        END        
+        IF ExplosionBlur < 0.0
+        THEN
+            ExplosionBlur = 0.0
+        END
+    END
+END
+
+
+:PATCH
+GET_THIS_SCRIPT_STRUCT (i)
+k = i + 0x10  // CRunningScript.baseIp
+READ_MEMORY k 4 FALSE (k)
+k -= @_ASM
+n = i + 0x3C  // CSRunningScript.tls
+
+// Setup the pointer at [@_ASM+2] to local variable 0
+k += 3
+WRITE_MEMORY k 4 n FALSE 
+k -= 3
+
+
+// Patch
+k -= 0x704DB1
+WRITE_MEMORY 0x704DAB 1 0x90 TRUE
+WRITE_MEMORY 0x704DAC 1 0xE8 TRUE
+WRITE_MEMORY 0x704DAD 4 k TRUE
+
+// NOP a check that avoids the blur in certain camera modes (may not be a good idea?)
+WRITE_MEMORY 0x704D9C 2 0x9090 TRUE
+WRITE_MEMORY 0x704D9E 4 0x90909090 TRUE
+
+RETURN
+
+
+:_ASM
+HEX
+    50              // push eax
+    52              // push edx
+    BA 00000000     // mov edx, 0x0 (address of explosion blur)
+    D9 05 C802C400  // fld dword ptr [BlurLevel]
+    D8 1A           // fcomp dword ptr [edx]
+    DFE0            // fnstsw ax
+    F6 C4 05        // test ah, 0x05
+    7A 08           // jp _OUT              -- BlurLevel < ExplosionBlur
+    8B 02           // mov eax, dword ptr [edx]
+    89 05 C802C400  // mov dword ptr [BlurLevel], eax
+                    //
+                    // _OUT:
+    5A              // pop edx
+    58              // pop eax
+    D9 05 C802C400  // fld dword ptr [BlurLevel]
+    C3              // retn          
+END
+
+
+
+
+

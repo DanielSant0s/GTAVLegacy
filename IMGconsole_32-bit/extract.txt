@@ -1,0 +1,7 @@
+-open "GTA3.IMG"
+-exportAll "gta3\\"
+-close
+-open "GTA_INT.IMG"
+-exportAll "gta_int\\"
+-close
+-exit

@@ -1,0 +1,22 @@
+To install Ruiner 2000 you must place the files you downloaded inside the Modloader folder in the San Andreas Directory, otherwise, you can replace the dff and txd of the Buffalo and replace the data codes with these: 
+
+handling.cfg
+
+BUFFALO	1500.0	4000.0	2.0	0.0	0.0	-0.1	85	0.7	0.9	0.5	5	200.0	28.0	5.0	R	P	11.0	0.45	0	30.0	1.0	0.15	0.0	0.10	-0.1	0.5	0.4	0.25	0.50	35000	80002000	00200000	0	0	0
+
+vehicles.ide
+
+402, 	buffalo, 	buffalo, 	car, 		BUFFALO, 	BUFFALO, 	null,	executive, 	4, 	0,	0,		-1, 0.76, 0.76,		0
+
+carmods.dat
+buffalo, nto_b_s, nto_b_s, nto_b_tw
+
+carcols.dat
+buffalo, 0,0, 0,11
+
+Known bugs: 
+
+1) The scanner lights may appear desynchronized at nighttime, until you smash both headlights, it works fine during daytime
+
+2) The front lights source may still be seen if the bumper detaches from the car
+

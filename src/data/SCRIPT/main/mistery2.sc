@@ -1,0 +1,87 @@
+// main/mistery2.sc
+MISSION_START
+GOSUB mission_start_mistery2
+IF HAS_DEATHARREST_BEEN_EXECUTED 
+    GOSUB mission_mistery2_failed
+ENDIF
+GOSUB mission_cleanup_mistery2
+MISSION_END
+
+// One last mission, let's see a feature introduced in GTASA: SKIP_CUTSCENE.
+
+{
+
+mission_start_mistery2:
+
+flag_player_on_mission = 1
+REGISTER_MISSION_GIVEN
+WAIT 0
+
+SCRIPT_NAME mister2
+
+SWITCH_WIDESCREEN TRUE
+
+// Everthing enclosed in a SKIP_CUTSCENE_START...SKIP_CUTSCENE_END may be skipped if the player
+// presses the skip key (usually ENTER). This makes it easy to work with cutscenes.
+SKIP_CUTSCENE_START
+    SET_FIXED_CAMERA_POSITION (0.0 -10.0 20.0) (0.0 0.0 0.0)
+    POINT_CAMERA_AT_CHAR scplayer FIXED JUMP_CUT
+
+    DO_FADE 1000 FADE_IN
+    WHILE GET_FADING_STATUS
+        WAIT 0
+    ENDWHILE
+
+    PRINT_NOW (GYMHELP) 10000 1
+    WAIT 5000
+
+    SET_FIXED_CAMERA_POSITION (10.0 0.0 20.0) (0.0 0.0 0.0)
+    POINT_CAMERA_AT_CHAR scplayer FIXED JUMP_CUT
+    PRINT_NOW (AMUHLP) 10000 1
+    WAIT 5000
+
+    SET_FIXED_CAMERA_POSITION (0.0 20.0 20.0) (0.0 0.0 0.0)
+    POINT_CAMERA_AT_CHAR scplayer FIXED JUMP_CUT
+    PRINT_NOW (BURG_10) 10000 1
+    WAIT 5000
+SKIP_CUTSCENE_END
+
+CLEAR_PRINTS
+DO_FADE 500 FADE_OUT
+WHILE GET_FADING_STATUS
+    WAIT 0
+ENDWHILE
+
+SWITCH_WIDESCREEN FALSE
+RESTORE_CAMERA_JUMPCUT
+
+DO_FADE 500 FADE_IN
+WHILE GET_FADING_STATUS
+    WAIT 0
+ENDWHILE
+
+SET_PLAYER_CONTROL player ON
+GOTO mission_mistery2_passed
+
+mission_mistery2_failed:
+PRINT_BIG (M_FAIL) 5000 1
+RETURN
+
+mission_mistery2_passed:
+PRINT_WITH_NUMBER_BIG (M_PASSS 100000) 5000 1
+ADD_SCORE player (100000)
+REGISTER_MISSION_PASSED	(BCES4_2)
+PLAYER_MADE_PROGRESS 1
+AWARD_PLAYER_MISSION_RESPECT 10
+CLEAR_WANTED_LEVEL player
+PLAY_MISSION_PASSED_TUNE 2
+REMOVE_BLIP mistery_blip
+flag_mistery2_passed = 1
+RETURN
+
+mission_cleanup_mistery2:
+flag_player_on_mission = 0
+MISSION_HAS_FINISHED
+RETURN
+
+}

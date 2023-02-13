@@ -1,0 +1,39 @@
+Add in vehicles.ide. Change ID 614 if it's already used (use Free ID List Generator).
+614, s230, s230, car, S230, S230, null,    richfamily, 10, 0, 0, -1, 0.70, 0.70, 0
+
+Add in carmods.dat:
+s230, exh_s230_1, exh_s230_1a, exh_s230_1b, exh_s230_2, rbmp_s230_a, rbmp_s230_b, wg_l_s230_a, wg_l_s230_b, fbmp_s230_a, fbmp_s230_b, spl_s230_a, spl_s230_b, spl_s230_c, nto_b_l, nto_b_s, nto_b_tw
+
+Add in handling.cfg:
+S230        1400.0    2979.7   2.0    0.0 0.2 -0.1  70  0.80 0.80 0.51     5 200.0 28.0 10.0 R P     11.1  0.52 0 30.0   1.2  0.10  0.0   0.31 -0.15 0.5  0.3        0.24 0.60 45000     80000000            4C00000        1  1    0        1400.0    2979.7   2.0    0.0 0.2 -0.1  70  0.80 0.80 0.51     5 200.0 28.0 10.0 R P     11.1  0.52 0 30.0   1.2  0.10  0.0   0.31 -0.15 0.5  0.3        0.24 0.60 45000     0            4C00000        1  1    0
+
+Add in carcols.dat:
+s230, 0,0, 11,0, 70,0, 53,0, 50,0, 24,0, 44,0, 6,0
+
+Add in mods.ide:
+
+objs
+662, spl_s230_a, vehicle, 100, 2101248
+663, spl_s230_b, vehicle, 100, 2101248
+665, spl_s230_c, vehicle, 100, 2101248
+666, fbmp_s230_a, vehicle, 100, 2101248
+667, fbmp_s230_b, vehicle, 100, 2101248
+668, wg_l_s230_a, vehicle, 100, 2097152
+699, wg_l_s230_b, vehicle, 100, 2097152
+793, rbmp_s230_a, vehicle, 100, 2101248
+794, rbmp_s230_b, vehicle, 100, 2101248
+795, exh_s230_1, vehicle, 100, 2097152
+796, exh_s230_1a, vehicle, 100, 2097152
+797, exh_s230_1b, vehicle, 100, 2097152
+798, exh_s230_2, vehicle, 100, 2097152
+end
+tobj 
+end
+path
+end
+2dfx
+end
+anim
+end
+txdp
+end

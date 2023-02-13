@@ -1,0 +1,11 @@
+carcols:
+landstal, 4,1, 123,1, 0,1, 101,1, 75,1, 29,1, 8,1, 36,1
+
+carmods:
+landstal, exh_b_l, exh_b_m, exh_b_t, exh_b_ts, lgt_b_rspt, lgt_b_sspt, nto_b_l, nto_b_s, nto_b_tw
+
+handling:
+LANDSTAL 2100.0 4000.0 2.5 0.0 0.0 -0.20 80 0.62 0.89 0.5 5 155.0 24.0 25.0 4 P 7.0 0.45 0 37.0 1.1 0.06 0.0 0.46 -0.22 0.5 0.3 0.44 0.28 50000 222040 100005 0 1 0
+
+vehicles:
+400,	landstal, 	landstal, 	car, 		LANDSTAL, 	LANDSTAL, 	null,	richfamily, 	10,	0,	0,		-1, 0.84, 0.84,	0
