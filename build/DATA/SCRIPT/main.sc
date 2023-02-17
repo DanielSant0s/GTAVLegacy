@@ -309,6 +309,58 @@ REGISTER_STREAMED_SCRIPT CARMOD1 carmod1.sc
 // Tip: Look away from the carts IF the vendor character is NOT spawned.
 //START_NEW_SCRIPT cart_teleport
 
+// **************************************** CAR MODING GARAGES ************************************
+// ************************************************************************************************
+
+CONST_INT GARAGE_OPEN_FOR_LOW_RIDERS 36
+CONST_INT GARAGE_OPEN_FOR_STREET_RACERS 37
+CONST_INT GARAGE_OPEN_FOR_NORMAL_CARS 38
+
+// LA Normal Cars
+CHANGE_GARAGE_TYPE bodLAwN GARAGE_OPEN_FOR_NORMAL_CARS
+
+// LA LowRiders (Neils Lowrider garage)
+CHANGE_GARAGE_TYPE modlast GARAGE_OPEN_FOR_LOW_RIDERS
+
+// San Fran Normal Cars
+CHANGE_GARAGE_TYPE mdsSFSe GARAGE_OPEN_FOR_NORMAL_CARS
+
+// San Fran Street Racer Garage
+CHANGE_GARAGE_TYPE mds1SFS GARAGE_OPEN_FOR_STREET_RACERS
+
+// Vegas Normal Cars
+CHANGE_GARAGE_TYPE vEcmod GARAGE_OPEN_FOR_NORMAL_CARS
+
+// GARAGE LOCATES FOR PLAYER TO STOP IN
+// LA normal garage
+CONST_FLOAT LS_NR_GARAGEX 1042.013 // 1042.263
+CONST_FLOAT LS_NR_GARAGEY -1019.927 // -1013.566
+CONST_FLOAT LS_NR_GARAGEZ 31.127
+
+// LA lowrider garage Old one under bridge (Neils Mission one)  
+CONST_FLOAT LS_LR_GARAGEX 2645.112
+CONST_FLOAT LS_LR_GARAGEY -2045.745
+CONST_FLOAT LS_LR_GARAGEZ 12.607
+
+// San Fran normal garage
+CONST_FLOAT SF_NR_GARAGEX -1935.528
+CONST_FLOAT SF_NR_GARAGEY 247.029
+CONST_FLOAT SF_NR_GARAGEZ 33.561
+
+// San Fran Street Racer Garage
+CONST_FLOAT SF_SR_GARAGEX -2723.845  
+CONST_FLOAT	SF_SR_GARAGEY 217.804
+CONST_FLOAT SF_SR_GARAGEZ 3.585
+
+// Vegas normal garage
+CONST_FLOAT LV_NR_GARAGEX 2387.075
+CONST_FLOAT LV_NR_GARAGEY 1050.511
+CONST_FLOAT LV_NR_GARAGEZ 9.812
+
+// used for help messages for nitros
+VAR_INT flag_1st_time_nitro_shop 
+flag_1st_time_nitro_shop = 0   
+
 main_loop:
 WAIT 250
 
@@ -318,6 +370,7 @@ OR IS_GARAGE_OPEN (MODLAST)
 OR IS_GARAGE_OPEN (MDSSFSE)
 OR IS_GARAGE_OPEN (MDS1SFS)
 OR IS_GARAGE_OPEN (VECMOD)
+OR IS_BUTTON_PRESSED PAD1 DPADRIGHT
     GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT CARMOD1 num_carmod_instances
     IF num_carmod_instances = 0
         STREAM_SCRIPT CARMOD1
@@ -1918,8 +1971,8 @@ VAR_INT num_carmod_instances dogcart1
 
     LVAR_INT filter_col[4] col_idx old_col_idx
 
-    CONST_INT MAX_ITEMS 2
-    CONST_FLOAT ITEM_QUANTITY 3.0
+    CONST_INT MAX_ITEMS 3
+    CONST_FLOAT ITEM_QUANTITY 4.0
 
     CONST_INT MAX_STYLE 2
     CONST_FLOAT STYLE_QUANTITY 3.0
@@ -1965,6 +2018,8 @@ VAR_INT num_carmod_instances dogcart1
                 old_selected = -1
                 GOTO debug_loop
                 BREAK
+            CASE 3
+                BREAK
         ENDSWITCH
     ENDIF
     IF IS_BUTTON_PRESSED 0 TRIANGLE
@@ -2004,6 +2059,11 @@ VAR_INT num_carmod_instances dogcart1
         SET_TEXT_COLOUR 0 0 0 255
     ENDIF
     DISPLAY_TEXT 31.0 140.0 RMITEM3
+    GOSUB set_textitem_params
+    IF selected = 3
+        SET_TEXT_COLOUR 0 0 0 255
+    ENDIF
+    DISPLAY_TEXT 31.0 160.0 CARMOD1
     USE_TEXT_COMMANDS 0
     RETURN
 
@@ -2819,7 +2879,7 @@ VAR_INT num_carmod_instances dogcart1
                 veh_model = ZR350
                 BREAK
             CASE 6
-                veh_model = TAXI
+                veh_model = ELEGY
                 BREAK
             CASE 7
                 veh_model = COPCARLA
@@ -2833,7 +2893,7 @@ VAR_INT num_carmod_instances dogcart1
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
-            GOSUB draw_cars4_items
+            GOSUB draw_cars5_items
         ENDWHILE
         CREATE_CAR veh_model px py pz vehicle
         SET_CAR_HEADING vehicle pa
@@ -2906,7 +2966,7 @@ VAR_INT num_carmod_instances dogcart1
     IF selected = 6
         SET_TEXT_COLOUR 0 0 0 255
     ENDIF
-    DISPLAY_TEXT 31.0 220.0 TAXI
+    DISPLAY_TEXT 31.0 220.0 ELEGY
 
     GOSUB set_textitem_params
     IF selected = 7
