@@ -609,6 +609,7 @@ SCRIPT_START
     GOTO lsc_loop
 
     lsc_global_cleanup:
+    SET_CAR_DENSITY_MULTIPLIER 1.0
     SET_PLAYER_CONTROL player ON
     lsc_state = LSCUSTOMS_DISABLED
     DISPLAY_RADAR TRUE

@@ -948,66 +948,6 @@ VAR_INT num_carmod_instances dogcart1
 }
 */
 
-/*{
-    pickups_on_ground:
-
-    LVAR_INT pObject wModelId pickupObject pickups ptr_tmp iX iY iZ pickup_type
-    LVAR_FLOAT x y z ground_z
-
-    //WRITE_MEMORY 0x00536541 5 0x90 1  //CPickups::DoPickUpEffects(CEntity *)
-    WRITE_MEMORY 0x2D9E10 4 0x0 1 //object->__parent.physical.entity.placeable.m_pCoords->pos.z = outVec.z;
-    WRITE_MEMORY 0x22FD90 4 0x2403FFFF 1   // movzx edx,word ptr [008CD59C]
-    
-    WRITE_MEMORY 0x2DD3B0 4 0x100000B7 1
-    WRITE_MEMORY 0x2DD3B4 4 0x0 1 
-    
-    WRITE_MEMORY 0x2DCA10 4 0x0 1 //coronas
-    
-    WHILE NOT IS_GERMAN_GAME
-        WAIT 0
-
-        pickups = 0x803170         
-        WHILE pickups <= 0x807ED0 
-            ptr_tmp = pickups + 0x1C //pickup type
-            READ_MEMORY ptr_tmp 1 0 (pickup_type)  //x
-            IF pickup_type = 2
-            OR pickup_type = 3
-            OR pickup_type = 4
-            OR pickup_type = 5
-            OR pickup_type = 8
-            OR pickup_type = 15
-            OR pickup_type = 19
-                ptr_tmp = pickups + 0x10 // int
-                READ_MEMORY ptr_tmp 2 0 (iX)  //x
-                ptr_tmp = pickups + 0x4 // int 
-                READ_MEMORY ptr_tmp 4 0 (pObject) //[POINTER] - CObjectVC* pObject
-                ptr_tmp = pickups + 0x18 // int
-                READ_MEMORY ptr_tmp 2 0 (wModelId) //[WORD] - wModelId
-                IF NOT iX = 0
-                AND NOT pObject = 0
-                    GET_OBJECT_REF pObject (pickupObject)
-                    GET_OBJECT_COORDINATES pickupObject (x y z)
-                    IF LOCATE_CHAR_ANY_MEANS_2D scplayer x y 80.0 80.0 0
-                        IF LOCATE_CHAR_ANY_MEANS_2D scplayer x y 45.0 45.0 0
-                        OR IS_OBJECT_ON_SCREEN pickupObject
-                            GET_GROUND_Z_FOR_3D_COORD x y z (ground_z)
-                            ground_z += 0.05
-                            SET_OBJECT_COORDINATES pickupObject x y ground_z
-                            IF NOT wModelId = 1212 //#MONEY
-                                SET_OBJECT_ROTATION pickupObject 90.0 0.0 134.0
-                            ELSE
-                                SET_OBJECT_ROTATION pickupObject 0.0 0.0 5.0 
-                            ENDIF
-                       ENDIF
-                    ENDIF
-                ENDIF
-            ENDIF
-            pickups += 0x20
-        ENDWHILE
-    ENDWHILE
-}
-*/
-
 {
     manual_reload:
     LVAR_INT playerId pPed i j iCurWeapon iSkill iMaxAmmo iCurAmmo pWeapon pWeaponInfo iTimeInMilliseconds iReloadTime iLastCurAmmo iTotalAmmo
