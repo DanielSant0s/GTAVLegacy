@@ -1,0 +1,11 @@
+Add in vehicles.ide. Change ID 614 if it's already used (use Free ID List Generator).
+614, vigero, vigero, car, VIGERO, VIGERO, null, poorfamily, 10, 0, 3210, -1, 0.7, 0.7, 0
+
+Add in carmods.dat:
+vigero, misc_c_vig_bar, bnt_vig_b, misc_a_vig_b, misc_b_vig_b, misc_b_vig_a, misc_a_vig_a, nto_b_l, nto_b_s, nto_b_tw, bnt_vig_a
+
+Add in handling.cfg:
+VIGERO     1600.0    3921.3   2.0    0.0 0.0 -0.15 70  0.80 0.75 0.55 	4 160.0 23.0 5.0  R P 	8.17  0.52 0 35.0  	1.2  0.1   0.0   0.30 -0.2  0.5  0.0		0.3  0.64 19000 	2800		4			1  1	0
+
+Add in carcols.dat:
+vigero, 57,8, 8,17, 43,21, 54,38, 67,8, 37,78, 65,79, 25,78

@@ -1,7 +1,7 @@
 SCRIPT_START
 {
-    LVAR_INT lsc_state lsc_control_state i
-    LVAR_FLOAT fTemp label_x label_y items_pos items_size item_qt
+    LVAR_INT lsc_state lsc_control_state i b_active iMaxItems lsc_selected car_ptr handling pSusp
+    LVAR_FLOAT fTemp label_x label_y items_pos items_size item_qt og_suspension suspension
     item_qt = 12.0
 
     CONST_INT LSCUSTOMS_DISABLED 0
@@ -12,6 +12,7 @@ SCRIPT_START
     CONST_INT LSCUSTOMS_INIT 0
     CONST_INT LSCUSTOMS_PROCESS 1
     CONST_INT LSCUSTOMS_BACK 2
+    CONST_INT LSCUSTOMS_ACCEPT 3
 
     lsc_control_state = LSCUSTOMS_INIT
     lsc_state = LSCUSTOMS_DISABLED
@@ -21,13 +22,13 @@ SCRIPT_START
 
     VAR_INT price_counter
 
-    VAR_INT item_price[12]
-    VAR_INT item_model_index[12]
-    VAR_TEXT_LABEL item_text_label[12]
-    VAR_INT item_modelid[12]
-    VAR_INT item_component[12]
+    VAR_INT item_price[20]
+    VAR_INT item_model_index[20]
+    VAR_TEXT_LABEL item_text_label[20]
+    VAR_INT item_modelid[20]
+    VAR_INT item_component[20]
 
-    VAR_INT item_hilight_shops[12]
+    VAR_INT item_hilight_shops[20]
 
     VAR_INT modelid_shops component_shops special_camera // used to display clothes on the player
 
@@ -70,6 +71,11 @@ SCRIPT_START
     CONST_INT MOD_GARAGE_PAINTJOB 100
     CONST_INT MOD_GARAGE_CAR_COLOUR 101
 
+    CONST_INT MOD_GARAGE_SUSPENSION 102
+    CONST_INT MOD_GARAGE_ENGINE 103
+    CONST_INT MOD_GARAGE_BRAKES 104
+    CONST_INT MOD_GARAGE_TURBO 105
+
     VAR_INT number_of_colours
     number_of_colours = 0
 
@@ -85,6 +91,9 @@ SCRIPT_START
     VAR_INT new_mod_index_wil
     VAR_INT upgradetype_mod
     VAR_INT wing_mod_counter roof_mod_counter exhaust_mod_counter nitro_mod_counter spolier_mod_counter bonnet_mod_counter bonnetLR_mod_counter wheel_mod_counter
+
+    VAR_INT suspension_mod_counter
+    suspension_mod_counter = 4
 
     wheel_mod_counter = 0
     wing_mod_counter = 0 
@@ -108,22 +117,22 @@ SCRIPT_START
     stereo_mod_counter = 0
     hydraulics_mod_counter = 0
 
-    VAR_INT wing_mod_model_index[12]
-    VAR_INT roof_mod_model_index[12]
-    VAR_INT exhaust_mod_model_index[12]
-    VAR_INT nitro_mod_model_index[12]
-    VAR_INT spolier_mod_model_index[12]
-    VAR_INT bonnet_mod_model_index[12]
-    VAR_INT bonnetLR_mod_model_index[12]
-    VAR_INT front_bumper_mod_model_index[12]
-    VAR_INT rear_bumper_mod_model_index[12]
-    VAR_INT lights_mod_model_index[12]
-    VAR_INT front_bullbar_mod_model_index[12]
-    VAR_INT rear_bullbar_mod_model_index[12]
-    VAR_INT misc_mod_model_index[12]
-    VAR_INT wheel_mod_model_index[12]
-    VAR_INT stereo_mod_model_index[12]
-    VAR_INT hydraulics_mod_model_index[12]
+    VAR_INT wing_mod_model_index[20]
+    VAR_INT roof_mod_model_index[20]
+    VAR_INT exhaust_mod_model_index[20]
+    VAR_INT nitro_mod_model_index[20]
+    VAR_INT spolier_mod_model_index[20]
+    VAR_INT bonnet_mod_model_index[20]
+    VAR_INT bonnetLR_mod_model_index[20]
+    VAR_INT front_bumper_mod_model_index[20]
+    VAR_INT rear_bumper_mod_model_index[20]
+    VAR_INT lights_mod_model_index[20]
+    VAR_INT front_bullbar_mod_model_index[20]
+    VAR_INT rear_bullbar_mod_model_index[20]
+    VAR_INT misc_mod_model_index[20]
+    VAR_INT wheel_mod_model_index[20]
+    VAR_INT stereo_mod_model_index[20]
+    VAR_INT hydraulics_mod_model_index[20]
 
     CONST_INT VEHICLE_UPGRADE_BONNET 0
     CONST_INT VEHICLE_UPGRADE_BONNET_LEFT_RIGHT 1
@@ -143,7 +152,7 @@ SCRIPT_START
     CONST_INT VEHICLE_REPLACEMENT_REAR_BUMPER 15
     CONST_INT VEHICLE_REPLACEMENT_MISC 16
 
-    VAR_INT upgradetype[12]
+    VAR_INT upgradetype[20]
 
     // menu stuff
     VAR_INT upgrade_menu1_selected upgrade_menu2_selected
@@ -300,7 +309,16 @@ SCRIPT_START
             IF lsc_state = LSCUSTOMS_MAIN_MENU
                 IF lsc_control_state = LSCUSTOMS_INIT
                     GOSUB fill_in_text_menu1_mod
-                    GOSUB draw_main_menu_carmod
+                    
+                    START_NEW_SCRIPT separateVehicleHandling
+                    WAIT 0
+                    
+                    GET_VEHICLE_POINTER stored_mod_garage_car (car_ptr)
+                    handling = car_ptr + 0x38C // handlingData
+                    READ_MEMORY handling 4 0 (handling)
+
+                    pSusp = handling + 0xAC
+                    READ_MEMORY pSusp 4 0 (og_suspension)
 
                     lsc_control_state = LSCUSTOMS_PROCESS
                 ENDIF
@@ -308,38 +326,38 @@ SCRIPT_START
                 IF lsc_control_state = LSCUSTOMS_PROCESS
                     USE_TEXT_COMMANDS 1
                     GOSUB lsc_draw_panel
+
+                    lsc_selected = upgrade_menu1_selected
+
+                    iMaxItems = no_of_mods_for_vehicle
+                    GOSUB lsc_draw_background
+
                     i = 0
-
-                    items_pos = item_qt * 20.0
-                    items_pos /= 2.0 
-                    items_pos += 100.0
-                    items_size = item_qt * 20.0 
-                    DRAW_RECT 112.0 items_pos 170.0 items_size 0 0 0 220
-
-                    WHILE i < 12
+                    WHILE i < no_of_mods_for_vehicle
                         fTemp =# i
                         fTemp *= 20.0
                         label_y = 100.0 + fTemp
                         GOSUB lsc_set_textitem_params
-                        IF upgrade_menu1_selected = i
+                        IF lsc_selected = i
                             SET_TEXT_COLOUR 0 0 0 255
                         ENDIF
                         DISPLAY_TEXT 31.0 label_y $item_text_label[i]
-                        label_y += 10.0
-                        DRAW_RECT RECT_X label_y RECT_W 20.0 255 255 255 220
                         i++
                     ENDWHILE
+
+                    fTemp =# lsc_selected
+                    fTemp *= 20.0
+                    label_y = 110.0 + fTemp
+                    DRAW_RECT RECT_X label_y RECT_W 20.0 255 255 255 220
+
+                    GOSUB lsc_create_selection
+
+                    upgrade_menu1_selected = lsc_selected
                     USE_TEXT_COMMANDS 0
 
                     IF IS_BUTTON_PRESSED PAD1 CROSS
 			    		car_colour1_change_mods = 0
 			    		car_colour2_change_mods = 0
-
-			    		GET_MENU_ITEM_SELECTED main_menu_shops upgrade_menu1_selected
-
-			    		IF upgrade_menu1_selected < 0
-			    			upgrade_menu1_selected = 0
-			    		ENDIF
 
 			    		IF NOT upgradetype[upgrade_menu1_selected] = MOD_GARAGE_CAR_COLOUR							
 
@@ -361,19 +379,29 @@ SCRIPT_START
 
 			    		ENDIF
 
-                        lsc_state = LSCUSTOMS_SUB_MENU
-                        lsc_control_state = LSCUSTOMS_INIT
-                        DELETE_MENU main_menu_shops
-                        CLEAR_HELP
-                        main_menu_drawn_shops = 0
+                        lsc_control_state = LSCUSTOMS_ACCEPT
                     ENDIF
 
                     IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+                        lsc_control_state = LSCUSTOMS_BACK
+                    ENDIF
+                ENDIF
+
+                IF lsc_control_state = LSCUSTOMS_BACK
+                    IF NOT IS_BUTTON_PRESSED PAD1 TRIANGLE
                         DELETE_MENU main_menu_shops
                         CLEAR_HELP
                         GOTO lsc_global_cleanup
                     ENDIF
                 ENDIF
+
+                IF lsc_control_state = LSCUSTOMS_ACCEPT
+                    IF NOT IS_BUTTON_PRESSED PAD1 CROSS
+                        lsc_state = LSCUSTOMS_SUB_MENU
+                        lsc_control_state = LSCUSTOMS_INIT
+                    ENDIF
+                ENDIF
+
             ENDIF
 
 				// player is in menu two to select items
@@ -394,23 +422,131 @@ SCRIPT_START
 			  	    ELSE
     
 				    	IF sub_menu_drawn_shops = 0
-				    		GOSUB draw_sub_menu_mod 
+                            NOP
+				    		// GOSUB draw_sub_menu_mod 
 				    	ENDIF
 
 			 	    ENDIF
+
+                    SWITCH upgradetype[upgrade_menu1_selected]
+                        CASE MOD_GARAGE_SUSPENSION
+                            iMaxItems = suspension_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_BONNET
+                            iMaxItems = bonnet_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_BONNET_LEFT_RIGHT
+                            iMaxItems = bonnetLR_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_SPOILER
+                            iMaxItems = spolier_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_WING
+                            iMaxItems = wing_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_FRONT_BULLBAR
+                            iMaxItems = front_bullbar_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_REAR_BULLBAR
+                            iMaxItems = rear_bullbar_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_FRONT_LIGHTS
+                            iMaxItems = lights_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_ROOF
+                            iMaxItems = roof_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_NITRO
+                            iMaxItems = nitro_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_HYDRAULICS
+                            iMaxItems = hydraulics_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_STEREO
+                            iMaxItems = stereo_mod_counter
+                            BREAK
+                        CASE VEHICLE_UPGRADE_P11
+                            BREAK
+                        CASE VEHICLE_REPLACEMENT_WHEEL
+                            iMaxItems = wheel_mod_counter
+                            BREAK
+                        CASE VEHICLE_REPLACEMENT_EXHAUST
+                            iMaxItems = exhaust_mod_counter
+                            BREAK
+                        CASE VEHICLE_REPLACEMENT_FRONT_BUMPER
+                            iMaxItems = front_bumper_mod_counter
+                            BREAK
+                        CASE VEHICLE_REPLACEMENT_REAR_BUMPER
+                            iMaxItems = rear_bumper_mod_counter
+                            BREAK
+                        CASE VEHICLE_REPLACEMENT_MISC
+                            iMaxItems = misc_mod_counter
+                            BREAK
+                    ENDSWITCH
 
                     lsc_control_state = LSCUSTOMS_PROCESS
                 ENDIF
 
 			    IF lsc_control_state = LSCUSTOMS_PROCESS
+                    USE_TEXT_COMMANDS 1
+                    GOSUB lsc_draw_panel
+
+                    lsc_selected = upgrade_menu2_selected
+
+                    GOSUB lsc_draw_background
+
+                    i = 0
+                    WHILE i < iMaxItems
+                        fTemp =# i
+                        fTemp *= 20.0
+                        label_y = 100.0 + fTemp
+                        GOSUB lsc_set_textitem_params
+                        IF lsc_selected = i
+                            SET_TEXT_COLOUR 0 0 0 255
+                        ENDIF
+                        DISPLAY_TEXT 31.0 label_y $item_text_label[i]
+                        GOSUB lsc_set_text_price_params
+                        IF lsc_selected = i
+                            SET_TEXT_COLOUR 0 0 0 255
+                        ENDIF
+                        DISPLAY_TEXT_WITH_NUMBER 190.0 label_y DOLLAR item_price[i]
+                        i++
+                    ENDWHILE
+
+                    fTemp =# lsc_selected
+                    fTemp *= 20.0
+                    label_y = 110.0 + fTemp
+                    DRAW_RECT RECT_X label_y RECT_W 20.0 255 255 255 220
+
+                    GOSUB lsc_create_selection
+
+                    upgrade_menu2_selected = lsc_selected
+                    USE_TEXT_COMMANDS 0
+
 
 			    	IF IS_BUTTON_PRESSED PAD1 TRIANGLE
                         lsc_control_state = LSCUSTOMS_BACK
 			    	ENDIF
 
 			    	IF IS_BUTTON_PRESSED PAD1 CROSS
+                        lsc_control_state = LSCUSTOMS_ACCEPT
+			    	ENDIF 
+    
+			    ENDIF
 
-			    		IF upgradetype[upgrade_menu1_selected] = MOD_GARAGE_CAR_COLOUR
+                IF lsc_control_state = LSCUSTOMS_BACK
+                    IF NOT IS_BUTTON_PRESSED PAD1 TRIANGLE
+                        sub_menu_drawn_shops = 0
+			    		DELETE_MENU sub_menu_shops
+                        CLEAR_HELP
+                        lsc_state = LSCUSTOMS_MAIN_MENU
+                        lsc_control_state = LSCUSTOMS_INIT
+                    ENDIF
+                ENDIF
+
+                IF lsc_control_state = LSCUSTOMS_ACCEPT
+                    IF NOT IS_BUTTON_PRESSED PAD1 CROSS
+                    	IF upgradetype[upgrade_menu1_selected] = MOD_GARAGE_CAR_COLOUR
 
 			    			GET_MENU_ITEM_SELECTED forth_menu_shops upgrade_menu4_selected
 
@@ -425,26 +561,39 @@ SCRIPT_START
 			    			ENDIF 
     
 			    		ELSE
-    
-			    			GET_MENU_ITEM_SELECTED sub_menu_shops upgrade_menu2_selected
 
-			    			IF upgrade_menu2_selected < 0
-			    				upgrade_menu2_selected = 0
-			    			ENDIF
+                            IF upgradetype[upgrade_menu1_selected] = MOD_GARAGE_SUSPENSION
+                                SWITCH upgrade_menu2_selected
+                                    CASE 0
+                                        suspension = og_suspension - 0.3
+                                        BREAK
+                                    CASE 1
+                                        suspension = og_suspension - 0.6
+                                        BREAK
+                                    CASE 2
+                                        suspension = og_suspension - 0.9
+                                        BREAK
+                                    CASE 3
+                                        suspension = og_suspension - 1.2
+                                        BREAK
+                                ENDSWITCH
 
-			    		  	IF NOT upgradetype[upgrade_menu1_selected] = MOD_GARAGE_PAINTJOB
-			    			AND NOT upgradetype[upgrade_menu1_selected] = MOD_GARAGE_CAR_COLOUR 
-			    	   			mod_model_index = item_model_index[upgrade_menu2_selected]
-			    	   			REQUEST_VEHICLE_MOD mod_model_index
+                                WRITE_MEMORY pSusp 4 suspension 0
+                            ELSE
+                                IF NOT upgradetype[upgrade_menu1_selected] = MOD_GARAGE_PAINTJOB
+			    			    AND NOT upgradetype[upgrade_menu1_selected] = MOD_GARAGE_CAR_COLOUR 
+			    	   		    	mod_model_index = item_model_index[upgrade_menu2_selected]
+			    	   		    	REQUEST_VEHICLE_MOD mod_model_index
 
-                                WHILE NOT HAS_VEHICLE_MOD_LOADED mod_model_index								 
-			    					WAIT 0
-			    				ENDWHILE
+                                    WHILE NOT HAS_VEHICLE_MOD_LOADED mod_model_index								 
+			    			    		WAIT 0
+			    			    	ENDWHILE
 
-			    				ADD_VEHICLE_MOD stored_mod_garage_car mod_model_index just_replaced_car_mod
-			    			   	MARK_VEHICLE_MOD_AS_NO_LONGER_NEEDED mod_model_index
+			    			    	ADD_VEHICLE_MOD stored_mod_garage_car mod_model_index just_replaced_car_mod
+			    			       	MARK_VEHICLE_MOD_AS_NO_LONGER_NEEDED mod_model_index
 
-			    	   	   	ENDIF
+			    	   	   	    ENDIF
+                            ENDIF
     
 			    	   	ENDIF 
 
@@ -452,17 +601,8 @@ SCRIPT_START
 			    		flag_bought_item_already_shops = 0
 			    		flag_car_same_colour = 0
 
-			    	ENDIF 
-    
-			    ENDIF
-
-                IF lsc_control_state = LSCUSTOMS_BACK
-                    IF NOT IS_BUTTON_PRESSED PAD1 TRIANGLE
-                        sub_menu_drawn_shops = 0
-			    		DELETE_MENU sub_menu_shops
-                        CLEAR_HELP
-                        lsc_state = LSCUSTOMS_MAIN_MENU
-                        lsc_control_state = LSCUSTOMS_INIT
+                        lsc_state = LSCUSTOMS_SUB_MENU
+                        lsc_control_State = LSCUSTOMS_PROCESS
                     ENDIF
                 ENDIF
 														
@@ -489,7 +629,7 @@ SCRIPT_START
     SET_TEXT_COLOUR 255 255 255 255
     SET_TEXT_EDGE 0 0 0 0 0
     DISPLAY_TEXT 38.0 82.0 LSCCATS
-    DRAW_RECT RECT_X 90.0 RECT_W 20.0 0 0 0 220
+    DRAW_RECT RECT_X 90.0 RECT_W 20.0 0 0 0 235
     RETURN
 
     lsc_draw_title:
@@ -506,12 +646,56 @@ SCRIPT_START
     DISPLAY_TEXT 515.0 405.0 RMBACK
     RETURN
 
+    lsc_draw_background:
+    item_qt =# iMaxItems
+    items_pos = item_qt * 20.0
+    items_pos /= 2.0 
+    items_pos += 100.0
+    items_size = item_qt * 20.0 
+    DRAW_RECT 112.0 items_pos 170.0 items_size 0 0 0 220
+    RETURN
+
+    lsc_create_selection:
+    IF b_active = 0
+        IF IS_BUTTON_PRESSED 0 DPADUP
+           lsc_selected--
+           b_active = 1
+        ENDIF
+        IF IS_BUTTON_PRESSED 0 DPADDOWN
+            lsc_selected++
+            b_active = 1
+        ENDIF
+    ELSE
+        IF NOT IS_BUTTON_PRESSED 0 DPADUP
+        AND NOT IS_BUTTON_PRESSED 0 DPADDOWN
+            b_active = 0
+        ENDIF
+    ENDIF
+
+    IF lsc_selected < 0
+        lsc_selected = iMaxItems - 1
+    ENDIF
+    IF lsc_selected >= iMaxItems
+        lsc_selected = 0
+    ENDIF
+
+    RETURN
+
     lsc_set_textitem_params:
     SET_TEXT_FONT 1
     SET_TEXT_SCALE 0.35 1.68
     SET_TEXT_WRAPX 640.0
     SET_TEXT_COLOUR 255 255 255 255
     SET_TEXT_EDGE 0 0 0 0 0
+    RETURN
+
+    lsc_set_text_price_params:
+    SET_TEXT_FONT 1
+    SET_TEXT_SCALE 0.35 1.68
+    SET_TEXT_WRAPX 640.0
+    SET_TEXT_COLOUR 255 255 255 255
+    SET_TEXT_EDGE 0 0 0 0 0
+    SET_TEXT_RIGHT_JUSTIFY 1
     RETURN
 
     // tells the first menu what to have it it
@@ -537,6 +721,10 @@ SCRIPT_START
     hydraulics_mod_counter = 0
     stereo_mod_counter = 0
     shop_counter = 0
+
+    item_text_label[no_of_mods_for_vehicle] = LSCSUSP
+    upgradetype[no_of_mods_for_vehicle] = MOD_GARAGE_SUSPENSION
+    ++ no_of_mods_for_vehicle
 
     // gets the number of paintjobs
     GET_NUM_AVAILABLE_PAINTJOBS stored_mod_garage_car number_of_paintjobs
@@ -799,6 +987,34 @@ SCRIPT_START
 
     // gets the names and prices of the items
     fill_in_text_menu2_mods:
+
+        item_text_label[no_of_mods_for_vehicle] = LSCSUSP
+    upgradetype[no_of_mods_for_vehicle] = MOD_GARAGE_SUSPENSION
+    ++ no_of_mods_for_vehicle
+
+    IF upgradetype[upgrade_menu1_selected] = MOD_GARAGE_SUSPENSION
+
+    	number_of_mods_in_section = 4
+    
+    	item_text_label[0] = LSCSUSP
+    	item_price[0] = 500
+
+        item_text_label[1] = LSCSUSP
+    	item_price[1] = 1000
+
+        item_text_label[2] = LSCSUSP
+    	item_price[2] = 1500
+
+        item_text_label[3] = LSCSUSP
+    	item_price[3] = 2000
+
+    	// fills in any blanks that are left
+    	temp_var_shops = 4
+    
+    	GOSUB fill_in_menu_blanks
+
+    
+    ENDIF
 
     IF upgradetype[upgrade_menu1_selected] = MOD_GARAGE_PAINTJOB
 
@@ -1295,8 +1511,6 @@ SCRIPT_START
 
     RETURN
 
-
-
     fill_in_menu_blanks:
     	WHILE temp_var_shops < 12
     		item_model_index[temp_var_shops] = -1
@@ -1304,24 +1518,6 @@ SCRIPT_START
     		item_text_label[temp_var_shops] = DUMMY
     		++temp_var_shops 
     	ENDWHILE	
-    RETURN
-
-    draw_main_menu_carmod:								  
-    
-    	IF main_menu_drawn_shops = 0
-    
-    		PRINT_HELP_FOREVER MODH1 
-    
-    		// Create and populate the main menu.
-
-    		CREATE_MENU UPGRADE 29.0 145.0 186.0 1 TRUE TRUE 0 main_menu_shops
-    
-    		SET_MENU_COLUMN_ORIENTATION main_menu_shops 0 0
-    		SET_MENU_COLUMN main_menu_shops 0 DUMMY $item_text_label[0] $item_text_label[1] $item_text_label[2] $item_text_label[3] $item_text_label[4] $item_text_label[5] $item_text_label[6] $item_text_label[7] $item_text_label[8] $item_text_label[9] $item_text_label[10] $item_text_label[11] 
-    
-    		main_menu_drawn_shops = 1
-    	ENDIF
-
     RETURN
 
     draw_sub_menu_mod:

@@ -1,0 +1,11 @@
+vehicles.ide
+6595, 	impaler, 		impaler, 		car, 		IMPALER,	 	IMPALER, 		null,	normal,		10, 	0,	0,		-1, 0.72, 0.72,		0
+
+handling.cfg
+IMPALER        1700.0    3800.0   2.0    0.0 0.05 -0.1  70  0.72 0.89 0.50  	4 170.0 23.0 12.0 R P 	6.7   0.50 0 32.0  	1.2  0.09  0.0   0.30 -0.15 0.5  0.5		0.26 0.50  19000 	40200000	12010001	0  0	0
+
+carcols.dat
+impaler, 24,57, 0,1, 91,1, 17,30, 25,13, 37,1, 79,1, 6,84
+
+carmods.dat
+impaler, nto_b_l, nto_b_s, nto_b_tw

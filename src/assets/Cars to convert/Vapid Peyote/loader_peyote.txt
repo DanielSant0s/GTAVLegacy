@@ -1,0 +1,9 @@
+veh_mods.ide
+objs
+#
+#	Vapid Peyote
+11821, rbmp_lr_pyt1, peyote, 100, 2101248
+11822, rbmp_lr_pyt2, peyote, 100, 2101248
+11823, rf_lr_pyt1, peyote, 100, 2101248
+11820, bnt_lr_pyt1, peyote, 100, 2101248
+end

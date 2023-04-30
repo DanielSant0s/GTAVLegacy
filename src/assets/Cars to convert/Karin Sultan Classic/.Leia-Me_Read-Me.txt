@@ -1,0 +1,18 @@
+﻿-------------------------------------------------------------------------------
+AUTHOR'S NOTE: If you are going to edit this car, please add the credits!
+
+NOTA DO AUTOR: Se você for editar esse carro, por favor coloque os créditos! Discord: Th14g0#9972
+-------------------------------------------------------------------------------
+
+Visite: https://central-mods.blogspot.com
+
+Autor: Th14g0MR
+-------------------------------------------------------------------------------
+EN:
+Installation: Just copy the folder to some folder on your modloader.
+
+PTBR:
+Instalação: Basta copiar a pasta para alguma pasta do seu modloader.
+-------------------------------------------------------------------------------
+
+Este trabalho está licenciado sob a Licença Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional Creative Commons. Para visualizar uma cópia desta licença, visite http://creativecommons.org/licenses/by-nc-sa/4.0/ ou mande uma carta para Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.

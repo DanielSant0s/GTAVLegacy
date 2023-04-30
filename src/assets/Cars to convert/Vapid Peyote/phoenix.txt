@@ -1,0 +1,15 @@
+Vapid Peyote (SA)
+Author: XG417
+
+
+vehicles.ide
+603, 	phoenix, 	phoenix, 	car, 		PHOENIX, 	PHOENIX, 	null,	poorfamily, 	4, 	0,	0,		-1, 0.7, 0.7,		0
+
+handling.cfg
+PHOENIX      1700.0    3800.0   2.5    0.0 0.05 -0.2 75  0.65 0.89 0.5  	4 180.0 25.0 15.0 R P 	5.0   0.45 0 30.0  	0.65 0.10  0.0   0.15 -0.10 0.5  0.1		0.25 0.60 35000 	40282804	0			1  1	1
+
+carcols.dat
+phoenix, 76,76, 70,70, 4,4, 9,9, 38,38, 12,12, 65,65, 94,94
+
+carmods.dat
+phoenix, nto_b_l, nto_b_s, nto_b_tw

@@ -1,0 +1,2 @@
+Add in GTA.DAT:
+IDE DATA\MAPS\veh_mods\vigero_mods.IDE

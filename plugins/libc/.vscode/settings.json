@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "stdint.h": "c",
+        "lc_math.h": "c",
+        "lc_stdio.h": "c",
+        "lc_stdlib.h": "c",
+        "lc_string.h": "c"
+    }
+}

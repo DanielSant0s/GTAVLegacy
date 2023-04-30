@@ -1,0 +1,2 @@
+Replace in Vehicle.ide
+492, 	greenwoo, 	greenwoo, 	car, 		GREENWOO, 	GREENWO, 	null,	poorfamily,	10, 	0,	0,		-1, 0.6, 0.6,		0

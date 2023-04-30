@@ -104,53 +104,136 @@ EC FF BD 27 //                                  addiu   $sp, -0x20       # Add I
 40 00 BD 27 //                                  addiu   $sp, 0x40        # Add Immediate Unsigned
 ENDDUMP
 
-gtavl_cam:
-DUMP
-                         //     GTAVLegacy_cam:
-
-                        // //     var_38          = -0x38
-                         //     var_28          = -0x28
-                         //     var_24          = -0x24
-                         //     var_20          = -0x20
-                         //     var_1C          = -0x1C
-                         //     var_18          = -0x18
-                         //     var_14          = -0x14
-                         //     var_10          = -0x10
-                         //     var_s0          =  0
-
-C0 FF BD 27             // //                     addiu   $sp, -0x40
-38 00 BF FF              //                     sd      $ra, 0x38+var_s0($sp)
-10 00 A4 AF              //                     sw      $a0, 0x38+var_28($sp)
-14 00 A5 AF              //                     sw      $a1, 0x38+var_24($sp)
-18 00 AC E7              //                     swc1    $f12, 0x38+var_20($sp)
-1C 00 AD E7              //                     swc1    $f13, 0x38+var_1C($sp)
-20 00 AE E7              //                     swc1    $f14, 0x38+var_18($sp)
-25 10 20 01              //                     move    $v0, $a5
-24 00 A2 A3              //                     sb      $v0, 0x38+var_14($sp)
-99 3E 02 3C 9A 99 42 34  //                     li      $v0, 0x3E99999A
-00 00 A2 AF              //                     sw      $v0, 0x38+var_38($sp)
-14 00 A2 8F              //                     lw      $v0, 0x38+var_24($sp)
-00 00 41 C4              //                     lwc1    $f1, 0($v0)
-28 00 BD AF              //                     sw      $sp, 0x38+var_10($sp)
-28 00 A2 8F              //                     lw      $v0, 0x38+var_10($sp)
-00 00 40 C4              //                     lwc1    $f0, 0($v0)
-00 08 00 46              //                     add.s   $f0, $f1, $f0
-14 00 A2 8F              //                     lw      $v0, 0x38+var_24($sp)
-00 00 40 E4              //                     swc1    $f0, 0($v0)
-24 00 A2 93              //                     lbu     $v0, 0x38+var_14($sp)
-25 48 40 00              //                     move    $a5, $v0
-20 00 AE C7              //                     lwc1    $f14, 0x38+var_18($sp)
-1C 00 AD C7              //                     lwc1    $f13, 0x38+var_1C($sp)
-18 00 AC C7              //                     lwc1    $f12, 0x38+var_20($sp)
-14 00 A5 8F              //                     lw      $a1, 0x38+var_24($sp)
-10 00 A4 8F              //                     lw      $a0, 0x38+var_28($sp)
-B4 1F 08 0C              //                     jal     Process_FollowPed_SA
-00 00 00 00              //                     nop
-00 00 00 00              //                     nop
-38 00 BF DF              //                     ld      $ra, 0x38+var_s0($sp)
-40 00 BD 27              //                     addiu   $sp, 0x40
-08 00 E0 03              //                     jr      $ra
-00 00 00 00              //                     nop
+indievehhandlings_label:
+DUMP // Size: 4096, increase handling size from 224 bytes to 341 bytes per vehicle
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 ENDDUMP
 
 start:
@@ -181,6 +264,21 @@ WRITE_MEMORY 0x4BB18C 4 0x00000000 1   // nop
 WRITE_MEMORY 0x4BC998 4 0x1000003F 1   // branch
 WRITE_MEMORY 0x4BC99C 4 0x00000000 1   // nop
 
+CONST_INT load_fixed_plugin 0x393E50
+CONST_INT load_code_overlay 0x3C6990
+CONST_INT unload_code_overlay 0x3C6AA0
+CONST_INT load_dynamic_plugin 0x88FB68
+CONST_INT setDirectory 0x2330B0
+
+CALL_FUNCTION load_code_overlay 2 0 "relocator.nm" 0x88d880
+
+CALL_FUNCTION load_dynamic_plugin 2 0 "vpickups.erl" 0
+CALL_FUNCTION load_dynamic_plugin 2 0 "vcamera.erl" 0
+CALL_FUNCTION load_dynamic_plugin 2 0 "v_aim.erl" 0
+CALL_FUNCTION load_dynamic_plugin 2 0 "v_gps.erl" 0
+
+CALL_FUNCTION unload_code_overlay 0 0
+
 // Hook colour filter
 GET_LABEL_POINTER ColourFilter (colour_filter)
 filter_call = colour_filter + 72
@@ -192,12 +290,6 @@ filter_a_ptr = colour_filter + 56
 colour_filter /= 4
 colour_filter += 0x0C000000
 WRITE_MEMORY 0x515568 4 colour_filter 0
-
-// Hook player on foot camera
-GET_LABEL_POINTER gtavl_cam (hook_ptr)
-hook_ptr /= 4
-hook_ptr += 0x0C000000
-WRITE_MEMORY 0x202A10 4 hook_ptr 0
 
 char_r[0] = 0
 char_g[0] = 220
@@ -218,6 +310,17 @@ CONST_INT UpdateCompareFlag 0x3077F0
 CONST_INT PLAYER_FRANKLIN 0
 CONST_INT PLAYER_MICHAEL 1
 CONST_INT PLAYER_TREVOR 2
+
+// -------------------------------------------------- Independent Vehicle Handlings global vars -------------------------------------------------- //
+
+VAR_INT indieVehicles[12] indieHandlings[12] usedHandlingSlots handlingReplFlag
+CONST_INT HANDLING_HOOK_WAIT 0 
+CONST_INT HANDLING_HOOK_SIGNAL 1
+
+handlingReplFlag = HANDLING_HOOK_WAIT
+usedHandlingSlots = 0
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------- //
 
 SET_DEATHARREST_STATE OFF
 
@@ -272,12 +375,13 @@ START_NEW_SCRIPT improvedMove
 START_NEW_SCRIPT cops_on_radar
 START_NEW_SCRIPT life_recovery
 START_NEW_SCRIPT manual_reload
-START_NEW_SCRIPT pickups_on_ground
+//START_NEW_SCRIPT pickups_on_ground
 START_NEW_SCRIPT car_wash
 START_NEW_SCRIPT phone
 START_NEW_SCRIPT als
 //START_NEW_SCRIPT transparent_menu
 
+WAIT 0
 
 //LAUNCH_MISSION import.sc
 //LAUNCH_MISSION other_scripts.sc
@@ -348,7 +452,7 @@ CONST_FLOAT SF_NR_GARAGEY 247.029
 CONST_FLOAT SF_NR_GARAGEZ 33.561
 
 // San Fran Street Racer Garage
-CONST_FLOAT SF_SR_GARAGEX -2723.845  
+CONST_FLOAT SF_SR_GARAGEX -2723.845 
 CONST_FLOAT	SF_SR_GARAGEY 217.804
 CONST_FLOAT SF_SR_GARAGEZ 3.585
 
@@ -360,6 +464,11 @@ CONST_FLOAT LV_NR_GARAGEZ 9.812
 // used for help messages for nitros
 VAR_INT flag_1st_time_nitro_shop 
 flag_1st_time_nitro_shop = 0   
+
+//VAR_INT addr 
+
+//ALLOCATE_MEMORY 16384 (addr)
+//PRINT_FORMATTED_NOW "16KB Malloc ptr: 0x%x" 99999999
 
 main_loop:
 WAIT 250
@@ -846,7 +955,8 @@ VAR_INT num_carmod_instances dogcart1
 
 }
 */
-{
+
+/*{
     pickups_on_ground:
 
     LVAR_INT pObject wModelId pickupObject pickups ptr_tmp iX iY iZ pickup_type
@@ -904,6 +1014,7 @@ VAR_INT num_carmod_instances dogcart1
         ENDWHILE
     ENDWHILE
 }
+*/
 
 {
     manual_reload:
@@ -3091,6 +3202,53 @@ VAR_INT num_carmod_instances dogcart1
     RETURN
 }
 
+
+{
+    cops_on_radar:
+    SCRIPT_NAME COPMARK 
+
+    LVAR_INT ped handler i pedtype blip char_ptr blip_added
+    LVAR_FLOAT x y z
+    
+    cops_ident_loop:
+    WAIT 250
+    IF IS_PLAYER_PLAYING player
+    AND IS_WANTED_LEVEL_GREATER player 0
+        TIMERA = 0
+
+        READ_MEMORY 0x66B918 4 0 (handler)
+        handler += 0x4
+
+        READ_MEMORY handler 4 0 (handler)
+
+        i = 0
+        WHILE i <= 35584
+            READ_MEMORY handler 1 0 (ped)
+            handler += 0x1
+            IF ped >= 0x00 
+            AND 0x80 > ped
+                ped += i
+
+                GET_PED_TYPE ped (pedtype)
+                IF pedtype = 6
+                    GET_PED_POINTER ped (char_ptr)
+                    char_ptr += 0x7D6 //Padding, we'll use it to store our flag
+                    READ_MEMORY char_ptr 1 0 (blip_added)
+                    IF blip_added = 0x0
+                        ADD_BLIP_FOR_CHAR ped (blip)
+                        CHANGE_BLIP_DISPLAY blip 2
+                        WRITE_MEMORY char_ptr 1 0xFF 0
+                    ENDIF
+                ENDIF
+            ENDIF
+
+            i += 0x100
+        ENDWHILE
+
+    ENDIF
+    GOTO cops_ident_loop
+}
+
 {
     wanted_blip:
 
@@ -4645,52 +4803,6 @@ VAR_INT num_carmod_instances dogcart1
 }     
 
 {
-    cops_on_radar:
-    SCRIPT_NAME COPMARK 
-
-    LVAR_INT ped handler i pedtype blip char_ptr blip_added
-    LVAR_FLOAT x y z
-    
-    cops_ident_loop:
-    WAIT 250
-    IF IS_PLAYER_PLAYING player
-    AND IS_WANTED_LEVEL_GREATER player 0
-        TIMERA = 0
-
-        READ_MEMORY 0x66B918 4 0 (handler)
-        handler += 0x4
-
-        READ_MEMORY handler 4 0 (handler)
-
-        i = 0
-        WHILE i <= 35584
-            READ_MEMORY handler 1 0 (ped)
-            handler += 0x1
-            IF ped >= 0x00 
-            AND 0x80 > ped
-                ped += i
-
-                GET_PED_TYPE ped (pedtype)
-                IF pedtype = 6
-                    GET_PED_POINTER ped (char_ptr)
-                    char_ptr += 0x7D6 //Padding, we'll use it to store our flag
-                    READ_MEMORY char_ptr 1 0 (blip_added)
-                    IF blip_added = 0x0
-                        ADD_BLIP_FOR_CHAR ped (blip)
-                        CHANGE_BLIP_DISPLAY blip 2
-                        WRITE_MEMORY char_ptr 1 0xFF 0
-                    ENDIF
-                ENDIF
-            ENDIF
-
-            i += 0x100
-        ENDWHILE
-
-    ENDIF
-    GOTO cops_ident_loop
-}
-
-{
     life_recovery:
     SCRIPT_NAME LIFEREC
 
@@ -4820,3 +4932,76 @@ fade_for_mission:
         CLEAR_CHAR_TASKS scplayer
     ENDIF
 RETURN
+
+
+{
+    separateVehicleHandling:
+    SCRIPT_NAME INDVEHH
+
+    LVAR_INT debug_car debug_car_ptr tmp_car_ptr debug_state pHandling pMass pIndieHandling pTmpHandling i handlingOffset
+    LVAR_FLOAT debug_car_mass new_mass
+
+    CONST_INT memcpy 0x54E3B0
+    CONST_INT memset 0x54E568
+
+    GET_LABEL_POINTER indievehhandlings_label (pIndieHandling)
+
+    IF IS_PLAYER_PLAYING player
+    AND IS_CHAR_SITTING_IN_ANY_CAR scplayer
+
+        handlingReplFlag = HANDLING_HOOK_SIGNAL
+        STORE_CAR_CHAR_IS_IN_NO_SAVE scplayer (debug_car)
+        GET_VEHICLE_POINTER debug_car (debug_car_ptr)
+        pHandling = debug_car_ptr + 0x38C // handlingData
+        READ_MEMORY pHandling 4 0 (pHandling)
+
+        IF pHandling < 0x6B1FF0
+        OR pHandling > 0x6F3AB8
+            IF usedHandlingSlots < 12
+                handlingOffset = usedHandlingSlots * 0x154 // New handling size
+                pIndieHandling += handlingOffset
+
+                CALL_FUNCTION memcpy 3 0 (pIndieHandling, pHandling, 0xE0)  // Copy handling
+
+                pHandling = debug_car_ptr + 0x38C // handlingData
+
+                WRITE_MEMORY pHandling 4 pIndieHandling 0 // Replace handling pointer
+
+                indieVehicles[usedHandlingSlots] = debug_car_ptr
+                indieHandlings[usedHandlingSlots] = pIndieHandling
+
+                usedHandlingSlots++
+            ELSE
+                i = 0
+                WHILE i < 12
+                    pTmpHandling = indieVehicles[i] + 0x38C // handlingData
+                    READ_MEMORY pTmpHandling 4 0 (pTmpHandling)
+
+                    IF NOT pTmpHandling = indieHandlings[i]
+                        handlingOffset = i * 0x154 // New handling size
+                        pIndieHandling += handlingOffset
+
+                        CALL_FUNCTION memset 3 0 (pIndieHandling, 0, 0x154)  // Fill old handling
+                        CALL_FUNCTION memcpy 3 0 (pIndieHandling, pHandling, 0xE0)  // Copy handling
+
+                        pHandling = debug_car_ptr + 0x38C // handlingData
+
+                        WRITE_MEMORY pHandling 4 pIndieHandling 0 // Replace handling pointer
+
+                        indieVehicles[i] = debug_car_ptr
+                        indieHandlings[i] = pIndieHandling
+
+                        BREAK
+                    ENDIF
+
+                    i++
+                ENDWHILE
+            ENDIF
+        ENDIF
+        
+        handlingReplFlag = HANDLING_HOOK_WAIT
+
+    ENDIF
+
+    TERMINATE_THIS_SCRIPT
+}

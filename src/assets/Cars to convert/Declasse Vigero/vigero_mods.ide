@@ -1,0 +1,19 @@
+objs
+662, misc_a_vig_a, vehicle, 100, 2097152
+663, bnt_vig_a, vehicle, 100, 2101248
+665, misc_b_vig_a, vehicle, 100, 2097152
+666, misc_b_vig_b, vehicle, 100, 2097152
+667, misc_a_vig_b, vehicle, 100, 2097152
+668, bnt_vig_b, vehicle, 100, 2101248
+699, misc_c_vig_bar, vehicle, 100, 2097152
+end 
+tobj 
+end
+path
+end
+2dfx
+end
+anim
+end
+txdp
+end

@@ -309,6 +309,12 @@ SCRIPT_START
             IF lsc_state = LSCUSTOMS_MAIN_MENU
                 IF lsc_control_state = LSCUSTOMS_INIT
                     GOSUB fill_in_text_menu1_mod
+                    
+                    START_NEW_SCRIPT separateVehicleHandling
+                    WAIT 0
+
+                    pSusp = backupHandlings[curHandlingIndex] + 0xAC
+                    READ_MEMORY pSusp 4 0 (og_suspension)
 
                     lsc_control_state = LSCUSTOMS_PROCESS
                 ENDIF
@@ -553,15 +559,6 @@ SCRIPT_START
 			    		ELSE
 
                             IF upgradetype[upgrade_menu1_selected] = MOD_GARAGE_SUSPENSION
-                                START_NEW_SCRIPT separateVehicleHandling
-                                WAIT 0
-                                
-                                GET_VEHICLE_POINTER stored_mod_garage_car (car_ptr)
-                                handling = car_ptr + 0x38C // handlingData
-                                READ_MEMORY handling 4 0 (handling)
-
-                                pSusp = handling + 0xAC
-                                READ_MEMORY pSusp 4 0 (og_suspension)
                                 SWITCH upgrade_menu2_selected
                                     CASE 0
                                         suspension = og_suspension - 0.3

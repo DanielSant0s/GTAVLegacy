@@ -1,0 +1,73 @@
+-- Truffade Adder 1992 --
+By: Calvin.linardi
+
+Credits:
+        - Calvin.linardi (main creator)
+        - Crack Yo' Neck for sharing texture and some part.
+        - Silent soul for the concept sketch.
+        - Tigerlim for handling and settings also assist.
+        - XG417 for assist, testing and cool screenshot.
+
+Install
+-------------------------------------------------------------------------------
+You can add the car or just replace SuperGT
+Remember to change ID when you add or replace the vehicle.
+
+vehicle.ide
+-----------------------------------------------------
+4795, 	adder,  	adder,  	car, 		ADDER,  	ADDER, 	        null,	executive, 	1,	0,	0,		-1, 0.725, 0.775,	0
+
+Handling.cfg
+-----------------------------------------------------
+ADDER        1418.0    4400.0   4.0    0.0 0.0 -0.42 70  0.78 0.98 0.5105 	5 342.46 28.48 15.0 4 P 7.0   0.50 1 45.0   0.7  0.35  0.01  0.11 -0.055 0.50 0.3       0.15 0.40 380000    c0112004    1400002     0  1    1
+
+carmods.dat
+-----------------------------------------------------
+adder, bntl_b_sq, exh_b_ts, nto_b_l, nto_b_s, nto_b_tw, rf_b_sc_r, wg_l_b_ssk
+
+carcols.dat
+-----------------------------------------------------
+adder, 158,158, 79,79, 3,3, 6,6, 2,2
+
+GTASA_VehicleAudioSettings (add only)
+-----------------------------------------------------
+adder                                       0             38     37     1         0.9          1.0          4         1.789724331  2           0          5          0           2                 0.0
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+Info:
+        - SA Style Model; based on 1992 Bugatti EB 110 SS.
+        - fully damage part 
+        - fully data for adding
+        - supported generic tuning
+        - Lods,shadow and col
+
+Known bugs:
+        - none ATM.
+     
+Reupload and editing:
+	Source are unlocked, but please contact me if you want to do anything with this mod or at least credited me and other contributors!  
+
+
+
+Author links:
+
+GTA Forums
+https://gtaforums.com/topic/937295-calvinlinardis-underground-bunker/
+
+GTA Inside
+https://www.gtainside.com/user/calvin.linardi
+
+Liberty city
+https://libertycity.net/user/Calvin.linardi/
+
+C&S Warehouse Discord server
+https://discord.gg/gMgNuQM
+
+Donations
+https://www.paypal.me/CalvinLinardi
+
+
+Have fun!
+
