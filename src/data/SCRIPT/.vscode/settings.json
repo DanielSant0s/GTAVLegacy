@@ -1,0 +1,16 @@
+{
+    "gta3script.buildflags": {
+        "gta3": [
+            "--cs"
+        ],
+        "gtavc": [
+            "--cs"
+        ],
+        "gtasa": [
+            "-fno-entity-tracking",
+            "--guesser",
+            "-fbreak-continue",
+            "-fcleo"
+        ]
+    }
+}

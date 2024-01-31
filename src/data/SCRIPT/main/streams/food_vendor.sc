@@ -59,16 +59,16 @@ IF DOES_OBJECT_EXIST prop_cart
                 ENDIF
 
                 IF script_state = 1 // may buy food
-                    IF LOCATE_CHAR_ON_FOOT_OBJECT_2D scplayer prop_cart 8.0 8.0 FALSE
+                    IF LOCATE_CHAR_ON_FOOT_OBJECT_2D hPlayerPed prop_cart 8.0 8.0 FALSE
                         REQUEST_ANIMATION VENDING
                         IF HAS_ANIMATION_LOADED VENDING
                             IF IS_SCORE_GREATER player 0
                                 GET_OFFSET_FROM_OBJECT_IN_WORLD_COORDS prop_cart (1.0 0.0 0.0) (temp_x temp_y temp_z)
-                                IF LOCATE_CHAR_ON_FOOT_3D scplayer (temp_x temp_y temp_z) (0.6 0.6 1.0) TRUE
-                                    GET_CHAR_HEALTH scplayer temp_health
+                                IF LOCATE_CHAR_ON_FOOT_3D hPlayerPed (temp_x temp_y temp_z) (0.6 0.6 1.0) TRUE
+                                    GET_CHAR_HEALTH hPlayerPed temp_health
                                     temp_health += 50
-                                    SET_CHAR_HEALTH scplayer temp_health
-                                    TASK_PLAY_ANIM_SECONDARY scplayer VEND_EAT1_P VENDING 4.0 FALSE FALSE FALSE FALSE -1
+                                    SET_CHAR_HEALTH hPlayerPed temp_health
+                                    TASK_PLAY_ANIM_SECONDARY hPlayerPed VEND_EAT1_P VENDING 4.0 FALSE FALSE FALSE FALSE -1
                                     INCREMENT_INT_STAT 245 10
                                     next_state_time = game_timer + 3000
                                     ADD_SCORE player -1
@@ -89,7 +89,7 @@ IF DOES_OBJECT_EXIST prop_cart
                 IF script_state = 3 // waiting for next buy time and player get out of cart activation sphere
                     IF game_timer > next_state_time
                         GET_OFFSET_FROM_OBJECT_IN_WORLD_COORDS prop_cart 1.0 0.0 0.0 temp_x temp_y temp_z
-                        IF NOT LOCATE_CHAR_ON_FOOT_3D scplayer temp_x temp_y temp_z 0.6 0.6 1.0 FALSE
+                        IF NOT LOCATE_CHAR_ON_FOOT_3D hPlayerPed temp_x temp_y temp_z 0.6 0.6 1.0 FALSE
                             script_state = 1
                         ENDIF
                     ENDIF
@@ -99,7 +99,7 @@ IF DOES_OBJECT_EXIST prop_cart
                 IF script_state > 0
                     IF IS_PLAYER_PLAYING player
                         IF NOT IS_CHAR_DEAD vendor
-                            TASK_KILL_CHAR_ON_FOOT_TIMED vendor scplayer 10000
+                            TASK_KILL_CHAR_ON_FOOT_TIMED vendor hPlayerPed 10000
                         ENDIF
                     ENDIF
                 ENDIF

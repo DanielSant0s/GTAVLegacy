@@ -272,10 +272,14 @@ CONST_INT setDirectory 0x2330B0
 
 CALL_FUNCTION load_code_overlay 2 0 "relocator.nm" 0x88d880
 
+CALL_FUNCTION load_dynamic_plugin 2 0 "draw_rotate.erl" 0
+CALL_FUNCTION load_dynamic_plugin 2 0 "rect_radar.erl" 0
 CALL_FUNCTION load_dynamic_plugin 2 0 "vpickups.erl" 0
 CALL_FUNCTION load_dynamic_plugin 2 0 "vcamera.erl" 0
 CALL_FUNCTION load_dynamic_plugin 2 0 "v_aim.erl" 0
 CALL_FUNCTION load_dynamic_plugin 2 0 "v_gps.erl" 0
+CALL_FUNCTION load_dynamic_plugin 2 0 "wb_screen.erl" 
+CALL_FUNCTION load_dynamic_plugin 2 0 "effect_bank.erl" 0
 
 CALL_FUNCTION unload_code_overlay 0 0
 
@@ -310,17 +314,6 @@ CONST_INT UpdateCompareFlag 0x3077F0
 CONST_INT PLAYER_FRANKLIN 0
 CONST_INT PLAYER_MICHAEL 1
 CONST_INT PLAYER_TREVOR 2
-
-// -------------------------------------------------- Independent Vehicle Handlings global vars -------------------------------------------------- //
-
-VAR_INT indieVehicles[12] indieHandlings[12] usedHandlingSlots handlingReplFlag
-CONST_INT HANDLING_HOOK_WAIT 0 
-CONST_INT HANDLING_HOOK_SIGNAL 1
-
-handlingReplFlag = HANDLING_HOOK_WAIT
-usedHandlingSlots = 0
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------- //
 
 SET_DEATHARREST_STATE OFF
 
@@ -372,7 +365,6 @@ START_NEW_SCRIPT char_switcher
 START_NEW_SCRIPT weapon_selector
 START_NEW_SCRIPT wanted_blip
 START_NEW_SCRIPT improvedMove
-START_NEW_SCRIPT cops_on_radar
 START_NEW_SCRIPT life_recovery
 START_NEW_SCRIPT manual_reload
 //START_NEW_SCRIPT pickups_on_ground
@@ -479,7 +471,6 @@ OR IS_GARAGE_OPEN (MODLAST)
 OR IS_GARAGE_OPEN (MDSSFSE)
 OR IS_GARAGE_OPEN (MDS1SFS)
 OR IS_GARAGE_OPEN (VECMOD)
-OR IS_BUTTON_PRESSED PAD1 DPADRIGHT
     GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT CARMOD1 num_carmod_instances
     IF num_carmod_instances = 0
         STREAM_SCRIPT CARMOD1
@@ -953,66 +944,6 @@ VAR_INT num_carmod_instances dogcart1
         C3              // retn          
     ENDDUMP
 
-}
-*/
-
-/*{
-    pickups_on_ground:
-
-    LVAR_INT pObject wModelId pickupObject pickups ptr_tmp iX iY iZ pickup_type
-    LVAR_FLOAT x y z ground_z
-
-    //WRITE_MEMORY 0x00536541 5 0x90 1  //CPickups::DoPickUpEffects(CEntity *)
-    WRITE_MEMORY 0x2D9E10 4 0x0 1 //object->__parent.physical.entity.placeable.m_pCoords->pos.z = outVec.z;
-    WRITE_MEMORY 0x22FD90 4 0x2403FFFF 1   // movzx edx,word ptr [008CD59C]
-    
-    WRITE_MEMORY 0x2DD3B0 4 0x100000B7 1
-    WRITE_MEMORY 0x2DD3B4 4 0x0 1 
-    
-    WRITE_MEMORY 0x2DCA10 4 0x0 1 //coronas
-    
-    WHILE NOT IS_GERMAN_GAME
-        WAIT 0
-
-        pickups = 0x803170         
-        WHILE pickups <= 0x807ED0 
-            ptr_tmp = pickups + 0x1C //pickup type
-            READ_MEMORY ptr_tmp 1 0 (pickup_type)  //x
-            IF pickup_type = 2
-            OR pickup_type = 3
-            OR pickup_type = 4
-            OR pickup_type = 5
-            OR pickup_type = 8
-            OR pickup_type = 15
-            OR pickup_type = 19
-                ptr_tmp = pickups + 0x10 // int
-                READ_MEMORY ptr_tmp 2 0 (iX)  //x
-                ptr_tmp = pickups + 0x4 // int 
-                READ_MEMORY ptr_tmp 4 0 (pObject) //[POINTER] - CObjectVC* pObject
-                ptr_tmp = pickups + 0x18 // int
-                READ_MEMORY ptr_tmp 2 0 (wModelId) //[WORD] - wModelId
-                IF NOT iX = 0
-                AND NOT pObject = 0
-                    GET_OBJECT_REF pObject (pickupObject)
-                    GET_OBJECT_COORDINATES pickupObject (x y z)
-                    IF LOCATE_CHAR_ANY_MEANS_2D scplayer x y 80.0 80.0 0
-                        IF LOCATE_CHAR_ANY_MEANS_2D scplayer x y 45.0 45.0 0
-                        OR IS_OBJECT_ON_SCREEN pickupObject
-                            GET_GROUND_Z_FOR_3D_COORD x y z (ground_z)
-                            ground_z += 0.05
-                            SET_OBJECT_COORDINATES pickupObject x y ground_z
-                            IF NOT wModelId = 1212 //#MONEY
-                                SET_OBJECT_ROTATION pickupObject 90.0 0.0 134.0
-                            ELSE
-                                SET_OBJECT_ROTATION pickupObject 0.0 0.0 5.0 
-                            ENDIF
-                       ENDIF
-                    ENDIF
-                ENDIF
-            ENDIF
-            pickups += 0x20
-        ENDWHILE
-    ENDWHILE
 }
 */
 
@@ -3202,53 +3133,6 @@ VAR_INT num_carmod_instances dogcart1
     RETURN
 }
 
-
-{
-    cops_on_radar:
-    SCRIPT_NAME COPMARK 
-
-    LVAR_INT ped handler i pedtype blip char_ptr blip_added
-    LVAR_FLOAT x y z
-    
-    cops_ident_loop:
-    WAIT 250
-    IF IS_PLAYER_PLAYING player
-    AND IS_WANTED_LEVEL_GREATER player 0
-        TIMERA = 0
-
-        READ_MEMORY 0x66B918 4 0 (handler)
-        handler += 0x4
-
-        READ_MEMORY handler 4 0 (handler)
-
-        i = 0
-        WHILE i <= 35584
-            READ_MEMORY handler 1 0 (ped)
-            handler += 0x1
-            IF ped >= 0x00 
-            AND 0x80 > ped
-                ped += i
-
-                GET_PED_TYPE ped (pedtype)
-                IF pedtype = 6
-                    GET_PED_POINTER ped (char_ptr)
-                    char_ptr += 0x7D6 //Padding, we'll use it to store our flag
-                    READ_MEMORY char_ptr 1 0 (blip_added)
-                    IF blip_added = 0x0
-                        ADD_BLIP_FOR_CHAR ped (blip)
-                        CHANGE_BLIP_DISPLAY blip 2
-                        WRITE_MEMORY char_ptr 1 0xFF 0
-                    ENDIF
-                ENDIF
-            ENDIF
-
-            i += 0x100
-        ENDWHILE
-
-    ENDIF
-    GOTO cops_ident_loop
-}
-
 {
     wanted_blip:
 
@@ -4003,8 +3887,8 @@ VAR_INT num_carmod_instances dogcart1
     CONST_INT weapon_icon_6 90 
     CONST_INT weapon_icon_7 89   
 
-    CONST_FLOAT WHEEL_SIZEX 313.6
-    CONST_FLOAT WHEEL_SIZEY 125.0
+    CONST_FLOAT WHEEL_SIZEX 260.0
+    CONST_FLOAT WHEEL_SIZEY 100.0
 
     CONST_FLOAT ICON_SIZEX 110.0
     CONST_FLOAT ICON_SIZEY 70.0    
@@ -4022,24 +3906,6 @@ VAR_INT num_carmod_instances dogcart1
     CONST_INT SIDE_SHOTGUN 5
     CONST_INT SIDE_HEAVY 6
     CONST_INT SIDE_PROJECTILES 7
-
-    CONST_FLOAT BARS_BG_POS_X 86.91
-    CONST_FLOAT BARS_BG_POS_Y 422.8 
-    CONST_FLOAT BARS_BG_SIZ_X 95.2
-    CONST_FLOAT BARS_BG_SIZ_Y 5.8 
-
-    CONST_FLOAT BARS_GL_POS_Y 422.3  
-    CONST_FLOAT BARS_GL_SIZ_Y 3.0
-
-    CONST_FLOAT BARS_HE_POS_X 40.7
-    CONST_FLOAT BARS_HE_SIZ_X 33.0
-
-    CONST_FLOAT BARS_AR_POS_X 89.0
-    CONST_FLOAT BARS_AR_SIZ_X 14.0
-
-    CONST_FLOAT BARS_AB_POS_X 113.8
-    CONST_FLOAT BARS_AB_SIZ_X 19.3
-
 
     LVAR_FLOAT backupSensValue
     LVAR_FLOAT fAngle
@@ -4154,9 +4020,9 @@ VAR_INT num_carmod_instances dogcart1
                         iSide = 0
                         fAngle = -90.0
                         WHILE fAngle <= 225.0
-                            DRAW_SPRITE_WITH_ROTATION wheel_part 320.0 224.0 WHEEL_SIZEX WHEEL_SIZEY fAngle 255 255 255 255
+                            DRAW_SPRITE_WITH_ROTATION wheel_part 320.0 200.0 WHEEL_SIZEX WHEEL_SIZEY fAngle 255 255 255 255
                             IF iCurSide = iSide
-                                DRAW_SPRITE_WITH_ROTATION wheel_selected 320.0 224.0 WHEEL_SIZEX WHEEL_SIZEY fAngle char_r[switch_cur_char] char_g[switch_cur_char] char_b[switch_cur_char] 255
+                                DRAW_SPRITE_WITH_ROTATION wheel_selected 320.0 200.0 WHEEL_SIZEX WHEEL_SIZEY fAngle char_r[switch_cur_char] char_g[switch_cur_char] char_b[switch_cur_char] 255
                             ENDIF
                             GOSUB DrawWeaponThisSide
                             iSide++
@@ -4489,42 +4355,42 @@ VAR_INT num_carmod_instances dogcart1
     IF iSide = SIDE_PISTOL
         iSlot = 3  
         x = 320.0
-        y = 104.0
+        y = 96.0
     ENDIF   
     IF iSide = SIDE_SMG
         iSlot = 5  
-        x = 405.0
-        y = 140.0 
+        x = 380.0
+        y = 130.0 
     ENDIF  
     IF iSide = SIDE_ASSALT
         iSlot = 6  
-        x = 440.0
-        y = 220.0 
+        x = 400.0
+        y = 200.0 
     ENDIF  
     IF iSide = SIDE_RIFLE
         iSlot = 7 
-        x = 405.0
-        y = 300.0 
+        x = 380.0
+        y = 270.0 
     ENDIF     
     IF iSide = SIDE_MELEE
         iSlot = 1
         x = 320.0
-        y = 340.0 
+        y = 300.0 
     ENDIF     
     IF iSide = SIDE_SHOTGUN   
         iSlot = 4
-        x = 235.0
-        y = 300.0 
+        x = 260.0
+        y = 270.0 
     ENDIF      
     IF iSide = SIDE_HEAVY
         iSlot = 8
-        x = 210.0
-        y = 220.0 
+        x = 235.0
+        y = 200.0 
     ENDIF       
     IF iSide = SIDE_PROJECTILES
         iSlot = 9
-        x = 235.0
-        y = 140.0 
+        x = 260.0
+        y = 130.0 
     ENDIF
     RETURN
 
@@ -4789,7 +4655,7 @@ VAR_INT num_carmod_instances dogcart1
     CheckDrawCurSide:
     IF iCurWeapon = iCheckWeapon
         LOAD_SPRITE wheel_current "wheel_current"
-        DRAW_SPRITE_WITH_ROTATION wheel_current 320.0 224.0 WHEEL_SIZEX WHEEL_SIZEY fAngle char_r[switch_cur_char] char_g[switch_cur_char] char_b[switch_cur_char] 255
+        DRAW_SPRITE_WITH_ROTATION wheel_current 320.0 200.0 WHEEL_SIZEX WHEEL_SIZEY fAngle char_r[switch_cur_char] char_g[switch_cur_char] char_b[switch_cur_char] 255
     ENDIF
     RETURN
 
@@ -4933,6 +4799,12 @@ fade_for_mission:
     ENDIF
 RETURN
 
+// -------------------------------------------------- Independent Vehicle Handlings global vars -------------------------------------------------- //
+
+VAR_INT indieVehicles[12] indieHandlings[12] backupHandlings[12] usedHandlingSlots curHandlingIndex
+usedHandlingSlots = 0
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------- //
 
 {
     separateVehicleHandling:
@@ -4946,10 +4818,10 @@ RETURN
 
     GET_LABEL_POINTER indievehhandlings_label (pIndieHandling)
 
+    curHandlingIndex = -1
+
     IF IS_PLAYER_PLAYING player
     AND IS_CHAR_SITTING_IN_ANY_CAR scplayer
-
-        handlingReplFlag = HANDLING_HOOK_SIGNAL
         STORE_CAR_CHAR_IS_IN_NO_SAVE scplayer (debug_car)
         GET_VEHICLE_POINTER debug_car (debug_car_ptr)
         pHandling = debug_car_ptr + 0x38C // handlingData
@@ -4961,6 +4833,8 @@ RETURN
                 handlingOffset = usedHandlingSlots * 0x154 // New handling size
                 pIndieHandling += handlingOffset
 
+                backupHandlings[usedHandlingSlots] = pHandling
+
                 CALL_FUNCTION memcpy 3 0 (pIndieHandling, pHandling, 0xE0)  // Copy handling
 
                 pHandling = debug_car_ptr + 0x38C // handlingData
@@ -4969,6 +4843,8 @@ RETURN
 
                 indieVehicles[usedHandlingSlots] = debug_car_ptr
                 indieHandlings[usedHandlingSlots] = pIndieHandling
+
+                curHandlingIndex = usedHandlingSlots
 
                 usedHandlingSlots++
             ELSE
@@ -4981,6 +4857,8 @@ RETURN
                         handlingOffset = i * 0x154 // New handling size
                         pIndieHandling += handlingOffset
 
+                        backupHandlings[i] = pHandling
+
                         CALL_FUNCTION memset 3 0 (pIndieHandling, 0, 0x154)  // Fill old handling
                         CALL_FUNCTION memcpy 3 0 (pIndieHandling, pHandling, 0xE0)  // Copy handling
 
@@ -4991,6 +4869,8 @@ RETURN
                         indieVehicles[i] = debug_car_ptr
                         indieHandlings[i] = pIndieHandling
 
+                        curHandlingIndex = i
+
                         BREAK
                     ENDIF
 
@@ -4998,8 +4878,6 @@ RETURN
                 ENDWHILE
             ENDIF
         ENDIF
-        
-        handlingReplFlag = HANDLING_HOOK_WAIT
 
     ENDIF
 

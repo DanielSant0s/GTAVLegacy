@@ -20,10 +20,10 @@ RETURN
     cart_teleport:
     WAIT 0
     IF IS_PLAYER_PLAYING player
-        IF IS_CHAR_IN_AREA_ON_FOOT_3D scplayer (-15.0, 5.0 4.0) (-14.0 2.0 0.0) TRUE
+        IF IS_CHAR_IN_AREA_ON_FOOT_3D hPlayerPed (-15.0, 5.0 4.0) (-14.0 2.0 0.0) TRUE
             REQUEST_COLLISION -2157.6257 -425.5779
             LOAD_ALL_MODELS_NOW
-            SET_CHAR_COORDINATES scplayer -2157.6257 -425.5779 -100.0
+            SET_CHAR_COORDINATES hPlayerPed -2157.6257 -425.5779 -100.0
             ADD_SCORE player 100 // some money to buy food
         ENDIF
     ENDIF

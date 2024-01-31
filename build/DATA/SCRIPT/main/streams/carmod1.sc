@@ -312,12 +312,8 @@ SCRIPT_START
                     
                     START_NEW_SCRIPT separateVehicleHandling
                     WAIT 0
-                    
-                    GET_VEHICLE_POINTER stored_mod_garage_car (car_ptr)
-                    handling = car_ptr + 0x38C // handlingData
-                    READ_MEMORY handling 4 0 (handling)
 
-                    pSusp = handling + 0xAC
+                    pSusp = backupHandlings[curHandlingIndex] + 0xAC
                     READ_MEMORY pSusp 4 0 (og_suspension)
 
                     lsc_control_state = LSCUSTOMS_PROCESS
@@ -613,6 +609,7 @@ SCRIPT_START
     GOTO lsc_loop
 
     lsc_global_cleanup:
+    SET_CAR_DENSITY_MULTIPLIER 1.0
     SET_PLAYER_CONTROL player ON
     lsc_state = LSCUSTOMS_DISABLED
     DISPLAY_RADAR TRUE

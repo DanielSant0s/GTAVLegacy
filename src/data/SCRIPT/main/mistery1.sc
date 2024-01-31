@@ -48,9 +48,9 @@ REQUEST_MODEL ZR350
 LOAD_ALL_MODELS_NOW // Tip: This freezes the game, use only while faded out (which we are).
                     // Otherwise use HAS_MODEL_LOADED in a while loop.
 
-GET_CHAR_COORDINATES scplayer (x y z)
+GET_CHAR_COORDINATES hPlayerPed (x y z)
 CREATE_CAR ZR350 (x y z) mistery1_delivery_car
-WARP_CHAR_INTO_CAR scplayer mistery1_delivery_car
+WARP_CHAR_INTO_CAR hPlayerPed mistery1_delivery_car
 
 ADD_BLIP_FOR_COORD (40.0 0.0 4.0) mistery1_delivery_blip 
 
@@ -62,7 +62,7 @@ ENDWHILE
 PRINT_NOW (BCE5W10) 5000 1
 SET_PLAYER_CONTROL player ON
 
-WHILE NOT LOCATE_CHAR_ANY_MEANS_3D scplayer (40.0 0.0 4.0) (5.0 5.0 3.0) TRUE
+WHILE NOT LOCATE_CHAR_ANY_MEANS_3D hPlayerPed (40.0 0.0 4.0) (5.0 5.0 3.0) TRUE
     WAIT 0
     IF IS_CAR_DEAD mistery1_delivery_car
         PRINT_NOW (BCE5@24) 5000 1

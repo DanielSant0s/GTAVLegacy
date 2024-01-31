@@ -1,0 +1,23 @@
+############################################################
+# Menu header sprites
+#
+# Format: GXT_NAME LOGO_PATH PATTERN_PATH INTERIOR_ID
+# INTERIOR_ID = -1 ignores interior checks
+############################################################
+
+AMMUN       ammu-nation     ammu-nation_pattern     -1
+CLOTCHO     binco           binco_pattern           15
+CLOTCHO     ds              ds_pattern              14
+CLOTCHO     prolaps         prolaps_pattern         3
+CLOTCHO     suburban        suburban_pattern        1
+CLOTCHO     victim          victim_pattern          5
+CLOTCHO     zip             zip_pattern             18
+CSPAWN      car_spawner     car_spawner_pattern     -1
+FOODCHO     burger   	    burger_pattern          10
+FOODCHO     bell   	        bell_pattern            9
+FOODCHO     pizza   	    pizza_pattern           5
+HAIRCHO     barber   	    barber_pattern          2
+RSHOP       rshop   	    rshop_pattern           -1
+TATTO       tattoos   	    tattoos_pattern         -1
+UPGRADE     modgarage   	modgarage_pattern       -1
+RMMENU      relive          relive_pattern          -1

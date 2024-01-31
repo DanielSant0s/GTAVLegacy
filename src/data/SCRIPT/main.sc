@@ -2,106 +2,7 @@
 GOTO start
 
 DUMP 
-00 //Alignment
-ENDDUMP
-
-ColourFilter:
-DUMP 
-//                              gtavl_colourfilter:
-//
-//                              var_28          = -0x28
-//                              var_18          = -0x18
-//                              var_10          = -0x10
-//                              var_s0          =  0
-//
-D0 FF BD 27 //                                  addiu   $sp, -0x30
-28 00 BF FF //                                  sd      $ra, 0x28+var_s0($sp)
-25 10 80 00 //                                  move    $v0, $a0
-00 10 02 00 //                                  sll     $v0, 0
-10 00 A2 AF //                                  sw      $v0, 0x28+var_18($sp)
-25 10 A0 00 //                                  move    $v0, $a1
-00 10 02 00 //                                  sll     $v0, 0
-18 00 A2 AF //                                  sw      $v0, 0x28+var_10($sp)
-40 00 02 24 //                                  li      $v0, 0x40  # R
-00 00 A2 A3 //                                  sb      $v0, 0x28+var_28($sp)
-40 00 02 24 //                                  li      $v0, 0x40  # G
-01 00 A2 A3 //                                  sb      $v0, 0x28+var_28+1($sp)
-60 00 02 24 //                                  li      $v0, 0x60  # B
-02 00 A2 A3 //                                  sb      $v0, 0x28+var_28+2($sp)
-70 00 02 24 //                                  li      $v0, 0x70  # A
-03 00 A2 A3 //                                  sb      $v0, 0x28+var_28+3($sp)
-10 00 A5 DF //                                  ld      $a1, 0x28+var_18($sp)
-00 00 A4 DF //                                  ld      $a0, 0x28+var_28($sp)
-DC 67 14 0C //                                  jal     colour_filter
-00 00 00 00 //                                  nop
-00 00 00 00 //                                  nop
-28 00 BF DF //                                  ld      $ra, 0x28+var_s0($sp)
-30 00 BD 27 //                                  addiu   $sp, 0x30
-08 00 E0 03 //                                  jr      $ra
-00 00 00 00 //                                  nop
-//                               # End of function set_saturation
-ENDDUMP
-
-pause_menu_hook2:
-DUMP
-//                               pause_menu_hook:
-//
-//                               var_18          = -0x18
-//                               var_14          = -0x14
-//                               var_10          = -0x10
-//                               var_s0          =  0
-//
-E0 FF BD 27                   //                addiu   $sp, -0x20
-18 00 BF FF                   //                sd      $ra, 0x18+var_s0($sp)
-24 00 02 3C 60 6F 42 34       //                li      $v0, 0x246F60
-00 00 A2 AF                   //                sw      $v0, 0x18+var_18($sp)
-6F 00 02 3C A8 F9 42 34       //                li      $v0, 0x6FF9A8
-04 00 A2 AF                   //                sw      $v0, 0x18+var_14($sp)
-BB AA 02 3C DD CC 42 34       //                li      $v0, 0xAABBCCDD
-08 00 A2 AF                   //                sw      $v0, 0x18+var_10($sp)
-04 00 A2 8F                   //                lw      $v0, 0x18+var_14($sp)
-00 00 42 80                   //                lb      $v0, 0($v0)
-07 00 40 10                   //                beqz    $v0, loc_100054
-00 00 00 00                   //                nop
-08 00 A2 8F                   //                lw      $v0, 0x18+var_10($sp)
-14 0C 03 3C AC 58 63 34       //                li      $v1, 0xC1458AC
-00 00 43 AC                   //                sw      $v1, 0($v0)
-08 00 00 10                   //                b       loc_100070
-00 00 00 00                   //                nop
-//                              loc_100054:
-00 00 A2 8F                   //                lw      $v0, 0x18+var_18($sp)
-09 F8 40 00                   //                jalr    $v0
-00 00 00 00                   //                nop
-08 00 A2 8F                   //                lw      $v0, 0x18+var_10($sp)
-14 0C 03 3C DC 67 63 34       //                li      $v1, 0xC1467DC
-00 00 43 AC                   //                sw      $v1, 0($v0)
-//                              loc_100070:
-00 00 00 00                   //                nop
-18 00 BF DF                   //                ld      $ra, 0x18+var_s0($sp)
-20 00 BD 27                   //                addiu   $sp, 0x20
-08 00 E0 03                   //                jr      $ra
-00 00 00 00                   //                nop
-//                               # End of function pause_menu_hook
-ENDDUMP
-
-weapon_to_model:
-DUMP
-EC FF BD 27 //                                  addiu   $sp, -0x20       # Add Immediate Unsigned
-10 00 BF FF //                                  sd      $ra, 0x40+var_10($sp)  # Store Doubleword
-00 00 B0 7F //                                  sq      $s0, 0x40+var_40($sp)  # Store Quadword
-7B 00 02 3C //                                  lui     $v0, 0x7B  # '{'  # Load Upper Immediate
-80 18 04 00 //                                  sll     $v1, $a0, 2      # Shift Left Logical
-80 87 42 24 //                                  li      $v0, CModelInfo::ms_modelInfoPtrs  # Load Immediate
-21 10 43 00 //                                  addu    $v0, $v1         # Add Unsigned
-00 00 50 8C //                                  lw      $s0, 0($v0)      # Load Word
-00 00 19 8E //                                  lw      $t9, 0($s0)      # Load Word
-18 00 39 8F //                                  lw      $t9, 0x18($t9)   # Load Word
-09 F8 20 03 //                                  jalr    $t9              # Jump And Link Register
-2D 20 00 02 //                                  move    $a0, $s0
-10 00 BF DF //                                  ld      $ra, 0x40+var_10($sp)  # Load Doubleword
-00 00 B0 7B //                                  lq      $s0, 0x40+var_40($sp)  # Load Quadword
-08 00 E0 03 //                                  jr      $ra              # Jump Register
-40 00 BD 27 //                                  addiu   $sp, 0x40        # Add Immediate Unsigned
+00 // Alignment
 ENDDUMP
 
 indievehhandlings_label:
@@ -236,64 +137,168 @@ DUMP // Size: 4096, increase handling size from 224 bytes to 341 bytes per vehic
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 ENDDUMP
 
+
+lpTextBuffer:
+DUMP // Size: 512, reserved for text buffering
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+ENDDUMP
+
+lpPeopleSquareGenObjects:
+DUMP // Size: 64, 16 handlers with 4 byte size
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+ENDDUMP
+
+lpPeopleSquareGenPeds:
+DUMP // Size: 64, 16 handlers with 4 byte size
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+ENDDUMP
+
+lpPeopleSquareGenTimers:
+DUMP // Size: 64, 16 handlers with 4 byte size
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+ENDDUMP
+
+lpPeopleSquareGenMaxTimes:
+DUMP // Size: 64, 16 handlers with 4 byte size
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+ENDDUMP
+
+lpUnknownPtr:
+DUMP
+    00000000 00000000 00000000
+ENDDUMP
+
+
+// Buffer for storing the sphere (CColSphere)
+temp_sphere:
+DUMP
+    00000000 00000000 00000000 00000000  00000000
+ENDDUMP
+
+// Line storage buffer (CColLine)
+temp_line:
+DUMP
+    00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000
+ENDDUMP
+
+// "Table" of ped behaviors
+ped_events:
+DUMP
+    00000000 // PLAYER1
+    00000000 // PLAYER2
+    00000000 // PLAYER_NETWORK
+    00000000 // PLAYER_UNUSED
+    00000000 // CIVMALE
+    00000000 // CIVFEMALE
+    00000000 // COP
+    00000000 // GANG1
+    00000000 // GANG2
+    00000000 // GANG3
+    00000000 // GANG4
+    00000000 // GANG5
+    00000000 // GANG6
+    00000000 // GANG7
+    00000000 // GANG8
+    00000000 // GANG9
+    00000000 // GANG10
+    00000000 // DEALER
+    00000000 // MEDIC
+    00000000 // FIREMAN
+    00000000 // CRIMINAL
+    00000000 // BUM
+    00000000 // PROSTITUTE
+    00000000 // SPECIAL
+    00000000 // MISSION1
+    00000000 // MISSION2
+    00000000 // MISSION3
+    00000000 // MISSION4
+    00000000 // MISSION5
+    00000000 // MISSION6
+    00000000 // MISSION7
+    00020001 // MISSION8
+ENDDUMP
+
 start:
 // Basic Init
 SCRIPT_NAME main
 
-VAR_INT player scplayer player_group
+VAR_INT iPlayer hPlayerPed player_group pPlayerPed
 VAR_INT flag_player_on_mission hook_ptr
-VAR_INT is_drawing colour_filter filter_call
+VAR_INT is_drawing
 
-VAR_INT switch_cur_char switch_new_char switch_money[3] switch_wanted[3] switch_last_used_car[3] switch_in_car[3] char_r[3] char_g[3] char_b[3]
-VAR_FLOAT switch_x[3] switch_y[3] switch_z[3] switch_new_x[3] switch_new_y[3] switch_new_z[3]
-VAR_INT rgba rgba_pointer getrgba_ptr color[4] life_pickup filter_r_ptr filter_g_ptr filter_b_ptr filter_a_ptr
+VAR_INT switch_cur_char switch_new_char 
+VAR_INT switch_money[3] switch_wanted[3] 
+VAR_INT switch_last_used_car[3] switch_in_car[3] 
+VAR_INT char_r[3] char_g[3] char_b[3]
+VAR_INT char_add_color[3] char_replace_color[3] 
+VAR_FLOAT switch_x[3] switch_y[3] switch_z[3] 
+VAR_FLOAT switch_new_x[3] switch_new_y[3] switch_new_z[3]
+VAR_FLOAT switch_ability[3]
 
-VAR_INT fps_onscreen stream_onscreen
-fps_onscreen = 0
-stream_onscreen = 0
+VAR_INT life_pickup gas_pickup
 
-// Disable heat haze
-WRITE_MEMORY 0x516D80 4 0x03E00008 1 // jr $ra
-WRITE_MEMORY 0x516D84 4 0x00000000 1 // nop
+VAR_INT pTextBuffer pUnknownPtr
+GET_LABEL_POINTER (lpTextBuffer) (pTextBuffer)
+GET_LABEL_POINTER (lpUnknownPtr) (pUnknownPtr)
 
-// Disable enex
-WRITE_MEMORY 0x4BB188 4 0x1000015B 1   // branch
-WRITE_MEMORY 0x4BB18C 4 0x00000000 1   // nop
+VAR_INT pPeopleSquareGenObjects pPeopleSquareGenPeds pPeopleSquareGenTimers pPeopleSquareGenMaxTimes
+GET_LABEL_POINTER (lpPeopleSquareGenObjects) (pPeopleSquareGenObjects)
+GET_LABEL_POINTER (lpPeopleSquareGenPeds) (pPeopleSquareGenPeds)
+GET_LABEL_POINTER (lpPeopleSquareGenTimers) (pPeopleSquareGenTimers)
+GET_LABEL_POINTER (lpPeopleSquareGenMaxTimes) (pPeopleSquareGenMaxTimes)
 
-// Disable Door Camera
-WRITE_MEMORY 0x4BC998 4 0x1000003F 1   // branch
-WRITE_MEMORY 0x4BC99C 4 0x00000000 1   // nop
-
-CONST_INT load_fixed_plugin 0x393E50
-CONST_INT load_code_overlay 0x3C6990
-CONST_INT unload_code_overlay 0x3C6AA0
-CONST_INT load_dynamic_plugin 0x88FB68
-CONST_INT setDirectory 0x2330B0
-
-CALL_FUNCTION load_code_overlay 2 0 "relocator.nm" 0x88d880
-
-CALL_FUNCTION load_dynamic_plugin 2 0 "draw_rotate.erl" 0
-CALL_FUNCTION load_dynamic_plugin 2 0 "rect_radar.erl" 0
-CALL_FUNCTION load_dynamic_plugin 2 0 "vpickups.erl" 0
-CALL_FUNCTION load_dynamic_plugin 2 0 "vcamera.erl" 0
-CALL_FUNCTION load_dynamic_plugin 2 0 "v_aim.erl" 0
-CALL_FUNCTION load_dynamic_plugin 2 0 "v_gps.erl" 0
-CALL_FUNCTION load_dynamic_plugin 2 0 "wb_screen.erl" 
-CALL_FUNCTION load_dynamic_plugin 2 0 "effect_bank.erl" 0
-
-CALL_FUNCTION unload_code_overlay 0 0
-
-// Hook colour filter
-GET_LABEL_POINTER ColourFilter (colour_filter)
-filter_call = colour_filter + 72
-filter_r_ptr = colour_filter + 32
-filter_g_ptr = colour_filter + 40
-filter_b_ptr = colour_filter + 48
-filter_a_ptr = colour_filter + 56
-
-colour_filter /= 4
-colour_filter += 0x0C000000
-WRITE_MEMORY 0x515568 4 colour_filter 0
+VAR_INT beggar_ids[8]
+beggar_ids[0] = 79
+beggar_ids[1] = 134
+beggar_ids[2] = 135
+beggar_ids[3] = 136
+beggar_ids[4] = 137
+beggar_ids[5] = 212
+beggar_ids[6] = 230
+beggar_ids[7] = 239
 
 char_r[0] = 0
 char_g[0] = 220
@@ -307,126 +312,175 @@ char_r[2] = 150
 char_g[2] = 70
 char_b[2] = 70
 
+char_add_color[0] = 0xFF233626
+char_add_color[1] = 0xFF362c23
+char_add_color[2] = 0xFF232336
+
+char_replace_color[0] = 0x80808080
+char_replace_color[1] = 0x80808080
+char_replace_color[2] = 0x80808080
+
+switch_ability[0] = 100f
+switch_ability[1] = 100f
+switch_ability[2] = 100f
+
+CONST_INT toggleBlur 0x110498
+
 CONST_INT CPostEffects_m_bGrainEnable 0x66C70C
 CONST_INT MaxHealth 0x70974B
 CONST_INT UpdateCompareFlag 0x3077F0
+
+CONST_INT printf 0x54F7D0 
+CONST_INT strlen 0x5517B8 
+CONST_INT ENDLINE 0x0A 
 
 CONST_INT PLAYER_FRANKLIN 0
 CONST_INT PLAYER_MICHAEL 1
 CONST_INT PLAYER_TREVOR 2
 
-SET_DEATHARREST_STATE OFF
+SET_DEATHARREST_STATE (OFF)
 
-SET_TOTAL_NUMBER_OF_MISSIONS 0
-SET_PROGRESS_TOTAL 0
-SET_MISSION_RESPECT_TOTAL 0
+SET_TOTAL_NUMBER_OF_MISSIONS (0)
+SET_PROGRESS_TOTAL (0)
+SET_MISSION_RESPECT_TOTAL (0)
 
-CREATE_PLAYER 0 223.3513, -1753.368, 4.6704 player
+SET_INT_STAT (181, 4)
+SHOW_UPDATE_STATS (0)
 
-GET_PLAYER_CHAR player scplayer
-GET_PLAYER_GROUP player player_group
+player_phone_theme[0] = 8
+player_phone_theme[1] = 6
+player_phone_theme[2] = 0
 
-REQUEST_COLLISION 223.3513, -1753.368
-LOAD_SCENE 223.3513, -1753.368, 4.6704
+CREATE_PLAYER (0, 223.3513, -1753.368, 4.6704) (iPlayer)
 
-CREATE_PICKUP 1240, 2, 223.3513, -1753.368, 4.6704 (life_pickup)
+GET_PLAYER_CHAR (iPlayer) (hPlayerPed)
+GET_PED_POINTER (hPlayerPed) (pPlayerPed)
+GET_PLAYER_GROUP (iPlayer) (player_group)
+SET_GROUP_LEADER (player_group, hPlayerPed)
 
-SET_CAMERA_BEHIND_PLAYER
-SET_CHAR_HEADING scplayer 9.83518
+REQUEST_COLLISION (223.3513, -1753.368)
+LOAD_SCENE (223.3513, -1753.368, 4.6704)
 
-flag_player_on_mission = 0
-DECLARE_MISSION_FLAG flag_player_on_mission
+CREATE_PICKUP (1240, PICKUP_ON_STREET, 223.3513, -1753.368, 4.6704) (life_pickup)
+CREATE_PICKUP (322, PICKUP_ON_STREET, 223.783936 -1760.698364 4.737206) (gas_pickup)
 
-GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SHIRTABLUE SHIRTA 0
-GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player PLAYER_FACE HEAD 1 
-GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player JEANSDENIM JEANS 2 
-GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SHOEDRESSBLK SHOE 3 
-BUILD_PLAYER_MODEL player
+SET_CAMERA_BEHIND_PLAYER ()
+SET_CHAR_HEADING (hPlayerPed, 9.83518)
 
-ADD_HOSPITAL_RESTART (0.0 0.0 5.0) (0.0) 0 
-ADD_POLICE_RESTART (0.0 0.0 5.0) (0.0) 0
+flag_player_on_mission = FALSE
+DECLARE_MISSION_FLAG (flag_player_on_mission)
 
-SET_TIME_OF_DAY (10 0)
+GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, SHIRTABLUE, SHIRTA, 0)
+GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, PLAYER_FACE, HEAD, 1)
+GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, JEANSDENIM, JEANS, 2)
+GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, SHOEDRESSBLK, SHOE, 3)
+BUILD_PLAYER_MODEL (iPlayer)
+
+ADD_HOSPITAL_RESTART (0.0, 0.0, 5.0, 0.0, 0)
+ADD_POLICE_RESTART (0.0, 0.0, 5.0, 0.0, 0)
+
+SET_TIME_OF_DAY (10, 0)
 
 is_drawing = 0
 
-SET_PLAYER_CONTROL player ON
-DO_FADE 0 FADE_IN
+SET_PLAYER_CONTROL (iPlayer, ON)
+DO_FADE (0, FADE_IN)
 
-//LOAD_AND_LAUNCH_MISSION initial.sc
-WAIT 0
+LOAD_AND_LAUNCH_MISSION initial.sc
+
+WAIT (0)
 
 //START_NEW_SCRIPT psave
 
-// START_NEW_SCRIPT streaming_usage
-// START_NEW_SCRIPT fps_counter
-START_NEW_SCRIPT debug_menu
-START_NEW_SCRIPT char_switcher
-START_NEW_SCRIPT weapon_selector
-START_NEW_SCRIPT wanted_blip
-START_NEW_SCRIPT improvedMove
-START_NEW_SCRIPT cops_on_radar
-START_NEW_SCRIPT life_recovery
-START_NEW_SCRIPT manual_reload
-//START_NEW_SCRIPT pickups_on_ground
-START_NEW_SCRIPT car_wash
-START_NEW_SCRIPT phone
-START_NEW_SCRIPT als
-//START_NEW_SCRIPT transparent_menu
+START_NEW_SCRIPT (debug_menu)
+START_NEW_SCRIPT (char_switcher)
+START_NEW_SCRIPT (weapon_selector)
+START_NEW_SCRIPT (wanted_blip)
+START_NEW_SCRIPT (improvedMove)
+START_NEW_SCRIPT (life_recovery)
+START_NEW_SCRIPT (manual_reload)
+START_NEW_SCRIPT (car_wash)
+START_NEW_SCRIPT (als)
+START_NEW_SCRIPT (chop_companion)
+START_NEW_SCRIPT (beggar_camps_activator)
+START_NEW_SCRIPT (taxi)
+START_NEW_SCRIPT (robbery)
+START_NEW_SCRIPT (plane_camera)
+START_NEW_SCRIPT (manual_driveby)
+START_NEW_SCRIPT (first_person_vehicle_camera)
+START_NEW_SCRIPT (pacific_arrest)
+START_NEW_SCRIPT (car_crash_inertia)
+START_NEW_SCRIPT (speed_shake)
+START_NEW_SCRIPT (street_racing)
+START_NEW_SCRIPT (break_locked_car_glass)
+START_NEW_SCRIPT (shoreline_waves, 0)
+START_NEW_SCRIPT (shoreline_waves, 1)
+START_NEW_SCRIPT (shoreline_waves, 2)
+START_NEW_SCRIPT (people_gen_squares) 
+START_NEW_SCRIPT (ability_system)
+START_NEW_SCRIPT (rpg_backview)
+START_NEW_SCRIPT (fire_oil_system)
+//START_NEW_SCRIPT (SNOW_11)
 
-WAIT 0
+WAIT (0) // Start our scripts
 
-//LAUNCH_MISSION import.sc
-//LAUNCH_MISSION other_scripts.sc
+CONST_INT LoadCodeOverlay 0x3C6990
+CONST_INT UnloadCodeOverlay 0x3C6AA0
+CONST_INT OverlaySpace 0x88D880
 
-REGISTER_STREAMED_SCRIPT CARMOD1 carmod1.sc
-//REGISTER_STREAMED_SCRIPT FOOD_VENDOR food_vendor.sc
+CONST_INT erl_flush_symbols 0x890338
+CONST_INT find_erl 0x8902B0
 
-// Streamed scripts can be streamed in manually or by a script trigger.
-// We'll see how stream it manually  the main_loop, but for now let's focus on triggers.
-//
-// The triggers may be registered using:
-//   + REGISTER_SCRIPT_BRAIN_FOR_CODE_USE
-//   + REGISTER_ATTRACTOR_SCRIPT_BRAIN_FOR_CODE_USE
-//   + ALLOCATE_STREAMED_SCRIPT_TO_RANDOM_PED
-//   + ALLOCATE_STREAMED_SCRIPT_TO_OBJECT
-//
-// Each of those triggers are very delicate and requires a tutorial by themselves, which I'm
-// NOT up write, and gets out of the scope of this tutorial, which is quick learning.
-//
-// Instead, let's pick ALLOCATE_STREAMED_SCRIPT_TO_OBJECT and play with it.
-//
-//ALLOCATE_STREAMED_SCRIPT_TO_OBJECT FOOD_VENDOR CHILLIDOGCART 100 70.0 -1
-//ALLOCATE_STREAMED_SCRIPT_TO_OBJECT FOOD_VENDOR NOODLECART_PROP 100 70.0 -1
-// So, we just told the script engine we want run FOOD_VENDOR once we're  a 70.0 radius
-// of the the CHILLIDOGCART or NOODLECART_PROP objects.
+// VAR_INT pCurPlugin
 
-// Unfortunately, objects spawned by script (CREATE_OBJECT) do NOT trigger streamed scripts, so we'll
-// make a teleporter that have a cart spawned by level files.
-// Tip: Look away from the carts IF the vendor character is NOT spawned.
-//START_NEW_SCRIPT cart_teleport
+// CALL_FUNCTION LoadCodeOverlay (2, 0) ("relocator.nm", OverlaySpace)
 
-// **************************************** CAR MODING GARAGES ************************************
-// ************************************************************************************************
+// CALL_FUNCTION_RETURN find_erl (1, 0) ("cleo_ps2") (pCurPlugin)
+
+// IF pCurPlugin > 0
+//     CPRINTLN( "CLEO Library found at 0x%X, flushing symbols...", pCurPlugin )
+//     CALL_FUNCTION erl_flush_symbols (1, 0) (pCurPlugin)
+// ENDIF
+
+// CALL_FUNCTION UnloadCodeOverlay (0, 0) ()
+
+VAR_INT pLibraryObjectAddress iLibraryObject pAllowRadioWheelDrawing pRadioWheelVisible
+
+IF GET_DYNAMIC_LIBRARY_PROCEDURE ("allow_radiowheel_drawing", 0) (pAllowRadioWheelDrawing)
+    CPRINTLN( "GTA V Legacy: [Plugin <> Script Interface] allow_radiowheel_drawing collected" )
+ENDIF
+
+IF GET_DYNAMIC_LIBRARY_PROCEDURE ("radiowheel_visible", 0) (pRadioWheelVisible)
+    CPRINTLN( "GTA V Legacy: [Plugin <> Script Interface] radiowheel_visible collected" )
+ENDIF
+
+//LAUNCH_MISSION (import.sc)
+//LAUNCH_MISSION (other_scripts.sc)
+
+REGISTER_STREAMED_SCRIPT (CARMOD1, carmod1.sc)
+REGISTER_STREAMED_SCRIPT (VPHONE, vphone.sc)
+REGISTER_STREAMED_SCRIPT (HANGOUT, hangout.sc)
+REGISTER_STREAMED_SCRIPT (MODMENU, modmenu.sc) 
+//REGISTER_STREAMED_SCRIPT (FOOD_VENDOR, food_vendor.sc)
 
 CONST_INT GARAGE_OPEN_FOR_LOW_RIDERS 36
 CONST_INT GARAGE_OPEN_FOR_STREET_RACERS 37
 CONST_INT GARAGE_OPEN_FOR_NORMAL_CARS 38
 
 // LA Normal Cars
-CHANGE_GARAGE_TYPE bodLAwN GARAGE_OPEN_FOR_NORMAL_CARS
+CHANGE_GARAGE_TYPE (bodLAwN, GARAGE_OPEN_FOR_NORMAL_CARS)
 
 // LA LowRiders (Neils Lowrider garage)
-CHANGE_GARAGE_TYPE modlast GARAGE_OPEN_FOR_LOW_RIDERS
+CHANGE_GARAGE_TYPE (modlast, GARAGE_OPEN_FOR_LOW_RIDERS)
 
 // San Fran Normal Cars
-CHANGE_GARAGE_TYPE mdsSFSe GARAGE_OPEN_FOR_NORMAL_CARS
+CHANGE_GARAGE_TYPE (mdsSFSe, GARAGE_OPEN_FOR_NORMAL_CARS)
 
 // San Fran Street Racer Garage
-CHANGE_GARAGE_TYPE mds1SFS GARAGE_OPEN_FOR_STREET_RACERS
+CHANGE_GARAGE_TYPE (mds1SFS, GARAGE_OPEN_FOR_STREET_RACERS)
 
 // Vegas Normal Cars
-CHANGE_GARAGE_TYPE vEcmod GARAGE_OPEN_FOR_NORMAL_CARS
+CHANGE_GARAGE_TYPE (vEcmod, GARAGE_OPEN_FOR_NORMAL_CARS)
 
 // GARAGE LOCATES FOR PLAYER TO STOP IN
 // LA normal garage
@@ -463,8 +517,13 @@ flag_1st_time_nitro_shop = 0
 //ALLOCATE_MEMORY 16384 (addr)
 //PRINT_FORMATTED_NOW "16KB Malloc ptr: 0x%x" 99999999
 
+VAR_INT carro player2 phone_obj2
+
+VAR_INT lscustoms_enabled
+lscustoms_enabled = FALSE
+
 main_loop:
-WAIT 250
+WAIT (250)
 
 // This is basically how you'd stream a streamed script manually:
 IF IS_GARAGE_OPEN (BODLAWN)
@@ -472,15 +531,32 @@ OR IS_GARAGE_OPEN (MODLAST)
 OR IS_GARAGE_OPEN (MDSSFSE)
 OR IS_GARAGE_OPEN (MDS1SFS)
 OR IS_GARAGE_OPEN (VECMOD)
-    GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT CARMOD1 num_carmod_instances
+OR lscustoms_enabled = TRUE
+    GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT (CARMOD1, num_carmod_instances)
     IF num_carmod_instances = 0
-        STREAM_SCRIPT CARMOD1
-        IF HAS_STREAMED_SCRIPT_LOADED CARMOD1
-            START_NEW_STREAMED_SCRIPT CARMOD1   // Tip: You can send values just like START_NEW_SCRIPT
+        STREAM_SCRIPT (CARMOD1)
+        IF HAS_STREAMED_SCRIPT_LOADED (CARMOD1)
+            START_NEW_STREAMED_SCRIPT (CARMOD1)   // Tip: You can send values just like START_NEW_SCRIPT
         ENDIF
     ENDIF
 ELSE
-    MARK_STREAMED_SCRIPT_AS_NO_LONGER_NEEDED CARMOD1
+    MARK_STREAMED_SCRIPT_AS_NO_LONGER_NEEDED (CARMOD1)
+ENDIF
+
+IF IS_BUTTON_PRESSED (PAD1, DPADUP)
+AND NOT READ_MEMORY_BOOL (pRadioWheelVisible, 1)
+
+    WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 0 TRUE)
+    GET_NUMBER_OF_INSTANCES_OF_STREAMED_SCRIPT (VPHONE, num_carmod_instances)
+    IF num_carmod_instances = 0
+    AND is_drawing = 0
+        is_drawing = 1
+        STREAM_SCRIPT (VPHONE)
+        LOAD_ALL_MODELS_NOW ()
+        START_NEW_STREAMED_SCRIPT (VPHONE)
+        WAIT (0)
+        MARK_STREAMED_SCRIPT_AS_NO_LONGER_NEEDED (VPHONE)
+    ENDIF  
 ENDIF
 
 GOTO main_loop
@@ -504,15 +580,15 @@ VAR_INT num_carmod_instances dogcart1
 
     // Remeber the entities tutorial? Try compiling without those lines:
     IF pickup_created = 1
-        CREATE_PICKUP 0 0 .0 .0 .0 save_pickup
+        CREATE_PICKUP (0, PICKUP_NONE, 0.0, 0.0, 0.0) (save_pickup)
     ENDIF
 
     psave_loop:
     WAIT 0
     IF flag_player_on_mission = 0
         GOSUB psave_create_pickup
-        IF IS_PLAYER_PLAYING player
-        AND HAS_PICKUP_BEEN_COLLECTED save_pickup
+        IF IS_PLAYER_PLAYING (iPlayer)
+        AND HAS_PICKUP_BEEN_COLLECTED (save_pickup)
             GOSUB psave_do_save
             GOSUB psave_destroy_pickup
             GOSUB psave_create_pickup
@@ -520,48 +596,1016 @@ VAR_INT num_carmod_instances dogcart1
         ENDIF
     ELSE
         GOSUB psave_destroy_pickup
-        WAIT 1000
+        WAIT (1000)
     ENDIF
     GOTO psave_loop
 
     psave_do_save:
-        SET_PLAYER_CONTROL player OFF
-        ACTIVATE_SAVE_MENU
-        WHILE NOT HAS_SAVE_GAME_FINISHED
-            WAIT 0
+        SET_PLAYER_CONTROL (iPlayer, OFF)
+        ACTIVATE_SAVE_MENU ()
+        WHILE NOT HAS_SAVE_GAME_FINISHED ()
+            WAIT (0)
         ENDWHILE
-        SET_FADING_COLOUR 0 0 0
-        DO_FADE 1000 FADE_OUT
-        SET_PLAYER_CONTROL player OFF
+        SET_FADING_COLOUR (0, 0, 0)
+        DO_FADE (1000, FADE_OUT)
+        SET_PLAYER_CONTROL (iPlayer, OFF)
     RETURN
 
     psave_respawn_player:
-        IF IS_PLAYER_PLAYING player
-            CLEAR_AREA (15.0 0.0 4.0) (1.0) 1
-            SET_CHAR_COORDINATES scplayer (15.0 0.0 4.0)
+        IF IS_PLAYER_PLAYING (iPlayer)
+            CLEAR_AREA (15.0, 0.0, 4.0, 1.0, TRUE)
+            SET_CHAR_COORDINATES (hPlayerPed, 15.0, 0.0, 4.0)
         ENDIF
-        WAIT 0
-        DO_FADE 1000 FADE_IN
-        RESTORE_CAMERA_JUMPCUT
-        SET_CAMERA_BEHIND_PLAYER
-        WAIT 500
-        IF IS_PLAYER_PLAYING player
-            SET_PLAYER_CONTROL player ON
+        WAIT (0)
+        DO_FADE (1000, FADE_IN)
+        RESTORE_CAMERA_JUMPCUT ()
+        SET_CAMERA_BEHIND_PLAYER ()
+        WAIT (500)
+        IF IS_PLAYER_PLAYING (iPlayer)
+            SET_PLAYER_CONTROL (iPlayer, ON)
         ENDIF
     RETURN
 
     psave_create_pickup:
         IF pickup_created = 0
             pickup_created = 1
-            CREATE_PICKUP PICKUPSAVE PICKUP_ONCE 10.0 0.0 3.0 save_pickup
+            CREATE_PICKUP (PICKUPSAVE, PICKUP_ONCE, 10.0, 0.0, 3.0) (save_pickup)
         ENDIF
     RETURN
 
     psave_destroy_pickup:
         IF pickup_created = 1
             pickup_created = 0
-            REMOVE_PICKUP save_pickup
+            REMOVE_PICKUP (save_pickup)
         ENDIF
+    RETURN
+}
+
+
+{
+    // Checking that the ped has a weapon
+    LVAR_INT pPed i weaponSlot
+    HasPedAnyWeapon: // i - ped pointer
+    pPed += 0x5A0
+
+    i = 0
+    WHILE i < 12
+        READ_MEMORY pPed 4 FALSE (weaponSlot)
+        IF NOT weaponSlot = 0
+            CLEO_RETURN 0 1
+        ENDIF
+        pPed += 0x1C
+        i++
+    ENDWHILE
+
+    CLEO_RETURN 0 0
+
+}
+
+{
+    //    Return TRUE IF char is holding any fire or explosion weapon - By Junior_Djjr
+    //    Use: 0AB1: call_scm_func @IsCharHoldingDangerousWeapon 1 hPlayerPed
+
+    CONST_INT WEAPON_FIRE_MELEE         0
+    CONST_INT WEAPON_FIRE_INSTANT_HIT   1
+    CONST_INT WEAPON_FIRE_PROJECTILE    2
+    CONST_INT WEAPON_FIRE_AREA_EFFECT   3
+    CONST_INT WEAPON_FIRE_CAMERA        4
+    CONST_INT WEAPON_FIRE_USE           5
+
+    LVAR_INT i j
+
+    IsCharHoldingDangerousWeapon:
+        GET_CURRENT_CHAR_WEAPON i (j)
+        CALL_FUNCTION_RETURN 0x1410B0 2 2 j 1 (j) // GetWeaponInfo (we can ignore skill (1) here)
+        READ_MEMORY j 4 FALSE (j)
+        IF j = WEAPON_FIRE_INSTANT_HIT
+        OR j = WEAPON_FIRE_PROJECTILE
+            IS_INT_LVAR_GREATER_THAN_CONSTANT TIMERA -1 // RETURN_TRUE
+        ENDIF
+    CLEO_RETURN 0
+}
+
+{
+    pacific_arrest:
+    SCRIPT_NAME ARREST
+
+    LVAR_INT hCopPed iPedType
+    LVAR_FLOAT v3dPlayerCoords[3]
+
+    pacific_arrest_main_loop:
+        WAIT 0
+
+        IF IS_PLAYER_PLAYING iPlayer
+            IF IS_WANTED_LEVEL_GREATER iPlayer 0
+            AND NOT IS_WANTED_LEVEL_GREATER iPlayer 1
+                TIMERA = 0
+                WHILE IS_WANTED_LEVEL_GREATER iPlayer 0
+                AND NOT IS_WANTED_LEVEL_GREATER iPlayer 1
+                    WAIT 0
+                    IF IS_BUTTON_PRESSED PAD1 CIRCLE
+                    OR  IS_BUTTON_PRESSED PAD1 SQUARE
+                    OR  IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+                    OR  IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                        TIMERA = 0
+                    ENDIF
+
+                    IF TIMERA > 10000
+                        GET_CHAR_COORDINATES hPlayerPed v3dPlayerCoords[0] v3dPlayerCoords[1] v3dPlayerCoords[2] 
+                        WHILE GET_RANDOM_CHAR_IN_SPHERE_NO_SAVE_RECURSIVE v3dPlayerCoords[0] v3dPlayerCoords[1] v3dPlayerCoords[2] 5.0 1 1 (hCopPed) 
+                            WAIT 0
+                            IF NOT hCopPed = 0
+                            AND DOES_CHAR_EXIST hCopPed 
+                            GET_PED_TYPE (hCopPed) (iPedType)
+                                IF iPedType = 6
+                                    REQUEST_MODEL 346 
+                                    WHILE NOT HAS_MODEL_LOADED 346
+                                        WAIT 0
+                                    ENDWHILE 
+                                    GIVE_WEAPON_TO_CHAR hCopPed 22 600 
+                                    SET_CURRENT_CHAR_WEAPON hCopPed 22 
+                                    CLEAR_CHAR_TASKS hCopPed 
+                                    TASK_AIM_GUN_AT_CHAR hCopPed hPlayerPed 3000
+                                    TASK_HANDS_UP hPlayerPed -1
+                                    WAIT 1000
+                                    SET_CHAR_ARRESTED hPlayerPed
+                                    WAIT 3000
+                                    CLEAR_CHAR_TASKS hPlayerPed
+                                    BREAK
+                                ENDIF
+                            ENDIF
+                        ENDWHILE
+                    ENDIF
+                ENDWHILE
+            ENDIF
+        ENDIF
+    GOTO pacific_arrest_main_loop
+}
+
+{
+    fire_oil_system:
+    LVAR_FLOAT v3dPlayerPos[3]
+    LVAR_INT pPlayerPos AddOilPuddle DrawAmmoSetOverride DrawAmmoClearOverride pTemp
+    
+	LVAR_INT gas_quantity pGasQuantity hObject bLoaded
+
+    WAIT 0 
+
+	GET_VAR_POINTER v3dPlayerPos[0] pPlayerPos
+    GET_VAR_POINTER gas_quantity pGasQuantity
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE ("AddOilPuddle", 0) (AddOilPuddle)
+        READ_MEMORY 0x66B220 4 TRUE (pTemp)
+    ENDIF
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE ("DrawAmmoSetOverride", 0) (DrawAmmoSetOverride)
+        CPRINTLN ("GTA V Legacy: [Plugin <> Script Interface] DrawAmmoSetOverride collected!")
+    ENDIF
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE ("DrawAmmoClearOverride", 0) (DrawAmmoClearOverride)
+        CPRINTLN ("GTA V Legacy: [Plugin <> Script Interface] DrawAmmoClearOverride collected!")
+    ENDIF
+
+	gas_quantity = 100 
+
+	pour_gasoline_main_loop:
+		WAIT 0
+			IF IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_DILDO2
+                // void DrawAmmoSetOverride(int ammo_qt, int clip_qt, bool has_clip)
+                CALL_FUNCTION DrawAmmoSetOverride 2 0 pGasQuantity 0
+                WHILE IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_DILDO2
+                    WAIT 0
+                    IF IS_PLAYER_PLAYING iPlayer 
+				        IF gas_quantity >= 1 
+				        AND IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
+				        AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+				        	IF bLoaded = FALSE
+				        		REQUEST_MODEL 1650 
+				        		WHILE NOT HAS_MODEL_LOADED 1650
+				        			WAIT 0
+				        		ENDWHILE
+				        		bLoaded = TRUE
+				        	ENDIF
+				        	CREATE_OBJECT 1650 0.0 0.0 0.0 hObject 
+				        	TASK_PICK_UP_OBJECT hPlayerPed hObject -0.05 0.2 0.0 6 16 "GAS_IDLE" "PED" -1 
+				        	SET_OBJECT_ROTATION hObject 0.0 0.0 0.0 
+
+				        	WHILE gas_quantity >= 1 
+				        	AND IS_BUTTON_PRESSED 0 RIGHTSHOULDER2 
+				        	AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+				        		WAIT 400
+				        		gas_quantity -= 1 
+				        		GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.4 2.0 -0.97 v3dPlayerPos[0] v3dPlayerPos[1] v3dPlayerPos[2] 
+                                // AddOilPuddle(RwTexture* texture, CVector* pos, int r, int g, int b, int a, float size)
+				        		CALL_FUNCTION AddOilPuddle 7 0 pTemp pPlayerPos 0x39 0x23 0x20 255 1.0 
+				        	ENDWHILE
+
+				        	TASK_PLAY_ANIM_SECONDARY hPlayerPed "GAS_IDLE" "PED" 4.0 0 0 0 0 10 
+				        	DELETE_OBJECT hObject 
+
+				        ENDIF
+                    ENDIF
+                ENDWHILE
+                // void DrawAmmoClearOverride()
+                CALL_FUNCTION DrawAmmoClearOverride 0 0
+			ENDIF
+	GOTO pour_gasoline_main_loop
+}
+
+{
+    ability_system:
+    LVAR_INT bEnabled bPressed bForceDisable bDoFade bFadeAltered
+    CONST_INT bGripCheat 0x88D71C
+
+    VAR_INT pAbilityPercent
+    VAR_FLOAT fAbilityPercent
+    LVAR_INT ToggleRageFilter
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE ("CHud_AbilityPercent", 0) (pAbilityPercent)
+        READ_MEMORY (pAbilityPercent, 4, TRUE) (fAbilityPercent)
+    ENDIF
+
+    WRITE_MEMORY 0x14B518 4 0 TRUE // Disable boost jump
+
+    TIMERA = 0
+    ability_system_loop:
+        WAIT 0
+        IF bEnabled = TRUE
+            IF bPressed = TRUE
+            OR fAbilityPercent <= 0f
+            OR bForceDisable = TRUE
+                SWITCH switch_cur_char
+                    CASE PLAYER_FRANKLIN
+                        // reset fade
+                        IF bFadeAltered = 1
+                            SET_FADING_COLOUR 0 0 0
+                            DO_FADE 0 1  
+                        ENDIF  
+                        
+                        SET_DARKNESS_EFFECT 0 0
+                        IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                            SET_TIME_SCALE 1.0
+                            WRITE_MEMORY bGripCheat 1 0 TRUE
+                        ENDIF
+                        BREAK
+                    CASE PLAYER_MICHAEL
+                        // reset fade
+                        IF bFadeAltered = 1
+                            SET_FADING_COLOUR 0 0 0
+                            DO_FADE 0 1  
+                        ENDIF  
+
+                        SET_DARKNESS_EFFECT 0 0
+                        SET_TIME_SCALE 1.0
+                        BREAK
+                    CASE PLAYER_TREVOR
+                        SET_CHAR_PROOFS hPlayerPed FALSE FALSE FALSE FALSE FALSE
+                        SET_CHAR_FIRE_DAMAGE_MULTIPLIER hPlayerPed 1f
+                        SET_TIME_SCALE 1.0
+                        IF GET_DYNAMIC_LIBRARY_PROCEDURE ("ToggleRageFilter", 0) (ToggleRageFilter)
+                            CALL_FUNCTION ToggleRageFilter 0 0
+                        ENDIF
+                        BREAK
+                ENDSWITCH
+                bEnabled = FALSE
+                bForceDisable = FALSE
+            ENDIF
+
+            IF switch_cur_char = PLAYER_FRANKLIN
+                IF NOT IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                OR IS_CHAR_IN_WATER hPlayerPed
+                OR IS_CHAR_DEAD hPlayerPed
+                    bForceDisable = TRUE
+                ENDIF
+            ELSE
+                IF switch_cur_char = PLAYER_MICHAEL
+                    IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                    OR IS_CHAR_IN_WATER hPlayerPed
+                    OR IS_CHAR_DEAD hPlayerPed
+                        bForceDisable = TRUE
+                    ENDIF
+                ELSE
+                    IF switch_cur_char = PLAYER_TREVOR
+                        IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                        OR IS_CHAR_IN_WATER hPlayerPed
+                        OR IS_CHAR_DEAD hPlayerPed
+                            bForceDisable = TRUE
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ENDIF
+
+            IF bDoFade = 1
+                IF TIMERB > 50
+                    DO_FADE 9999999 0
+                    bDoFade = 0
+                ENDIF
+            ENDIF
+
+            IF TIMERA > 100
+                IF fAbilityPercent > 0f
+                    IF switch_cur_char = PLAYER_TREVOR
+                        fAbilityPercent -= 0.5f
+                    ELSE
+                        fAbilityPercent -= 2f
+                    ENDIF
+                    WRITE_MEMORY pAbilityPercent 4 fAbilityPercent TRUE
+                    TIMERA = 0
+                ENDIF
+            ENDIF
+        ELSE
+            IF bPressed = TRUE
+                SWITCH switch_cur_char
+                    CASE PLAYER_FRANKLIN
+                        IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                            SET_TIME_SCALE 0.2
+                            WRITE_MEMORY bGripCheat 1 1 TRUE
+                            // do postfx IF valid
+                            SET_DARKNESS_EFFECT 1 50
+                            IF NOT GET_FADING_STATUS
+                                GOSUB Switch_SetFadeColorByCur
+                                DO_FADE 700 0
+                                TIMERB = 0
+                                bDoFade = 1
+                                bFadeAltered = 1
+                            ELSE   
+                                bDoFade = 0
+                                bFadeAltered = 0
+                            ENDIF
+                            bEnabled = TRUE
+                        ENDIF
+                        BREAK
+                    CASE PLAYER_MICHAEL
+                        SET_TIME_SCALE 0.2
+                        // do postfx IF valid
+                        SET_DARKNESS_EFFECT 1 50
+                        IF NOT GET_FADING_STATUS
+                            GOSUB Switch_SetFadeColorByCur
+                            DO_FADE 700 0
+                            TIMERB = 0
+                            bDoFade = 1
+                            bFadeAltered = 1
+                        ELSE   
+                            bDoFade = 0
+                            bFadeAltered = 0
+                        ENDIF
+                        bEnabled = TRUE
+                        BREAK
+                    CASE PLAYER_TREVOR
+                        SET_CHAR_PROOFS hPlayerPed TRUE TRUE TRUE TRUE TRUE
+                        SET_CHAR_FIRE_DAMAGE_MULTIPLIER hPlayerPed 2f
+                        SET_TIME_SCALE 0.8
+                        bEnabled = TRUE
+                        IF GET_DYNAMIC_LIBRARY_PROCEDURE ("ToggleRageFilter", 0) (ToggleRageFilter)
+                            CALL_FUNCTION ToggleRageFilter 0 0
+                        ENDIF
+                        BREAK
+                ENDSWITCH
+            ENDIF
+
+            IF TIMERA > 100
+            AND fAbilityPercent < 100f
+                fAbilityPercent += 1f
+                WRITE_MEMORY pAbilityPercent 4 fAbilityPercent TRUE
+                TIMERA = 0
+            ENDIF
+        ENDIF
+
+        IF IS_BUTTON_PRESSED PAD1 RIGHTSHOCK
+        AND IS_BUTTON_PRESSED PAD1 LEFTSHOCK
+            bPressed = TRUE
+            WHILE IS_BUTTON_PRESSED PAD1 RIGHTSHOCK
+            AND IS_BUTTON_PRESSED PAD1 LEFTSHOCK
+                WAIT 0
+            ENDWHILE
+        ELSE
+            bPressed = FALSE
+        ENDIF
+
+    GOTO ability_system_loop
+}
+
+{
+    SNOW_11:
+
+    LVAR_INT int_1 int_27 int_30 int_19 int_23
+    LVAR_FLOAT float_2 float_4 float_5 float_6 float_11 float_12 float_13 float_14 float_15 float_16 float_18 float_20 float_21 float_22 
+
+    WAIT 0 
+    REQUEST_MODEL 3003 
+    REQUEST_MODEL 3065 
+    int_27 = 0 
+    TIMERB = 0 
+    REQUEST_ANIMATION "GRENADE" 
+    REQUEST_ANIMATION "BOMBER" 
+    LOAD_ALL_MODELS_NOW 
+
+    WHILE NOT HAS_MODEL_LOADED 3003 
+    OR NOT HAS_MODEL_LOADED 3065 
+    OR NOT HAS_ANIMATION_LOADED "GRENADE" 
+    OR NOT HAS_ANIMATION_LOADED "BOMBER" 
+        WAIT 0
+    ENDWHILE
+
+
+    SNOW_100:
+    WAIT 0 
+    GET_AREA_VISIBLE int_30 
+    IF int_30 = 0 
+    AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+    AND IS_PLAYER_PLAYING iPlayer 
+    AND IS_BUTTON_PRESSED PAD1 CIRCLE  
+        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed  2.5 -0.5 0.5 float_11 float_12 float_13 
+        CREATE_OBJECT 3065 float_11 float_12 100.8 int_1 
+        CREATE_OBJECT 3003 float_11 float_12 float_13 int_19 
+        SET_OBJECT_VISIBLE int_19 0 
+        SET_OBJECT_RECORDS_COLLISIONS int_1 1 
+        SET_OBJECT_COLLISION int_1 1 
+        DONT_REMOVE_OBJECT int_1 
+        SET_CURRENT_CHAR_WEAPON hPlayerPed 0 
+        SET_PLAYER_CYCLE_WEAPON_BUTTON iPlayer 0 
+        SET_OBJECT_VISIBLE int_1 0 
+    ELSE
+        GOTO SNOW_100
+    ENDIF
+
+    SNOW_253:
+    WAIT 0 
+    GET_AREA_VISIBLE int_30 
+    IF int_30 = 0 
+    AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+    AND IS_BUTTON_PRESSED PAD1 CIRCLE 
+    AND NOT IS_CHAR_IN_AIR hPlayerPed 
+    AND NOT IS_CHAR_IN_WATER hPlayerPed 
+        TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed "BOM_PLANT_IN" "BOMBER" 4.0 0 0 0 0 -1 
+        WAIT 1000 
+        SET_OBJECT_VISIBLE int_19 1 
+        DROP_OBJECT hPlayerPed 1 
+        TASK_PICK_UP_OBJECT hPlayerPed int_19 0.08 0.03 0.0 6 16 "NULL" "NULL" 1 
+    ELSE
+        GOTO SNOW_253
+    ENDIF
+
+    SNOW_401:
+    WAIT 0 
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+        GOTO SNOW_985 
+    ELSE
+        GOTO SNOW_427
+    ENDIF
+
+
+    SNOW_427:
+    WAIT 0 
+    IF NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+    AND IS_BUTTON_PRESSED PAD1 CIRCLE 
+        TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed  "WEAPON_THROW"  "GRENADE"  4.0  0  0  0  0  600 
+        WAIT 300 
+        HIDE_CHAR_WEAPON_FOR_SCRIPTED_CUTSCENE hPlayerPed  1 
+        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed  0.35 0.6 0.9 float_11 float_12 float_13 
+        GET_CHAR_HEADING hPlayerPed float_2 
+        SET_OBJECT_COORDINATES int_1 float_11 float_12 float_13 
+        float_2 += 270.0 
+        SET_OBJECT_HEADING int_1 float_2 
+        SET_OBJECT_VISIBLE int_19 1 
+        DROP_OBJECT hPlayerPed 0 
+        ATTACH_OBJECT_TO_OBJECT int_19  int_1  0.0 0.0 0.0  90.0 270.0 0.0 
+        WAIT 0 
+        GET_CHAR_HEADING hPlayerPed float_2 
+        GET_CHAR_HEIGHT_ABOVE_GROUND hPlayerPed float_18 
+        float_4 = 50.0 
+        SIN float_2 float_5 
+        COS float_2 float_6 
+        float_5 *= float_4 
+        float_6 *= float_4 
+        float_5 *= -1.0 
+        float_18 += 1.0 
+        SET_OBJECT_DYNAMIC int_1 1 
+        SET_OBJECT_VELOCITY int_1 float_5 float_6 float_18 
+        int_27 = 1 
+        WAIT 300 
+    ELSE
+        GOTO SNOW_401
+    ENDIF
+
+    SNOW_743:
+    WAIT 0 
+    IF HAS_OBJECT_COLLIDED_WITH_ANYTHING int_1 
+    GET_OFFSET_FROM_OBJECT_IN_WORLD_COORDS int_1  0.0 0.0 0.0 float_20 float_21 float_22 
+    CREATE_FX_SYSTEM "SNOWBALL" float_20 float_21 float_22 1 int_23 
+    PLAY_FX_SYSTEM int_23 
+    WAIT 300 
+    KILL_FX_SYSTEM int_23 
+    GOTO SNOW_911 
+    IF int_27 = 1 
+    AND TIMERB > 250 
+        IF int_27 = 1 
+            DETACH_OBJECT int_19 0.0 0.0 0.0 0 
+            WAIT 500
+        ELSE
+            GOTO SNOW_911 
+        ENDIF
+    ELSE
+        GOTO SNOW_253
+    ENDIF
+    ELSE 
+    GOTO SNOW_743
+    ENDIF
+
+    SNOW_911:
+    DELETE_OBJECT int_1 
+    DELETE_OBJECT int_19 
+    MARK_OBJECT_AS_NO_LONGER_NEEDED int_19 
+    int_27 = 0 
+    TIMERB = 0 
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3003 
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3065 
+    REMOVE_ANIMATION "GRENADE" 
+    REMOVE_ANIMATION "BOMBER" 
+    SET_PLAYER_CYCLE_WEAPON_BUTTON iPlayer 1 
+    GOTO SNOW_11 
+
+    SNOW_985:
+    WAIT 0 
+    TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed  "ENDCHAT_03"  "PED"  4.0  0  0  0  0  200 
+    WAIT 200 
+    DROP_OBJECT hPlayerPed 0 
+    SET_OBJECT_VELOCITY int_19 0.0 0.0 -2.0 
+    WAIT 100 
+    DELETE_OBJECT int_1 
+    DELETE_OBJECT int_19 
+    MARK_OBJECT_AS_NO_LONGER_NEEDED int_19 
+    int_27 = 0 
+    TIMERB = 0 
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3003 
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3065 
+    REMOVE_ANIMATION "GRENADE" 
+    REMOVE_ANIMATION "BOMBER" 
+    SET_PLAYER_CYCLE_WEAPON_BUTTON iPlayer 1 
+    GOTO SNOW_11 
+}
+
+{
+    chop_companion:
+
+    LVAR_INT chop_ped weapon_slot hBlip iObject iBlip
+
+    LVAR_FLOAT tmp_x tmp_y tmp_z tmp_h
+    LVAR_FLOAT float_4 float_5 float_6 float_14 float_15 float_16 float_18 float_20 float_21 float_22 
+
+    LVAR_INT phys_ball_obj ball_obj int_27 int_30
+
+    ADD_SHORT_RANGE_SPRITE_BLIP_FOR_COORD 1673.5386 -2082.1696 0.0 35 hBlip
+
+    chop_spawn_loop:
+    WAIT 0
+    IF switch_cur_char = PLAYER_FRANKLIN 
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1673.5386 -2082.1696 13.5468 30f 30f 30f 0
+            REQUEST_ANIMATION SKATE
+            LOAD_SPECIAL_CHARACTER 1 WUZIMU
+            WHILE NOT HAS_SPECIAL_CHARACTER_LOADED 1
+            OR NOT HAS_ANIMATION_LOADED SKATE
+                WAIT 0
+            ENDWHILE
+            CREATE_CHAR PEDTYPE_MISSION1 SPECIAL01 1673.5386 -2082.1696 13.5468 chop_ped
+            SET_CHAR_HEADING chop_ped 180.0
+            SET_CHAR_SHOOT_RATE chop_ped 100
+            SET_ANIM_GROUP_FOR_CHAR chop_ped CHOP
+            GIVE_MELEE_ATTACK_TO_CHAR chop_ped 6 6
+            TASK_GOTO_CHAR chop_ped hPlayerPed 500 20f
+            GOTO chop_loop
+        ENDIF
+    ENDIF
+    GOTO chop_spawn_loop
+
+    chop_loop:
+    WAIT 0
+    IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1673.5386 -2082.1696 13.5468 10f 10f 10f 0
+    AND IS_CHAR_ON_SCREEN chop_ped
+        WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1673.5386 -2082.1696 13.5468 10f 10f 10f 0
+        AND IS_CHAR_ON_SCREEN chop_ped
+            WAIT 0
+            IF IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_UNARMED   
+            AND IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                PRINT_HELP_STRING "Press ~j~ to take Chop for a walk."
+                WHILE IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_UNARMED   
+                AND IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                    WAIT 0
+                    GET_AREA_VISIBLE int_30 
+                    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER1
+                    AND int_30 = 0 
+                    AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+                    AND IS_PLAYER_PLAYING iPlayer 
+                        WHILE IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER1
+                            WAIT 0
+                        ENDWHILE
+                        
+                        SET_GROUP_MEMBER player_group chop_ped
+                        REQUEST_MODEL 3003 
+                        REQUEST_MODEL 3065 
+                        REQUEST_ANIMATION "GRENADE" 
+                        REQUEST_ANIMATION "BOMBER" 
+                        LOAD_ALL_MODELS_NOW 
+
+                        WHILE NOT HAS_MODEL_LOADED 3003 
+                        OR NOT HAS_MODEL_LOADED 3065 
+                        OR NOT HAS_ANIMATION_LOADED "GRENADE" 
+                        OR NOT HAS_ANIMATION_LOADED "BOMBER" 
+                            WAIT 0
+                        ENDWHILE
+
+                        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed  2.5 -0.5 0.5 tmp_x tmp_y tmp_z
+                        CREATE_OBJECT 3065 tmp_x tmp_y 100.8 phys_ball_obj 
+                        CREATE_OBJECT 3003 tmp_x tmp_y tmp_z ball_obj 
+                        SET_OBJECT_VISIBLE ball_obj 0 
+                        SET_OBJECT_RECORDS_COLLISIONS phys_ball_obj 1 
+                        SET_OBJECT_COLLISION phys_ball_obj 1 
+                        DONT_REMOVE_OBJECT phys_ball_obj 
+                        SET_CURRENT_CHAR_WEAPON hPlayerPed 0 
+                        SET_PLAYER_CYCLE_WEAPON_BUTTON iPlayer 0 
+                        SET_OBJECT_VISIBLE phys_ball_obj 0 
+
+                        SET_OBJECT_VISIBLE ball_obj 1 
+                        DROP_OBJECT hPlayerPed 1 
+                        TASK_PICK_UP_OBJECT hPlayerPed ball_obj 0.08 0.03 0.0 6 16 "NULL" "NULL" 1 
+                        
+                        GOTO chop_idle
+                    ENDIF
+                ENDWHILE
+            ENDIF
+        ENDWHILE
+    ENDIF
+
+    IF NOT LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1673.5386 -2082.1696 13.5468 30f 30f 30f 0
+        GOTO chop_reset
+    ENDIF
+
+    GOTO chop_loop
+
+    chop_idle:
+        WAIT 0
+        IF IS_CHAR_DEAD chop_ped
+        OR NOT switch_cur_char = PLAYER_FRANKLIN
+            REMOVE_CHAR_FROM_GROUP chop_ped
+            GOTO chop_reset
+        ENDIF
+
+        IF LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed chop_ped 10f 10f 10f 0
+        AND IS_CHAR_ON_SCREEN chop_ped
+        AND IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_UNARMED   
+        AND IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+            PRINT_HELP_STRING "Press ~j~ to dismiss Chop."
+            WHILE IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_UNARMED   
+            AND IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                WAIT 0
+                IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER1
+                    REMOVE_CHAR_FROM_GROUP chop_ped
+                    TASK_CHAR_SLIDE_TO_COORD chop_ped 1673.5386 -2082.1696 13.5468 0.0 15.0
+                    WAIT 30000
+                    GOTO chop_reset
+                ENDIF
+            ENDWHILE
+        ENDIF
+
+        IF IS_BUTTON_PRESSED PAD1 CIRCLE
+        AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed 
+            WHILE IS_BUTTON_PRESSED PAD1 CIRCLE
+                WAIT 0
+            ENDWHILE
+
+            GOSUB throw_ball 
+
+            TASK_LOOK_AT_OBJECT chop_ped ball_obj 10000
+            TASK_GO_TO_OBJECT chop_ped ball_obj -1 2.0
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_OBJECT_3D chop_ped ball_obj 2.0 2.0 2.0 0
+                WAIT 0
+            ENDWHILE
+
+            TASK_PICK_UP_OBJECT chop_ped ball_obj 0.30f 0f 0f 18 16 NULL NULL -1
+            WAIT 3000
+            TASK_GOTO_CHAR chop_ped hPlayerPed -1 10.0
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D chop_ped hPlayerPed 10.0 10.0 10.0 0
+                WAIT 0
+            ENDWHILE
+
+            SET_OBJECT_DYNAMIC phys_ball_obj 0
+            SET_OBJECT_RECORDS_COLLISIONS phys_ball_obj 0
+            SET_OBJECT_COLLISION phys_ball_obj 0
+            GET_OBJECT_COORDINATES ball_obj (tmp_x tmp_y tmp_z) 
+            GET_GROUND_Z_FOR_3D_COORD tmp_x tmp_y tmp_z tmp_z
+            SET_OBJECT_COORDINATES phys_ball_obj tmp_x tmp_y tmp_z
+            SET_OBJECT_COORDINATES ball_obj tmp_x tmp_y tmp_z
+            DROP_OBJECT chop_ped 1
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_OBJECT_3D hPlayerPed ball_obj 1.0f 1.0f 1.0f 0
+                WAIT 0
+            ENDWHILE
+
+            TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed "BOM_PLANT_IN" "BOMBER" 4.0 0 0 0 0 -1 
+            WAIT 1000 
+
+            SET_OBJECT_RECORDS_COLLISIONS phys_ball_obj 1
+            SET_OBJECT_COLLISION phys_ball_obj 1
+            SET_OBJECT_VISIBLE ball_obj 1 
+            DROP_OBJECT hPlayerPed 1 
+            TASK_PICK_UP_OBJECT hPlayerPed ball_obj 0.08 0.03 0.0 6 16 "NULL" "NULL" 1 
+        ENDIF
+    GOTO chop_idle
+
+    chop_reset:
+    REMOVE_ANIMATION SKATE
+    DELETE_CHAR chop_ped
+    UNLOAD_SPECIAL_CHARACTER 1
+
+    DELETE_OBJECT phys_ball_obj 
+    DELETE_OBJECT ball_obj 
+    MARK_OBJECT_AS_NO_LONGER_NEEDED ball_obj 
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3003 
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3065 
+    REMOVE_ANIMATION "GRENADE" 
+    REMOVE_ANIMATION "BOMBER" 
+    GOTO chop_spawn_loop
+
+    throw_ball:
+    TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed  "WEAPON_THROW"  "GRENADE"  4.0  0  0  0  0  600 
+    WAIT 300 
+    HIDE_CHAR_WEAPON_FOR_SCRIPTED_CUTSCENE hPlayerPed  1 
+    GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed  0.35 0.6 0.9 tmp_x tmp_y tmp_z 
+    GET_CHAR_HEADING hPlayerPed tmp_h 
+    SET_OBJECT_COORDINATES phys_ball_obj tmp_x tmp_y tmp_z 
+    tmp_h += 270.0 
+    SET_OBJECT_HEADING phys_ball_obj tmp_h 
+    SET_OBJECT_VISIBLE ball_obj 1 
+    DROP_OBJECT hPlayerPed 0 
+    ATTACH_OBJECT_TO_OBJECT ball_obj phys_ball_obj 0.0 0.0 0.0 90.0 270.0 0.0 
+    WAIT 0 
+    GET_CHAR_HEADING hPlayerPed tmp_h 
+    GET_CHAR_HEIGHT_ABOVE_GROUND hPlayerPed float_18 
+    float_4 = 50.0 
+    SIN tmp_h float_5 
+    COS tmp_h float_6 
+    float_5 *= float_4 
+    float_6 *= float_4 
+    float_5 *= -1.0 
+    float_18 += 1.0 
+    SET_OBJECT_DYNAMIC phys_ball_obj 1 
+    SET_OBJECT_VELOCITY phys_ball_obj float_5 float_6 float_18 
+    WAIT 300
+    RETURN
+}
+
+VAR_INT beggar_camp_status[6]
+
+{
+    beggar_camps_activator:
+
+    beggar_camps_loop:
+        WAIT 0
+
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1629.0180 -1542.4736 12.75 50f 50f 50f  0
+        AND beggar_camp_status[0] = 0
+
+            beggar_camp_status[0] = 1
+            START_NEW_SCRIPT beggar_camps 1629.0180 -1542.4736 12.75 0
+            WAIT 0
+        ENDIF
+
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1567.1705 -1492.1428 12.75 50f 50f 50f  0
+        AND beggar_camp_status[1] = 0
+        
+            beggar_camp_status[1] = 1
+            START_NEW_SCRIPT beggar_camps 1567.1705 -1492.1428 12.75 1
+            WAIT 0
+        ENDIF
+
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1530.6510 -1011.4103 23.1 50f 50f 50f  0
+        AND beggar_camp_status[2] = 0
+        
+            beggar_camp_status[2] = 1
+            START_NEW_SCRIPT beggar_camps 1530.6510 -1011.4103 23.1 2
+            WAIT 0
+        ENDIF
+
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1806.9829 -1023.4615 23.1 50f 50f 50f  0
+        AND beggar_camp_status[3] = 0
+        
+            beggar_camp_status[3] = 1
+            START_NEW_SCRIPT beggar_camps 1806.9829 -1023.4615 23.1 3
+            WAIT 0
+        ENDIF
+
+
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1623.7724 -996.3151 23.1 50f 50f 50f  0
+        AND beggar_camp_status[4] = 0
+        
+            beggar_camp_status[4] = 1
+            START_NEW_SCRIPT beggar_camps 1623.7724 -996.3151 23.1 4
+            WAIT 0
+        ENDIF
+
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1686.1671 -997.1469 23.1 50f 50f 50f  0
+        AND beggar_camp_status[5] = 0
+        
+            beggar_camp_status[5] = 1
+            START_NEW_SCRIPT beggar_camps 1686.1671 -997.1469 23.1 5
+            WAIT 0
+        ENDIF
+        
+    GOTO beggar_camps_loop
+}
+
+{
+    beggar_camps:
+    SCRIPT_NAME BEGGARC 
+
+    LVAR_FLOAT camp_x camp_y camp_z
+
+    LVAR_INT camp_index
+
+    LVAR_INT box_objects[5] objchairs[4] ped[4]
+
+    LVAR_INT urb_object[3] fire iObject fireBin
+
+    LVAR_INT peds_qt chair_qt tmp_rand i
+
+    LVAR_FLOAT entity_x entity_y entity_z entity_h
+
+    i = 0
+    WHILE i < 8
+        REQUEST_MODEL beggar_ids[i]
+        i++
+    ENDWHILE
+
+    REQUEST_MODEL DYN_FIREBIN0
+    REQUEST_MODEL smash_box_stay
+    REQUEST_MODEL CJ_FOLDCHAIR
+    REQUEST_ANIMATION GANGS
+    REQUEST_MODEL 3044 // cigarro
+    REQUEST_MODEL CJ_EASYCHAIR1
+    REQUEST_MODEL CJ_SHTROLLY
+    REQUEST_ANIMATION INT_HOUSE
+
+    WHILE NOT HAS_MODEL_LOADED beggar_ids[0]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[1]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[2]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[3]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[4]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[5]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[6]
+    OR    NOT HAS_MODEL_LOADED beggar_ids[7]
+        WAIT 0
+    ENDWHILE
+
+    WHILE NOT HAS_ANIMATION_LOADED GANGS
+    OR NOT HAS_ANIMATION_LOADED INT_HOUSE
+    OR NOT HAS_MODEL_LOADED DYN_FIREBIN0
+    OR NOT HAS_MODEL_LOADED smash_box_stay
+    OR NOT HAS_MODEL_LOADED CJ_FOLDCHAIR
+    OR NOT HAS_MODEL_LOADED 3044
+    OR NOT HAS_MODEL_LOADED CJ_EASYCHAIR1
+        WAIT 0
+    ENDWHILE
+    WHILE NOT HAS_MODEL_LOADED CJ_SHTROLLY
+        WAIT 0
+    ENDWHILE
+
+    GENERATE_RANDOM_INT_IN_RANGE 0 4 peds_qt
+
+    i = 0
+    WHILE i < peds_qt
+        GOSUB generate_coords
+
+        GENERATE_RANDOM_INT_IN_RANGE 0 7 tmp_rand
+
+        CREATE_CHAR PEDTYPE_CIVMALE beggar_ids[tmp_rand] entity_x entity_y camp_z ped[i]
+        SET_CHAR_HEADING ped[i] entity_h
+
+        GENERATE_RANDOM_INT_IN_RANGE 1 10 tmp_rand
+
+        IF tmp_rand > 5
+        AND tmp_rand < 8
+            TASK_LOOK_ABOUT ped[i] 15000
+        ELSE
+            IF tmp_rand < 5
+
+                entity_z = camp_z - 0.85
+                SET_CHAR_COORDINATES ped[i] entity_x entity_y entity_z
+                TASK_PLAY_ANIM ped[i] "BED_Loop_R" "INT_HOUSE" 4.0 1 0 0 0 -1
+            ELSE
+                CREATE_OBJECT 3044 0f 0f 0f iObject
+                TASK_PICK_UP_OBJECT ped[i] iObject 0.04 0.1 0.05 6 16 "SMKCIG_PRTL" "GANGS" -1
+            ENDIF
+        ENDIF
+
+        i++
+    ENDWHILE
+
+    GOSUB generate_coords
+    CREATE_OBJECT DYN_FIREBIN0 entity_x entity_y camp_z fireBin
+    entity_z = camp_z
+    entity_z += 0.8
+
+    IF peds_qt > 0
+        START_SCRIPT_FIRE entity_x entity_y entity_z 0 0 fire 
+    ENDIF
+
+    i = 0
+    WHILE i < 5
+        GOSUB generate_coords
+        CREATE_OBJECT smash_box_stay entity_x entity_y camp_z box_objects[i]
+        i++
+    ENDWHILE
+
+    GENERATE_RANDOM_INT_IN_RANGE peds_qt 4 chair_qt
+    i = 0
+    WHILE i < chair_qt
+        GOSUB generate_coords
+        CREATE_OBJECT CJ_FOLDCHAIR entity_x entity_y camp_z objchairs[i]
+        SET_OBJECT_HEADING objchairs[i] entity_h
+        i++
+    ENDWHILE
+
+    GOSUB generate_coords
+    CREATE_OBJECT CJ_EASYCHAIR1 entity_x entity_y camp_z urb_object[0]
+    SET_OBJECT_HEADING urb_object[0] entity_h
+
+    GOSUB generate_coords
+    CREATE_OBJECT CJ_SHTROLLY entity_x entity_y camp_z urb_object[1]
+    SET_OBJECT_HEADING urb_object[1] entity_h
+
+    GOSUB generate_coords
+    CREATE_OBJECT CJ_SHTROLLY entity_x entity_y camp_z urb_object[2]
+    SET_OBJECT_HEADING urb_object[2] entity_h
+
+    i = 0
+    WHILE i < 8
+        MARK_MODEL_AS_NO_LONGER_NEEDED beggar_ids[i]
+        i++
+    ENDWHILE
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED DYN_FIREBIN0
+    MARK_MODEL_AS_NO_LONGER_NEEDED smash_box_stay
+    MARK_MODEL_AS_NO_LONGER_NEEDED CJ_FOLDCHAIR
+    MARK_MODEL_AS_NO_LONGER_NEEDED 3044
+    MARK_MODEL_AS_NO_LONGER_NEEDED CJ_EASYCHAIR1
+    MARK_MODEL_AS_NO_LONGER_NEEDED CJ_SHTROLLY
+    REMOVE_ANIMATION GANGS
+
+    WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed camp_x camp_y camp_z 60f 60f 60f 0
+        WAIT 0
+        IF peds_qt > 0
+            IF IS_SCRIPT_FIRE_EXTINGUISHED fire
+                i = 0
+                WHILE i < peds_qt
+                    CLEAR_CHAR_TASKS_IMMEDIATELY ped[i]
+                    TASK_KILL_CHAR_ON_FOOT ped[i] hPlayerPed
+                    i++
+                ENDWHILE
+            ENDIF
+        ENDIF
+    ENDWHILE
+
+    i = 0
+    WHILE i < peds_qt
+        DELETE_CHAR ped[i]
+        i++
+    ENDWHILE
+
+    i = 0
+    WHILE i < 5
+        DELETE_OBJECT box_objects[i]
+        i++
+    ENDWHILE
+
+    i = 0
+    WHILE i < chair_qt
+        DELETE_OBJECT objchairs[i]
+        i++
+    ENDWHILE
+
+    DELETE_OBJECT urb_object[0]
+    DELETE_OBJECT urb_object[1]
+    DELETE_OBJECT urb_object[2]
+    DELETE_OBJECT iObject
+
+    DELETE_OBJECT fireBin
+
+    IF peds_qt > 0
+        REMOVE_SCRIPT_FIRE fire
+    ENDIF
+
+    beggar_camp_status[camp_index] = 0
+    
+    TERMINATE_THIS_SCRIPT
+
+    generate_coords:
+    GENERATE_RANDOM_FLOAT_IN_RANGE -6.0 6.0 entity_x
+    GENERATE_RANDOM_FLOAT_IN_RANGE -6.0 6.0 entity_y
+    GENERATE_RANDOM_FLOAT_IN_RANGE 0.0 360.0 entity_h
+    entity_x += camp_x
+    entity_y += camp_y
+
     RETURN
 }
 
@@ -585,20 +1629,20 @@ VAR_INT num_carmod_instances dogcart1
 
     iBlipSpriteID = 55
 
-    ADD_SPRITE_BLIP_FOR_COORD 2139.2253 2714.3403 0.0 iBlipSpriteID hBlip
-    ADD_SPRITE_BLIP_FOR_COORD 2162.7361 2464.7861 0.0 iBlipSpriteID hBlip
-    ADD_SPRITE_BLIP_FOR_COORD 2464.9353 -1461.2537 0.0 iBlipSpriteID hBlip
-    ADD_SPRITE_BLIP_FOR_COORD 1910.7087 -1768.9048 0.0 iBlipSpriteID hBlip
-    ADD_SPRITE_BLIP_FOR_COORD 1018.8 -926.1744 0.0 iBlipSpriteID hBlip
+    ADD_SHORT_RANGE_SPRITE_BLIP_FOR_COORD 2139.2253 2714.3403 0.0 iBlipSpriteID hBlip
+    ADD_SHORT_RANGE_SPRITE_BLIP_FOR_COORD 2162.7361 2464.7861 0.0 iBlipSpriteID hBlip
+    ADD_SHORT_RANGE_SPRITE_BLIP_FOR_COORD 2464.9353 -1461.2537 0.0 iBlipSpriteID hBlip
+    ADD_SHORT_RANGE_SPRITE_BLIP_FOR_COORD 1910.7087 -1768.9048 0.0 iBlipSpriteID hBlip
+    ADD_SHORT_RANGE_SPRITE_BLIP_FOR_COORD 1018.8 -926.1744 0.0 iBlipSpriteID hBlip
 
     WHILE NOT IS_GERMAN_GAME
         WAIT 150
-        IF IS_CHAR_SITTING_IN_ANY_CAR scplayer
+        IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
             IF IS_PLAYER_CONTROL_ON 0
             AND NOT IS_WANTED_LEVEL_GREATER 0 0
-                STORE_CAR_CHAR_IS_IN_NO_SAVE scplayer hVeh
+                STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed hVeh
                 GET_DRIVER_OF_CAR hVeh p
-                IF p = scplayer
+                IF p = hPlayerPed
                     GOSUB CheckList
                 ENDIF
             ENDIF
@@ -616,12 +1660,12 @@ VAR_INT num_carmod_instances dogcart1
 
 
     Pressed:
-    IF IS_BUTTON_PRESSED 0 11
+    IF IS_BUTTON_PRESSED PAD1 DPADRIGHT
         IS_INT_LVAR_GREATER_THAN_CONSTANT TIMERA -1 // RETURN_TRUE
         RETURN
     ELSE
-        IF timerb > 10000
-            PRINT_HELP CARWSHA
+        IF timerb > 5000
+            PRINT_HELP_STRING "Press ~>~ to wash your car."
             timerb = 0
         ENDIF
     ENDIF
@@ -831,7 +1875,7 @@ VAR_INT num_carmod_instances dogcart1
     WAIT 1000
 
     SET_CAR_MISSION hVeh MISSION_NONE
-    WARP_CHAR_INTO_CAR scplayer hVeh
+    WARP_CHAR_INTO_CAR hPlayerPed hVeh
     SET_PLAYER_CONTROL 0 ON
 
     RETURN
@@ -963,19 +2007,19 @@ VAR_INT num_carmod_instances dogcart1
     Activate:
     IF IS_PLAYER_CONTROL_ON playerId
         IF IS_BUTTON_PRESSED PAD1 CIRCLE
-            GET_PED_POINTER scplayer (pPed)
+            GET_PED_POINTER hPlayerPed (pPed)
             i = pPed + 0x758 //m_nActiveWeaponSlot
             READ_MEMORY i 1 0 (i)
 
             IF NOT i = 0
-            AND NOT IS_CHAR_DEAD scplayer
+            AND NOT IS_CHAR_DEAD hPlayerPed
 
                 i *= 0x1C //sizeof CWeapon
                 i += pPed
 
                 pWeapon = i + 0x5E0 //CWeapon
 
-                GET_CURRENT_CHAR_WEAPON scplayer (iCurWeapon)
+                GET_CURRENT_CHAR_WEAPON hPlayerPed (iCurWeapon)
 
                 //char __thiscall CPed::GetWeaponSkill(CPed *this, eWeaponType weaponType)
                 CALL_METHOD_RETURN 0x19A1C0 pPed 1 0 (iCurWeapon)(iSkill) 
@@ -1048,10 +2092,10 @@ VAR_INT num_carmod_instances dogcart1
 
     WHILE NOT IS_GERMAN_GAME
         WAIT 0
-        IF NOT IS_CHAR_SITTING_IN_ANY_CAR scplayer
+        IF NOT IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
             CONTINUE
         ENDIF
-        STORE_CAR_CHAR_IS_IN_NO_SAVE scplayer (CurrentVehicle)
+        STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed (CurrentVehicle)
         GET_VEHICLE_POINTER CurrentVehicle (VehiclePtr)
         VehSubClass = VehiclePtr + 0x5D0 //mSubClass - OK
         READ_MEMORY VehSubClass 4 0 (VehSubClass)
@@ -1083,7 +2127,7 @@ VAR_INT num_carmod_instances dogcart1
                     float_10 = 0.0
                 ENDIF
 
-                WHILE IS_CHAR_SITTING_IN_ANY_CAR scplayer
+                WHILE IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
                     WAIT 0
                     IF NOT DOES_VEHICLE_EXIST CurrentVehicle
                         BREAK
@@ -1137,7 +2181,7 @@ VAR_INT num_carmod_instances dogcart1
 
 
     WhileInCar:
-    WHILE IS_CHAR_SITTING_IN_ANY_CAR scplayer
+    WHILE IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
         WAIT 0
     ENDWHILE
     RETURN
@@ -1232,7 +2276,7 @@ VAR_INT num_carmod_instances dogcart1
     WRITE_MEMORY 0x1A2E74 4 0x3C03bf80 0 // - (g_AnimBlendSpeed / 2)
 
     walk_loop:
-        IF IS_PLAYER_CONTROL_ON player
+        IF IS_PLAYER_CONTROL_ON iPlayer
             GET_POSITION_OF_ANALOGUE_STICKS PAD1 iStickX iStickY j j
             IF IS_BUTTON_PRESSED PAD1 CROSS
                 IF NOT iStickX = 0
@@ -1253,61 +2297,44 @@ VAR_INT num_carmod_instances dogcart1
 }
 
 {
-    transparent_menu:
-    LVAR_INT menu_hook_ptr colour_filter_hook_ptr hook_hi hook_lo
+    ConsoleLog:
+        CALL_FUNCTION_RETURN (strlen 1 0)(pTextBuffer) (iStrLen)
+        iEndLinePtr = pTextBuffer + iStrLen
+        WRITE_MEMORY iEndLinePtr 1 0x0A TRUE
 
-    //Remove menu backgrounds
-    WRITE_MEMORY 0x2340B4 0x4 0x0 0
-    WRITE_MEMORY 0x234348 0x4 0x0 0
-    WRITE_MEMORY 0x23B124 0x4 0x240A0000 0
-    WRITE_MEMORY 0x23B14C 0x4 0x240A0000 0
-    WRITE_MEMORY 0x234350 0x4 0x1000000D 0
-    WRITE_MEMORY 0x234370 0x4 0x27A50098 0
+        CALL_FUNCTION (printf 1 0)(pTextBuffer)
+    RETURN
+}
 
-    //Enable Render World
-    WRITE_MEMORY 0x246764 0x4 0x14400006 0
+{
+    coordinate_logger:
+    SCRIPT_NAME PCORLOG
+    LVAR_FLOAT v3dPlayerCoords[3] fPlayerHeading 
+    VAR_INT iStrLen iEndLinePtr
 
-    WRITE_MEMORY 0x238C30 0x4 0x00 0
+    coordinate_logger_loop:
+        WAIT 0
+        IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+            WHILE IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                WAIT 0
+            ENDWHILE
 
-    WRITE_MEMORY 0x238C14 0x4 0x00 0
-    WRITE_MEMORY 0x238C18 0x4 0x00 0
-    WRITE_MEMORY 0x238C1C 0x4 0x00 0
-    WRITE_MEMORY 0x238C20 0x4 0x00 0
-    WRITE_MEMORY 0x238C24 0x4 0x00 0
-    WRITE_MEMORY 0x238C28 0x4 0x00 0
-    WRITE_MEMORY 0x238C2C 0x4 0x00 0
-    WRITE_MEMORY 0x238C30 0x4 0x00 0
-    WRITE_MEMORY 0x238C34 0x4 0x00 0
+            GET_CHAR_COORDINATES (hPlayerPed) (v3dPlayerCoords[0] v3dPlayerCoords[1] v3dPlayerCoords[2])
+            GET_CHAR_HEADING (hPlayerPed) (fPlayerHeading)
 
-    GET_LABEL_POINTER pause_menu_hook2 (menu_hook_ptr)
-    menu_hook_ptr += 32
+            STRING_FORMAT pTextBuffer "%f %f %f %f" v3dPlayerCoords[0] v3dPlayerCoords[1] v3dPlayerCoords[2] fPlayerHeading
+            PRINT_STRING_NOW $pTextBuffer 3000
 
-    GET_LABEL_POINTER ColourFilter (colour_filter_hook_ptr)
-    colour_filter_hook_ptr += 72
-
-    hook_hi = colour_filter_hook_ptr / 0x10000
-    hook_hi += 0x3C020000
-    WRITE_MEMORY menu_hook_ptr 4 hook_hi 0
-    menu_hook_ptr += 4
-
-    hook_lo = colour_filter_hook_ptr * 0x10000
-    hook_lo /= 0x10000
-    hook_lo += 0x34420000
-
-    WRITE_MEMORY menu_hook_ptr 4 hook_lo 0
-
-    GET_LABEL_POINTER pause_menu_hook2 (menu_hook_ptr)
-    menu_hook_ptr /= 4
-    menu_hook_ptr += 0x0C000000
-    WRITE_MEMORY 0x2469E4 4 menu_hook_ptr 0
-
-    TERMINATE_THIS_SCRIPT
+            GOSUB ConsoleLog
+        ENDIF
+    GOTO coordinate_logger_loop
 }
 
 
 {
     fps_counter:
-    SCRIPT_NAME showfps
+    SCRIPT_NAME SHOWFPS
+    VAR_INT fps_counter_active
     LVAR_INT a b
 
     WHILE NOT IS_GERMAN_GAME
@@ -1327,7 +2354,7 @@ VAR_INT num_carmod_instances dogcart1
     show:   
         USE_TEXT_COMMANDS 1
         GOSUB SetupFPSDraw
-        DISPLAY_TEXT_WITH_NUMBER 12.0 42.0 _FPSCN1 b
+        DISPLAY_TEXT_WITH_NUMBER 12.0 72.0 _FPSCN1 b
         USE_TEXT_COMMANDS 0
     RETURN 
 
@@ -1349,8 +2376,8 @@ VAR_INT num_carmod_instances dogcart1
 
 {
     streaming_usage:
-
     LVAR_INT total_mem used_mem
+    VAR_INT stream_counter_active
 
     SCRIPT_NAME STRUSE
 
@@ -1382,637 +2409,198 @@ VAR_INT num_carmod_instances dogcart1
 }
 
 {
-    phone:
-    SCRIPT_NAME phone
-    NOP
+    memory_usage:
+    LVAR_INT total_mem used_mem
+    VAR_INT memory_counter_active
 
-    LVAR_INT hour min phone_model pos_x pos_y selec b_active num_items theme_r theme_g theme_b dummy
-    LVAR_FLOAT selec_mult
+    SCRIPT_NAME MEMUSE
 
-    CONST_FLOAT SCREEN_WIDTH 92.0
+    WHILE NOT IS_GERMAN_GAME
+        WAIT 0
+        READ_MEMORY 0x66B180 4 0 (used_mem)
+        used_mem += 8016120
+        used_mem /= 1024
+        CALL_FUNCTION_RETURN 0x53BC00 0 0 (total_mem)  
+        total_mem /= 1024 
 
-    theme_r = 109
-    theme_g = 235
-    theme_b = 95
-    dummy = 0
+        USE_TEXT_COMMANDS 1
+        GOSUB SetupMemDraw
+        DISPLAY_TEXT_WITH_2_NUMBERS 12.0 42.0 _MEMUG used_mem total_mem
+        USE_TEXT_COMMANDS 0
+    ENDWHILE
 
-    REQUEST_ANIMATION phone
+    SetupMemDraw:
+        SET_TEXT_FONT 2
+        SET_TEXT_SCALE 0.3 1.2
+        SET_TEXT_COLOUR 255 255 255 255
+        SET_TEXT_BACKGROUND 0
+        SET_TEXT_PROPORTIONAL 0
+        SET_TEXT_DRAW_BEFORE_FADE 1
+        SET_TEXT_DROPSHADOW 0 0 0 0 0
+        SET_TEXT_EDGE 1 0 0 0 255
+        SET_TEXT_JUSTIFY 0
+        SET_TEXT_WRAPX 130.0
+    RETURN
+}
 
-    init:
-    WAIT 0
-    IF IS_BUTTON_PRESSED 0 DPADUP
-    AND is_drawing = 0
-        is_drawing = 1
-        SET_PLAYER_CONTROL 0 0
-        IF switch_cur_char = PLAYER_FRANKLIN
-            LOAD_TEXTURE_DICTIONARY VPHONE
-        ELSE 
-            IF switch_cur_char = PLAYER_MICHAEL
-                LOAD_TEXTURE_DICTIONARY VPHONE2
+
+{
+    advanced_settings:
+    SCRIPT_NAME ADVSETS
+    LVAR_INT hAdvancedSettingsMenu iSelected iTemp iTotalStreamMemory iDesiredVehicles
+    LVAR_FLOAT fDrawDistance fLODDistance
+
+    CREATE_MENU VLSETS 50f 50f 300f 1 TRUE TRUE 0 (hAdvancedSettingsMenu)
+    SET_MENU_COLUMN hAdvancedSettingsMenu 0 DUMMY VLMEMC VLFRLM VLFPSC VLDRDS VLLDDS VLSTRC VLSTMEM VLVEHC DUMMY DUMMY DUMMY DUMMY
+    SET_MENU_COLUMN_ORIENTATION hAdvancedSettingsMenu 0 1
+
+    READ_MEMORY 0x66659C 4 TRUE (fDrawDistance)
+    READ_MEMORY 0x666E08 4 TRUE (iTotalStreamMemory)
+    READ_MEMORY 0x666E0C 4 TRUE (iDesiredVehicles)
+    READ_MEMORY 0x6665A0 4 TRUE (fLODDistance)
+
+    advanced_settings_loop:
+        WAIT 0
+        GET_MENU_ITEM_SELECTED (hAdvancedSettingsMenu) (iSelected)
+
+        IF iSelected = 3
+            PRINT_FORMATTED_NOW "Draw distance %g" 1 fDrawDistance
+        ELSE
+            IF iSelected = 4
+                PRINT_FORMATTED_NOW "LOD distance %g" 1 fLODDistance
             ELSE
-                IF switch_cur_char = PLAYER_TREVOR
-                    LOAD_TEXTURE_DICTIONARY VPHONE3
+                IF iSelected = 6
+                    PRINT_FORMATTED_NOW "Available stream %d" 1 iTotalStreamMemory
+                ELSE
+                    IF iSelected = 7
+                        PRINT_FORMATTED_NOW "Vehicles %d" 1 iDesiredVehicles
+                    ENDIF
                 ENDIF
             ENDIF
         ENDIF
-        GOSUB load_cellphone
-        GOTO init_phone
-    ENDIF
-    GOTO init
 
-    load_cellphone:
-    REQUEST_MODEL CELLPHONE
-    WHILE NOT HAS_MODEL_LOADED CELLPHONE
-        WAIT 0
-    ENDWHILE
-    MARK_MODEL_AS_NO_LONGER_NEEDED CELLPHONE
-    CREATE_OBJECT_NO_OFFSET CELLPHONE 0.0 0.0 0.0 phone_model
-    TASK_PICK_UP_OBJECT scplayer phone_model 0.03 0.0 0.0 6 16 phone_grab PHONE -1
-    IF IS_CHAR_IN_ANY_CAR scplayer
-        TASK_PLAY_ANIM scplayer phone_grab PHONE 4.0 1 0 0 0 -1
-    ENDIF
-    RETURN
-
-    init_phone:
-    WHILE IS_BUTTON_PRESSED 0 CIRCLE
-    OR IS_BUTTON_PRESSED 0 CROSS
-        GOSUB draw_home
-    ENDWHILE
-    GOSUB draw_home
-    IF b_active = 0
-        IF IS_BUTTON_PRESSED 0 DPADLEFT
-           selec -= 1
-           b_active = 1
+        IF IS_BUTTON_PRESSED PAD1 DPADLEFT
+            WHILE IS_BUTTON_PRESSED PAD1 DPADLEFT
+                WAIT 0
+            ENDWHILE
+            IF iSelected = 3
+                fDrawDistance -= 0.05f
+            ENDIF
+            IF iSelected = 4
+                fLODDistance -= 0.05f
+            ENDIF
+            IF iSelected = 6
+                iTotalStreamMemory -= 1024
+            ENDIF
+            IF iSelected = 7
+                iDesiredVehicles -= 1
+            ENDIF
         ENDIF
-        IF IS_BUTTON_PRESSED 0 DPADRIGHT
-            selec += 1
-            b_active = 1
+
+        IF IS_BUTTON_PRESSED PAD1 DPADRIGHT
+            WHILE IS_BUTTON_PRESSED PAD1 DPADRIGHT
+                WAIT 0
+            ENDWHILE
+            IF iSelected = 3
+                fDrawDistance += 0.05f
+            ENDIF
+            IF iSelected = 4
+                fLODDistance += 0.05f
+            ENDIF
+            IF iSelected = 6
+                iTotalStreamMemory += 1024
+            ENDIF
+            IF iSelected = 7
+                iDesiredVehicles += 1
+            ENDIF
         ENDIF
-        IF IS_BUTTON_PRESSED 0 DPADUP
-           selec -= 3
-           b_active = 1
+
+        IF IS_BUTTON_PRESSED PAD1 CROSS
+            WHILE IS_BUTTON_PRESSED PAD1 CROSS
+                WAIT 0
+            ENDWHILE
+
+            SWITCH iSelected
+                CASE 0 // Whole memory counter
+                    IF memory_counter_active = 0
+                        memory_counter_active = 1
+                        START_NEW_SCRIPT memory_usage
+                    ELSE
+                        memory_counter_active = 0
+                        TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME MEMUSE
+                    ENDIF
+                    BREAK
+                CASE 1 // Toggle frame limiter
+                    READ_MEMORY 0x6678CC 1 TRUE (iTemp) 
+                    IF iTemp = 2
+                        WRITE_MEMORY 0x6678CC 1 1 TRUE 
+                    ELSE
+                        WRITE_MEMORY 0x6678CC 1 2 TRUE 
+                    ENDIF
+                    
+                    CALL_FUNCTION 0x359C20 0 0 // RpSkyResume
+                    BREAK
+                CASE 2 // Toggle framerate counter
+                    IF fps_counter_active = 0
+                        fps_counter_active = 1
+                        START_NEW_SCRIPT fps_counter
+                    ELSE
+                        fps_counter_active = 0
+                        TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME SHOWFPS
+                    ENDIF
+
+                    BREAK
+                CASE 3 // Set draw distance
+                    WRITE_MEMORY 0x66659C 4 fDrawDistance TRUE 
+                    BREAK
+                CASE 4 // Set LOD draw distance
+                    WRITE_MEMORY 0x70685C 4 fLODDistance TRUE // 0x6665A0
+                    BREAK
+                CASE 5 // Toggle stream usage counter
+                    IF stream_counter_active = 0
+                        stream_counter_active = 1
+                        START_NEW_SCRIPT streaming_usage
+                    ELSE
+                        stream_counter_active = 0
+                        TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME STRUSE
+                    ENDIF
+                    BREAK
+                CASE 6 // Set stream memory
+                    WRITE_MEMORY 0x666E08 4 iTotalStreamMemory TRUE 
+                    BREAK
+                CASE 7 // Set desired vehicles
+                    WRITE_MEMORY 0x666E0C 4 iDesiredVehicles TRUE 
+                    BREAK
+            ENDSWITCH
         ENDIF
-        IF IS_BUTTON_PRESSED 0 DPADDOWN
-            selec += 3
-            b_active = 1
+
+        IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+            WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+            is_drawing = 0
+
+            DELETE_MENU hAdvancedSettingsMenu
+
+            WAIT 150
+            SET_PLAYER_CONTROL 0 1
+            TERMINATE_THIS_SCRIPT
         ENDIF
-    ELSE
-        IF NOT IS_BUTTON_PRESSED 0 DPADLEFT
-        AND NOT IS_BUTTON_PRESSED 0 DPADRIGHT
-        AND NOT IS_BUTTON_PRESSED 0 DPADUP
-        AND NOT IS_BUTTON_PRESSED 0 DPADDOWN
-            b_active = 0
-        ENDIF
-    ENDIF
-    IF selec < 0
-        selec = 7
-    ENDIF
-    IF selec > 7
-        selec = 0
-    ENDIF
 
-    IF IS_BUTTON_PRESSED 0 CROSS
-        SWITCH selec
-            CASE 0
-                BREAK
-            CASE 1
-                BREAK
-            CASE 2
-                BREAK
-            CASE 3
-                BREAK
-            CASE 4
-                BREAK
-            CASE 5
-                selec = 0
-                GOTO create_settings
-                BREAK
-            CASE 6
-                BREAK
-            CASE 7
-                BREAK
-        ENDSWITCH
-    ENDIF
-
-    IF IS_BUTTON_PRESSED 0 CIRCLE
-        DELETE_OBJECT phone_model
-        CLEAR_CHAR_TASKS scplayer
-        SET_PLAYER_CONTROL 0 1
-        WAIT 100
-        REMOVE_TEXTURE_DICTIONARY
-        is_drawing = 0
-        GOTO init
-    ENDIF
-    GOTO init_phone
-
-    draw_home:
-    USE_TEXT_COMMANDS 1
-    GOSUB rainbow_theme
-    LOAD_SPRITE 4 wallpaper
-    DRAW_SPRITE 4 560.0 329.0 SCREEN_WIDTH 154.0 theme_r theme_g theme_b 255
-    LOAD_SPRITE 3 home
-    DRAW_SPRITE 3 560.0 277.0 SCREEN_WIDTH 50.0 255 255 255 255
-    GOSUB draw_phone_frame
-    SET_TEXT_EDGE 0 0 0 0 0
-    SET_TEXT_SCALE 0.25 1.3
-    DISPLAY_TEXT 546.0 271.5 PZERO
-    SET_TEXT_EDGE 0 0 0 0 0
-    SET_TEXT_SCALE 0.25 1.3
-    DISPLAY_TEXT 565.0 271.5 PZERO
-    GET_TIME_OF_DAY hour min
-    SET_TEXT_EDGE 0 0 0 0 0
-    SET_TEXT_SCALE 0.35 1.9
-    DISPLAY_TEXT_WITH_2_NUMBERS 549.0 253.0 PTIME hour min 
-    LOAD_SPRITE 5 selected
-    SWITCH selec
-        CASE 0
-            GOSUB set_app_title
-            DISPLAY_TEXT 545.0 283.0 PEMAIL
-            DRAW_SPRITE 5 533.0 318.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 1
-            GOSUB set_app_title
-            DISPLAY_TEXT 535.0 283.0 PMESSAG
-            DRAW_SPRITE 5 560.0 318.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 2
-            GOSUB set_app_title
-            DISPLAY_TEXT 540.0 283.0 PCHECKL
-            DRAW_SPRITE 5 587.0 318.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 3
-            GOSUB set_app_title
-            DISPLAY_TEXT 534.0 283.0 PQKSAVE
-            DRAW_SPRITE 5 533.0 350.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 4
-            GOSUB set_app_title
-            DISPLAY_TEXT 539.0 283.0 PCONTAC
-            DRAW_SPRITE 5 560.0 350.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 5
-            GOSUB set_app_title
-            DISPLAY_TEXT 539.0 283.0 PSETTIN
-            DRAW_SPRITE 5 587.0 350.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 6
-            GOSUB set_app_title
-            DISPLAY_TEXT 536.0 283.0 PSNPMTC
-            DRAW_SPRITE 5 533.0 382.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-        CASE 7
-            GOSUB set_app_title
-            DISPLAY_TEXT 540.0 283.0 PBROWSE
-            DRAW_SPRITE 5 560.0 382.0 27.0 34.2 theme_r theme_g theme_b 255
-            BREAK
-    ENDSWITCH
-    LOAD_SPRITE 6 email
-    DRAW_SPRITE 6 533.0 318.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 7 messages
-    DRAW_SPRITE 7 560.0 318.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 8 checklist
-    DRAW_SPRITE 8 587.0 318.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 9 quicksave
-    DRAW_SPRITE 9 533.0 350.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 10 contacts
-    DRAW_SPRITE 10 560.0 350.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 11 settings
-    DRAW_SPRITE 11 587.0 350.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 12 snapmatic
-    DRAW_SPRITE 12 533.0 382.0 27.0 34.2 255 255 255 255
-    LOAD_SPRITE 13 browser
-    DRAW_SPRITE 13 560.0 382.0 27.0 34.2 255 255 255 255
-    USE_TEXT_COMMANDS 0
-    WAIT 0
-    RETURN
-
-    create_settings:
-    WHILE IS_BUTTON_PRESSED 0 CIRCLE
-    OR IS_BUTTON_PRESSED 0 CROSS
-        GOSUB draw_settings
-    ENDWHILE
-    GOSUB draw_settings
-
-    IF IS_BUTTON_PRESSED 0 CROSS
-        SWITCH selec
-            CASE 0
-                BREAK
-            CASE 1
-                BREAK
-            CASE 2
-                BREAK
-            CASE 3
-                selec = 0
-                GOTO create_theme_sets
-                BREAK
-            CASE 4
-                BREAK
-        ENDSWITCH
-    ENDIF
-
-    IF IS_BUTTON_PRESSED 0 CIRCLE
-        GOTO init_phone
-    ENDIF
-    GOTO create_settings
-
-    draw_settings:
-    USE_TEXT_COMMANDS 1
-    GOSUB rainbow_theme
-    GOSUB create_menu_base
-    GOSUB set_app_title
-    DISPLAY_TEXT 540.0 262.0 PSETTIN
-    num_items = 4
-    GOSUB create_menu_selection
-    GOSUB set_settings_item
-    LOAD_SPRITE 4 theme_icon
-    IF selec = 0
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 291.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 291.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 283.0 PWALLPA
-    GOSUB set_settings_item
-    LOAD_SPRITE 5 profile_icon
-    IF selec = 1
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 5 522.0 313.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 5 522.0 313.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 305.0 PPROFIL
-    GOSUB set_settings_item
-    LOAD_SPRITE 6 ringtone_icon
-    IF selec = 2
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 6 522.0 335.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 6 522.0 335.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 327.0 PRINGTO
-    GOSUB set_settings_item
-    LOAD_SPRITE 4 theme_icon
-    IF selec = 3
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 357.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 357.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 349.0 PTHEME
-    GOSUB set_settings_item
-    LOAD_SPRITE 7 vibrate_icon
-    IF selec = 4
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 7 522.0 379.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 7 522.0 379.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 371.0 PVIBRAT
-    GOSUB draw_phone_frame
-    USE_TEXT_COMMANDS 0
-    WAIT 0
-    RETURN
-
-    create_theme_sets:
-    WHILE IS_BUTTON_PRESSED 0 CIRCLE
-    OR IS_BUTTON_PRESSED 0 CROSS
-        GOSUB draw_theme_sets
-    ENDWHILE
-    GOSUB draw_theme_sets
-
-    IF IS_BUTTON_PRESSED 0 CROSS
-        SWITCH selec
-            CASE 0
-                theme_r = 80
-                theme_g = 173
-                theme_b = 239
-                BREAK
-            CASE 1
-                theme_r = 109
-                theme_g = 235
-                theme_b = 95
-                BREAK
-            CASE 2
-                theme_r = 89
-                theme_g = 89
-                theme_b = 88
-                BREAK
-            CASE 3
-                theme_r = 206
-                theme_g = 111
-                theme_b = 29
-                BREAK
-            CASE 4
-                theme_r = 255
-                theme_g = 108
-                theme_b = 200
-                BREAK
-            CASE 5
-                BREAK
-        ENDSWITCH
-    ENDIF
-    IF IS_BUTTON_PRESSED 0 DPADDOWN
-    AND selec = 5
-        selec = 1
-        GOTO create_theme_sets2
-    ENDIF
-    IF IS_BUTTON_PRESSED 0 CIRCLE
-        GOTO create_settings
-    ENDIF
-    GOTO create_theme_sets
-
-    draw_theme_sets:
-    USE_TEXT_COMMANDS 1
-    GOSUB rainbow_theme
-    LOAD_SPRITE 4 theme_icon
-    LOAD_SPRITE 5 ok_icon
-    GOSUB create_menu_base
-    GOSUB set_app_title
-    DISPLAY_TEXT 540.0 262.0 PSETTIN
-    num_items = 5
-    GOSUB create_menu_selection
-    GOSUB set_settings_item
-    IF selec = 0
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 291.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 291.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 283.0 PBLUE
-    GOSUB set_settings_item
-    IF selec = 1
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 313.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 313.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 305.0 PGREEN
-    GOSUB set_settings_item
-    IF selec = 2
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 335.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 335.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 327.0 PGRAY
-    GOSUB set_settings_item
-    IF selec = 3
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 357.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 357.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 349.0 PORANGE
-    GOSUB set_settings_item
-    IF selec = 4
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 379.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 379.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 371.0 PPINK
-    GOSUB draw_phone_frame
-    USE_TEXT_COMMANDS 0
-    WAIT 0
-    RETURN
-
-    create_theme_sets2:
-    WHILE IS_BUTTON_PRESSED 0 CIRCLE
-    OR IS_BUTTON_PRESSED 0 CROSS
-        GOSUB draw_theme_sets2
-    ENDWHILE
-    GOSUB draw_theme_sets2
-
-    IF IS_BUTTON_PRESSED 0 CROSS
-        SWITCH selec
-            CASE 0
-                BREAK
-            CASE 1
-                dummy = 0
-                theme_r = 122
-                theme_g = 65
-                theme_b = 148
-                BREAK
-            CASE 2
-                dummy = 0
-                theme_r = 216
-                theme_g = 33
-                theme_b = 32
-                BREAK
-            CASE 3
-                dummy = 0
-                theme_r = 255
-                theme_g = 234
-                theme_b = 0
-                BREAK
-            CASE 4
-                dummy = 1
-                BREAK
-        ENDSWITCH
-    ENDIF
-    IF IS_BUTTON_PRESSED 0 DPADUP
-    AND selec = 0
-        selec = 4
-        GOTO create_theme_sets
-    ENDIF
-    IF IS_BUTTON_PRESSED 0 CIRCLE
-        GOTO create_settings
-    ENDIF
-    GOTO create_theme_sets2
-
-    draw_theme_sets2:
-    USE_TEXT_COMMANDS 1
-    GOSUB rainbow_theme
-    LOAD_SPRITE 4 theme_icon
-    LOAD_SPRITE 5 ok_icon
-    GOSUB create_menu_base
-    GOSUB set_app_title
-    DISPLAY_TEXT 540.0 262.0 PSETTIN
-    num_items = 4
-    GOSUB create_menu_selection
-    GOSUB set_settings_item
-    IF selec = 1
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 313.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 313.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 305.0 PPURPLE
-    GOSUB set_settings_item
-    IF selec = 2
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 335.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 335.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 327.0 PRED
-    GOSUB set_settings_item
-    IF selec = 3
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 357.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 357.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 349.0 PYELLOW
-    GOSUB set_settings_item
-    IF selec = 4
-        SET_TEXT_COLOUR 255 255 255 255
-        DRAW_SPRITE 4 522.0 379.2 15.0 19.0 255 255 255 255
-    ELSE
-        DRAW_SPRITE 4 522.0 379.2 15.0 19.0 theme_r theme_g theme_b 255
-    ENDIF
-    DISPLAY_TEXT 532.0 371.0 PRAINBO
-    GOSUB draw_phone_frame
-    USE_TEXT_COMMANDS 0
-    WAIT 0
-    RETURN
-
-    create_menu_base:
-    LOAD_SPRITE 3 header_bar
-    DRAW_RECT 560.0 334.0 SCREEN_WIDTH 144.0 255 255 255 255
-    DRAW_RECT 560.0 257.0 SCREEN_WIDTH 10.0 0 0 0 255
-    DRAW_SPRITE 3 560.0 271.2 SCREEN_WIDTH 18.0 theme_r theme_g theme_b 255
-    RETURN
-
-    create_menu_selection:
-    IF b_active = 0
-        IF IS_BUTTON_PRESSED 0 DPADUP
-           selec -= 1
-           b_active = 1
-        ENDIF
-        IF IS_BUTTON_PRESSED 0 DPADDOWN
-            selec += 1
-            b_active = 1
-        ENDIF
-    ELSE
-        IF NOT IS_BUTTON_PRESSED 0 DPADUP
-        AND NOT IS_BUTTON_PRESSED 0 DPADDOWN
-            b_active = 0
-        ENDIF
-    ENDIF
-    IF selec < 0
-        selec = num_items
-    ENDIF
-    IF selec > num_items
-        selec = 0
-    ENDIF
-    selec_mult =# selec
-    selec_mult *= 22.0
-    selec_mult += 291.2
-    DRAW_RECT 560.0 selec_mult SCREEN_WIDTH 22.0 theme_r theme_g theme_b 255
-    RETURN
-
-
-    set_app_title:
-    SET_TEXT_EDGE 0 0 0 0 0
-    SET_TEXT_JUSTIFY 2
-    SET_TEXT_COLOUR 255 255 255 255
-    SET_TEXT_SCALE 0.32 1.6
-    RETURN
-
-    set_settings_item:
-    SET_TEXT_EDGE 0 0 0 0 0
-    SET_TEXT_COLOUR 0 0 0 255
-    SET_TEXT_SCALE 0.28 1.4
-    RETURN
-
-    draw_phone_frame:
-    LOAD_SPRITE 1 phone
-    LOAD_SPRITE 2 frame
-    DRAW_SPRITE 1 560.0 340.0 105.0 250.0 255 255 255 255
-    DRAW_SPRITE 2 560.0 340.0 105.0 250.0 theme_r theme_g theme_b 255
-    RETURN
-
-    rainbow_theme:
-    IF dummy = 1
-        theme_r--
-        IF theme_r < 120
-            theme_r = 120
-            dummy = 2
-        ENDIF
-    ENDIF
-    IF dummy = 2
-        theme_g++
-        IF theme_g > 255
-            theme_g = 255
-            dummy = 3
-        ENDIF
-    ENDIF
-    IF dummy = 3
-        theme_g--
-        IF theme_g < 70
-            theme_g = 70
-            dummy = 4
-        ENDIF
-    ENDIF
-    IF dummy = 4
-        theme_b++
-        IF theme_b > 255
-            theme_b = 255
-            dummy = 5
-        ENDIF
-    ENDIF
-    IF dummy = 5
-        theme_r++
-        IF theme_r > 255
-            theme_r = 255
-            dummy = 6
-        ENDIF
-    ENDIF
-    IF dummy = 6
-        theme_b--
-        IF theme_b < 180
-            theme_b = 180
-            dummy = 7
-        ENDIF
-    ENDIF
-    IF dummy = 7
-        theme_r--
-        IF theme_r < 40
-            theme_r = 40
-            dummy = 8
-        ENDIF
-    ENDIF
-    IF dummy = 8
-        theme_g++
-        IF theme_g > 255
-            theme_g = 255
-            dummy = 9
-        ENDIF
-    ENDIF
-    IF dummy = 9
-        theme_b--
-        IF theme_b < 40
-            theme_b = 40
-            dummy = 10
-        ENDIF
-    ENDIF
-    IF dummy = 10
-        theme_r++
-        IF theme_r > 255
-            theme_r = 255
-            dummy = 11
-        ENDIF
-    ENDIF
-    IF dummy = 11
-        theme_g--
-        IF theme_g < 30
-            theme_g = 30
-            dummy = 1
-        ENDIF
-    ENDIF
-    RETURN
-
+        
+    GOTO advanced_settings_loop
 }
 
 {
     debug_menu:
-    SCRIPT_NAME debug_m
+    SCRIPT_NAME DEBUG_M
     NOP
-    LVAR_INT selected b_active vehicle max_item veh_model old_selected r g b dummy
+    LVAR_INT selected b_active vehicle max_item veh_model old_selected r g b color_flag_thing
     LVAR_FLOAT items_size items_pos sc_float sc_pos item_qt px py pz pa
 
     LVAR_INT filter_col[4] col_idx old_col_idx
+
+    VAR_INT hCurrMenu
+
+    LVAR_INT logging_coordinates
 
     CONST_INT MAX_ITEMS 3
     CONST_FLOAT ITEM_QUANTITY 4.0
@@ -2024,248 +2612,93 @@ VAR_INT num_carmod_instances dogcart1
     CONST_FLOAT RECT_W 170.0
 
     selected = 0
-    dummy = 1
+    color_flag_thing = 1
     r = 120
     g = 60
     b = 220
 
     menu_init:
     WAIT 0
-    IF IS_BUTTON_PRESSED 0 RIGHTSHOCK
-    AND IS_BUTTON_PRESSED 0 LEFTSHOCK
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOCK
+    AND IS_BUTTON_PRESSED PAD1 DPADLEFT
+    AND NOT READ_MEMORY_BOOL (pRadioWheelVisible, 1)
     AND is_drawing = 0
         is_drawing = 1
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 0 TRUE)
         SET_PLAYER_CONTROL 0 0
+        CREATE_MENU RMMENU 50f 50f 300f 1 TRUE TRUE 0 (hCurrMenu)
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS RMITEM1 RMITEM2 RMITEM3 RMITEM4 VLSETS DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO main_menu_loop
     ENDIF
     GOTO menu_init
 
     main_menu_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-        GOSUB draw_main_menu
-    ENDWHILE
-    GOSUB draw_main_menu
-    IF IS_BUTTON_PRESSED 0 CROSS
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
+    IF IS_BUTTON_PRESSED PAD1 CROSS
         SWITCH selected
             CASE 0
+                SET_MENU_COLUMN hCurrMenu 0 RMOPTS STSKIN STCLOTH STRESET DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY
+                SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
                 GOTO style_loop
                 BREAK
             CASE 1
                 selected = 0
                 old_selected = -1
+                SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER TOPFUN BANDITO RANCHER RANCHER DUMMY DUMMY
+                SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
                 GOTO cars_loop
                 BREAK
             CASE 2
-                selected = 0
-                old_selected = -1
-                GOTO debug_loop
+                SET_PLAYER_CONTROL 0 1
+                is_drawing = 0
+                IF IS_CHAR_IN_ANY_CAR hPlayerPed
+                AND NOT IS_CHAR_IN_ANY_BOAT hPlayerPed
+                AND NOT IS_CHAR_IN_FLYING_VEHICLE hPlayerPed
+                    lscustoms_enabled = TRUE
+                    DELETE_MENU hCurrMenu
+                ENDIF
+                GOTO menu_init
                 BREAK
             CASE 3
+                IF logging_coordinates = FALSE
+                    PRINT_HELP CORDLOG
+                    logging_coordinates = TRUE
+                    START_NEW_SCRIPT coordinate_logger
+                ELSE
+                    logging_coordinates = FALSE
+                    TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME PCORLOG
+                ENDIF
+
+                WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+                SET_PLAYER_CONTROL 0 1
+                is_drawing = 0
+                DELETE_MENU hCurrMenu
+                GOTO menu_init
+                BREAK
+            CASE 4
+                START_NEW_SCRIPT advanced_settings
+
+                DELETE_MENU hCurrMenu
+                GOTO menu_init
                 BREAK
         ENDSWITCH
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
-    AND b_active = 0
-        b_active = 1
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
         SET_PLAYER_CONTROL 0 1
         is_drawing = 0
+        DELETE_MENU hCurrMenu
         GOTO menu_init
     ENDIF
     GOTO main_menu_loop
 
-    draw_main_menu:
+    style_loop:
     WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_title
-    SET_TEXT_FONT 2
-    SET_TEXT_SCALE 0.35 1.68
-    SET_TEXT_COLOUR 140 120 235 255
-    SET_TEXT_EDGE 0 0 0 0 0
-    DISPLAY_TEXT 30.0 82.0 RMOPTS
-    DRAW_RECT RECT_X 90.0 RECT_W 20.0 0 0 0 255
-    item_qt = ITEM_QUANTITY
-    max_item = MAX_ITEMS
-    GOSUB create_selection
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 RMITEM1
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 RMITEM2
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 RMITEM3
-    GOSUB set_textitem_params
-    IF selected = 3
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 160.0 CARMOD1
-    USE_TEXT_COMMANDS 0
-    RETURN
-
-
-    debug_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-        GOSUB draw_debug_items
-    ENDWHILE
-    GOSUB draw_debug_items
-    IF IS_BUTTON_PRESSED 0 CROSS
-        SWITCH selected
-            CASE 0
-                IF NOT fps_onscreen = 1
-                    START_NEW_SCRIPT fps_counter
-                    fps_onscreen = 1
-                ELSE
-                    TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME showfps
-                    fps_onscreen = 0
-                ENDIF
-                BREAK
-            CASE 1
-                IF NOT stream_onscreen = 1
-                    START_NEW_SCRIPT streaming_usage
-                    stream_onscreen = 1
-                ELSE
-                    TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME STRUSE
-                    stream_onscreen = 0
-                ENDIF
-                BREAK
-            CASE 2
-                WAIT 500
-                DISPLAY_HUD 0
-                DISPLAY_RADAR 0
-
-                READ_MEMORY filter_r_ptr 1 0 filter_col[0]
-                READ_MEMORY filter_g_ptr 1 0 filter_col[1]
-                READ_MEMORY filter_b_ptr 1 0 filter_col[2]
-                READ_MEMORY filter_a_ptr 1 0 filter_col[3]
-                GOTO colour_filter_selector
-                BREAK
-        ENDSWITCH
-    ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
-        GOTO main_menu_loop
-    ENDIF
-    GOTO debug_loop
-
-
-    draw_debug_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = STYLE_QUANTITY
-    max_item = MAX_STYLE
-    GOSUB create_selection
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 VLFPSC
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 VLSTRC
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 CFILTER
-    USE_TEXT_COMMANDS 0
-    RETURN
-
-    colour_filter_selector:
-    WAIT 0
-
-    IF IS_BUTTON_PRESSED PAD1 DPADLEFT
-    AND filter_col[col_idx] > 0
-        filter_col[col_idx]--
-    ENDIF
-
-    IF IS_BUTTON_PRESSED PAD1 DPADRIGHT
-    AND filter_col[col_idx] < 255
-        filter_col[col_idx]++
-    ENDIF
-
-    IF b_active = 0
-        IF IS_BUTTON_PRESSED 0 DPADUP
-        AND col_idx > 0
-           col_idx--
-           b_active = 1
-        ENDIF
-        IF IS_BUTTON_PRESSED 0 DPADDOWN
-        AND col_idx < 3
-            col_idx++
-            b_active = 1
-        ENDIF
-    ELSE
-        IF NOT IS_BUTTON_PRESSED 0 DPADUP
-        AND NOT IS_BUTTON_PRESSED 0 DPADDOWN
-            b_active = 0
-        ENDIF
-    ENDIF
-
-    USE_TEXT_COMMANDS 1
-    DRAW_RECT 50.0 50.0 100.0 100.0 filter_col[0] filter_col[1] filter_col[2] filter_col[3]
-    USE_TEXT_COMMANDS 0
-    PRINT_FORMATTED_NOW "%d %d %d %d" 1 filter_col[0] filter_col[1] filter_col[2] filter_col[3]
-
-    IF IS_BUTTON_PRESSED PAD1 SQUARE
-        filter_col[0] += 0x24020000
-        filter_col[1] += 0x24020000
-        filter_col[2] += 0x24020000
-        filter_col[3] += 0x24020000
-        WRITE_MEMORY filter_r_ptr 4 filter_col[0] 0 
-        WRITE_MEMORY filter_g_ptr 4 filter_col[1] 0 
-        WRITE_MEMORY filter_b_ptr 4 filter_col[2] 0 
-        WRITE_MEMORY filter_a_ptr 4 filter_col[3] 0 
-        filter_col[0] -= 0x24020000
-        filter_col[1] -= 0x24020000
-        filter_col[2] -= 0x24020000
-        filter_col[3] -= 0x24020000
-        WAIT 500
-    ENDIF
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
 
     IF IS_BUTTON_PRESSED PAD1 CROSS
-        filter_col[0] += 0x24020000
-        filter_col[1] += 0x24020000
-        filter_col[2] += 0x24020000
-        filter_col[3] += 0x24020000
-        WRITE_MEMORY filter_r_ptr 4 filter_col[0] 0 
-        WRITE_MEMORY filter_g_ptr 4 filter_col[1] 0 
-        WRITE_MEMORY filter_b_ptr 4 filter_col[2] 0 
-        WRITE_MEMORY filter_a_ptr 4 filter_col[3] 0 
-        filter_col[0] -= 0x24020000
-        filter_col[1] -= 0x24020000
-        filter_col[2] -= 0x24020000
-        filter_col[3] -= 0x24020000
-        DISPLAY_HUD 1
-        DISPLAY_RADAR 1
-        GOTO debug_loop
-    ENDIF
-
-    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
-        DISPLAY_HUD 1
-        DISPLAY_RADAR 1
-        GOTO debug_loop
-    ENDIF
-
-    GOTO colour_filter_selector
-
-    style_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-        GOSUB draw_style_items
-    ENDWHILE
-    GOSUB draw_style_items
-    IF IS_BUTTON_PRESSED 0 CROSS
         SWITCH selected
             CASE 0
                 BREAK
@@ -2275,51 +2708,19 @@ VAR_INT num_carmod_instances dogcart1
                 BREAK
         ENDSWITCH
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
         GOTO main_menu_loop
     ENDIF
     GOTO style_loop
 
-    draw_style_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = STYLE_QUANTITY
-    max_item = MAX_STYLE
-    GOSUB create_selection
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 STSKIN
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 STCLOTH
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 STRESET
-    USE_TEXT_COMMANDS 0
-    RETURN
-
     cars_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-    OR IS_BUTTON_PRESSED 0 DPADDOWN
-    OR IS_BUTTON_PRESSED 0 DPADUP
-    OR IS_BUTTON_PRESSED 0 LEFTSHOULDER2
-    OR IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
-        GOSUB draw_cars_items
-    ENDWHILE
-    GOSUB draw_cars_items
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
 
-    GET_CHAR_COORDINATES scplayer px py pz
-    GET_CHAR_HEADING scplayer pa
+    GET_CHAR_COORDINATES hPlayerPed px py pz
+    GET_CHAR_HEADING hPlayerPed pa
     pa += 90.0
-    GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS scplayer 0.0 5.0 0.0 px py pz
+    GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.0 5.0 0.0 px py pz
 
     IF NOT old_selected = selected
         SWITCH selected
@@ -2356,112 +2757,40 @@ VAR_INT num_carmod_instances dogcart1
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
-            GOSUB draw_cars_items
+            WAIT 0
         ENDWHILE
         CREATE_CAR veh_model px py pz vehicle
         SET_CAR_HEADING vehicle pa
         MARK_MODEL_AS_NO_LONGER_NEEDED veh_model
         MARK_CAR_AS_NO_LONGER_NEEDED vehicle
     ENDIF
-    IF IS_BUTTON_PRESSED 0 SQUARE
-        WARP_CHAR_INTO_CAR scplayer vehicle
+    IF IS_BUTTON_PRESSED PAD1 SQUARE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+        WARP_CHAR_INTO_CAR hPlayerPed vehicle
         SET_PLAYER_CONTROL 0 1
         is_drawing = 0
+        DELETE_MENU hCurrMenu
         GOTO menu_init
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
             selected = 0
             old_selected = -1
         GOTO main_menu_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
             selected = 0
             old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS SABRE BLISTAC VIRGO STALLIO GLENSHI INFERNU HOTRING COMET SUPERGT SADLER DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars2_loop
     ENDIF
     old_selected = selected
     GOTO cars_loop
 
-    draw_cars_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = 10.0
-    max_item = 9
-    GOSUB create_selection
-
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 MANANA
-
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 WASHING
-
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 BANSHEE
-
-    GOSUB set_textitem_params
-    IF selected = 3
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 160.0 BUFFALO
-
-    GOSUB set_textitem_params
-    IF selected = 4
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 180.0 LANDSTK
-    GOSUB set_textitem_params
-    IF selected = 5
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 200.0 FELTZER
-
-    GOSUB set_textitem_params
-    IF selected = 6
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 220.0 TOPFUN
-
-    GOSUB set_textitem_params
-    IF selected = 7
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 240.0 BANDITO
-
-    GOSUB set_textitem_params
-    IF selected = 8
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 260.0 RANCHER
-
-    GOSUB set_textitem_params
-    IF selected = 9
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 280.0 RANCHER
-
-    USE_TEXT_COMMANDS 0
-    RETURN
-
     cars2_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-    OR IS_BUTTON_PRESSED 0 DPADDOWN
-    OR IS_BUTTON_PRESSED 0 DPADUP
-    OR IS_BUTTON_PRESSED 0 LEFTSHOULDER2
-    OR IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
-        GOSUB draw_cars2_items
-    ENDWHILE
-    GOSUB draw_cars2_items
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
+
     IF NOT old_selected = selected
         SWITCH selected
             CASE 0
@@ -2497,117 +2826,47 @@ VAR_INT num_carmod_instances dogcart1
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
-            GOSUB draw_cars2_items
+            WAIT 0
         ENDWHILE
         CREATE_CAR veh_model px py pz vehicle
         SET_CAR_HEADING vehicle pa
         MARK_MODEL_AS_NO_LONGER_NEEDED veh_model
         MARK_CAR_AS_NO_LONGER_NEEDED vehicle
     ENDIF
-    IF IS_BUTTON_PRESSED 0 SQUARE
-        WARP_CHAR_INTO_CAR scplayer vehicle
+    IF IS_BUTTON_PRESSED PAD1 SQUARE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+        WARP_CHAR_INTO_CAR hPlayerPed vehicle
         SET_PLAYER_CONTROL 0 1
         is_drawing = 0
+        DELETE_MENU hCurrMenu
         GOTO menu_init
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
         selected = 0
         old_selected = -1
         GOTO main_menu_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 LEFTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER TOPFUN BANDITO RANCHER RANCHER DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS ALPHA BFINJEC BF400 EMPEROR FORKLIF HOTRINB HUNTLEY JESTER JOURNEY NRG500 DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars3_loop
     ENDIF
     old_selected = selected
     GOTO cars2_loop
 
-    draw_cars2_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = 10.0
-    max_item = 9
-    GOSUB create_selection
-
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 SABRE
-
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 BLISTAC
-
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 VIRGO
-
-    GOSUB set_textitem_params
-    IF selected = 3
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 160.0 STALION
-
-    GOSUB set_textitem_params
-    IF selected = 4
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 180.0 GLENSHI
-    GOSUB set_textitem_params
-    IF selected = 5
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 200.0 INFERNU
-
-    GOSUB set_textitem_params
-    IF selected = 6
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 220.0 HOTRING
-
-    GOSUB set_textitem_params
-    IF selected = 7
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 240.0 COMET
-
-    GOSUB set_textitem_params
-    IF selected = 8
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 260.0 SUPERGT
-
-    GOSUB set_textitem_params
-    IF selected = 9
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 280.0 SADLER
-
-    USE_TEXT_COMMANDS 0
-    RETURN
-
     cars3_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-    OR IS_BUTTON_PRESSED 0 DPADDOWN
-    OR IS_BUTTON_PRESSED 0 DPADUP
-    OR IS_BUTTON_PRESSED 0 LEFTSHOULDER2
-    OR IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
-        GOSUB draw_cars3_items
-    ENDWHILE
-    GOSUB draw_cars3_items
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
+
     IF NOT old_selected = selected
         SWITCH selected
             CASE 0
@@ -2643,117 +2902,47 @@ VAR_INT num_carmod_instances dogcart1
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
-            GOSUB draw_cars3_items
+            WAIT 0
         ENDWHILE
         CREATE_CAR veh_model px py pz vehicle
         SET_CAR_HEADING vehicle pa
         MARK_MODEL_AS_NO_LONGER_NEEDED veh_model
         MARK_CAR_AS_NO_LONGER_NEEDED vehicle
     ENDIF
-    IF IS_BUTTON_PRESSED 0 SQUARE
-        WARP_CHAR_INTO_CAR scplayer vehicle
+    IF IS_BUTTON_PRESSED PAD1 SQUARE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+        WARP_CHAR_INTO_CAR hPlayerPed vehicle
         SET_PLAYER_CONTROL 0 1
         is_drawing = 0
+        DELETE_MENU hCurrMenu
         GOTO menu_init
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
         selected = 0
         old_selected = -1
         GOTO main_menu_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 LEFTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS SABRE BLISTAC VIRGO STALLIO GLENSHI INFERNU HOTRING COMET SUPERGT SADLER DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars2_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS MAVERIC PATRIOT RAINDAN RHINO SECURIC SWATVAN TAXI COPCARL TRACTOR YOSEMIT DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars4_loop
     ENDIF
     old_selected = selected
     GOTO cars3_loop
 
-    draw_cars3_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = 10.0
-    max_item = 9
-    GOSUB create_selection
-
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 ALPHA
-
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 BFINJEC
-
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 BF400
-
-    GOSUB set_textitem_params
-    IF selected = 3
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 160.0 EMPEROR
-
-    GOSUB set_textitem_params
-    IF selected = 4
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 180.0 FORKLIF
-    GOSUB set_textitem_params
-    IF selected = 5
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 200.0 HOTRINB
-
-    GOSUB set_textitem_params
-    IF selected = 6
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 220.0 HUNTLEY
-
-    GOSUB set_textitem_params
-    IF selected = 7
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 240.0 JESTER
-
-    GOSUB set_textitem_params
-    IF selected = 8
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 260.0 JOURNEY
-
-    GOSUB set_textitem_params
-    IF selected = 9
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 280.0 NRG500
-
-    USE_TEXT_COMMANDS 0
-    RETURN
-
     cars4_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-    OR IS_BUTTON_PRESSED 0 DPADDOWN
-    OR IS_BUTTON_PRESSED 0 DPADUP
-    OR IS_BUTTON_PRESSED 0 LEFTSHOULDER2
-    OR IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
-        GOSUB draw_cars4_items
-    ENDWHILE
-    GOSUB draw_cars4_items
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
+
     IF NOT old_selected = selected
         SWITCH selected
             CASE 0
@@ -2789,118 +2978,47 @@ VAR_INT num_carmod_instances dogcart1
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
-            GOSUB draw_cars4_items
+            WAIT 0
         ENDWHILE
         CREATE_CAR veh_model px py pz vehicle
         SET_CAR_HEADING vehicle pa
         MARK_MODEL_AS_NO_LONGER_NEEDED veh_model
         MARK_CAR_AS_NO_LONGER_NEEDED vehicle
     ENDIF
-    IF IS_BUTTON_PRESSED 0 SQUARE
-        WARP_CHAR_INTO_CAR scplayer vehicle
+    IF IS_BUTTON_PRESSED PAD1 SQUARE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+        WARP_CHAR_INTO_CAR hPlayerPed vehicle
         SET_PLAYER_CONTROL 0 1
         is_drawing = 0
+        DELETE_MENU hCurrMenu
         GOTO menu_init
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
         selected = 0
         old_selected = -1
         GOTO main_menu_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 LEFTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS ALPHA BFINJEC BF400 EMPEROR FORKLIF HOTRINB HUNTLEY JESTER JOURNEY NRG500 DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars3_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS WALTON HOTRINA MAJESTI SANDKIN CHEETAH ZR350 ELEGY COPCARL TRACTOR YOSEMIT DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars5_loop
     ENDIF
     old_selected = selected
     GOTO cars4_loop
 
-    draw_cars4_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = 10.0
-    max_item = 9
-    GOSUB create_selection
-
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 MAVERIC
-
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 PATRIOT
-
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 RAINDAN
-
-    GOSUB set_textitem_params
-    IF selected = 3
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 160.0 RHINO
-
-    GOSUB set_textitem_params
-    IF selected = 4
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 180.0 SECURIC
-    GOSUB set_textitem_params
-    IF selected = 5
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 200.0 SWATVAN
-
-    GOSUB set_textitem_params
-    IF selected = 6
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 220.0 TAXI
-
-    GOSUB set_textitem_params
-    IF selected = 7
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 240.0 COPCARL
-
-    GOSUB set_textitem_params
-    IF selected = 8
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 260.0 TRACTOR
-
-    GOSUB set_textitem_params
-    IF selected = 9
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 280.0 YOSEMIT
-
-    USE_TEXT_COMMANDS 0
-    RETURN
-
-
     cars5_loop:
-    WHILE IS_BUTTON_PRESSED 0 CROSS
-    OR IS_BUTTON_PRESSED 0 TRIANGLE
-    OR IS_BUTTON_PRESSED 0 DPADDOWN
-    OR IS_BUTTON_PRESSED 0 DPADUP
-    OR IS_BUTTON_PRESSED 0 LEFTSHOULDER2
-    OR IS_BUTTON_PRESSED 0 RIGHTSHOULDER2
-        GOSUB draw_cars5_items
-    ENDWHILE
-    GOSUB draw_cars5_items
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
+    
     IF NOT old_selected = selected
         SWITCH selected
             CASE 0
@@ -2928,7 +3046,7 @@ VAR_INT num_carmod_instances dogcart1
                 veh_model = COPCARLA
                 BREAK
             CASE 8
-                veh_model = TRACTOR
+                veh_model = RCGOBLIN
                 BREAK
             CASE 9
                 veh_model = YOSEMITE
@@ -2936,249 +3054,35 @@ VAR_INT num_carmod_instances dogcart1
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
-            GOSUB draw_cars5_items
+            WAIT 0
         ENDWHILE
         CREATE_CAR veh_model px py pz vehicle
         SET_CAR_HEADING vehicle pa
         MARK_MODEL_AS_NO_LONGER_NEEDED veh_model
         MARK_CAR_AS_NO_LONGER_NEEDED vehicle
     ENDIF
-    IF IS_BUTTON_PRESSED 0 SQUARE
-        WARP_CHAR_INTO_CAR scplayer vehicle
+    IF IS_BUTTON_PRESSED PAD1 SQUARE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+        WARP_CHAR_INTO_CAR hPlayerPed vehicle
         SET_PLAYER_CONTROL 0 1
         is_drawing = 0
+        DELETE_MENU hCurrMenu
         GOTO menu_init
     ENDIF
-    IF IS_BUTTON_PRESSED 0 TRIANGLE
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
         selected = 0
         old_selected = -1
         GOTO main_menu_loop
     ENDIF
-    IF IS_BUTTON_PRESSED 0 LEFTSHOULDER2
+    IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS MAVERIC PATRIOT RAINDAN RHINO SECURIC SWATVAN TAXI COPCARL TRACTOR YOSEMIT DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars4_loop
     ENDIF
     old_selected = selected
     GOTO cars5_loop
-
-    draw_cars5_items:
-    WAIT 0
-    USE_TEXT_COMMANDS 1
-    GOSUB draw_vehicle_panel
-    item_qt = 10.0
-    max_item = 9
-    GOSUB create_selection
-
-    GOSUB set_textitem_params
-    IF selected = 0
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 100.0 WALTON
-
-    GOSUB set_textitem_params
-    IF selected = 1
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 120.0 HOTRINA
-
-    GOSUB set_textitem_params
-    IF selected = 2
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 140.0 MAJESTI
-
-    GOSUB set_textitem_params
-    IF selected = 3
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 160.0 SANDKIN
-
-    GOSUB set_textitem_params
-    IF selected = 4
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 180.0 CHEETAH
-    GOSUB set_textitem_params
-    IF selected = 5
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 200.0 ZR350
-
-    GOSUB set_textitem_params
-    IF selected = 6
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 220.0 ELEGY
-
-    GOSUB set_textitem_params
-    IF selected = 7
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 240.0 COPCARL
-
-    GOSUB set_textitem_params
-    IF selected = 8
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 260.0 TRACTOR
-
-    GOSUB set_textitem_params
-    IF selected = 9
-        SET_TEXT_COLOUR 0 0 0 255
-    ENDIF
-    DISPLAY_TEXT 31.0 280.0 YOSEMIT
-
-    USE_TEXT_COMMANDS 0
-    RETURN
-
-    draw_vehicle_panel:
-    GOSUB draw_title
-    SET_TEXT_FONT 2
-    SET_TEXT_SCALE 0.35 1.68
-    SET_TEXT_COLOUR 140 120 235 255
-    SET_TEXT_EDGE 0 0 0 0 0
-    DISPLAY_TEXT 38.0 82.0 RMITEM2
-    DRAW_RECT RECT_X 90.0 RECT_W 20.0 0 0 0 255
-    RETURN
-
-    draw_title:
-    SET_TEXT_FONT 0
-    SET_TEXT_EDGE 1 0 0 0 255
-    SET_TEXT_COLOUR 255 255 255 255
-    SET_TEXT_SCALE 1.0 4.0
-    DISPLAY_TEXT 72.0 32.0 RMMENU
-    GOSUB pulse_color
-    DRAW_RECT RECT_X 45.0 RECT_W 70.0 r g b 235
-    DRAW_RECT 558.0 414.0 100.0 23.0 0 0 0 235
-    GOSUB set_textitem_params
-    DISPLAY_TEXT 558.0 405.0 RMSELEC
-    GOSUB set_textitem_params
-    DISPLAY_TEXT 515.0 405.0 RMBACK
-    RETURN
-
-    set_textitem_params:
-    SET_TEXT_FONT 1
-    SET_TEXT_SCALE 0.35 1.68
-    SET_TEXT_WRAPX 640.0
-    SET_TEXT_COLOUR 255 255 255 255
-    SET_TEXT_EDGE 0 0 0 0 0
-    RETURN
-
-    create_selection:
-    items_pos = item_qt * 20.0
-    items_pos /= 2.0 
-    items_pos += 100.0
-    items_size = item_qt * 20.0 
-    DRAW_RECT RECT_X items_pos RECT_W items_size 0 0 0 235
-    IF b_active = 0
-        IF IS_BUTTON_PRESSED 0 DPADUP
-           selected--
-           b_active = 1
-        ENDIF
-        IF IS_BUTTON_PRESSED 0 DPADDOWN
-            selected++
-            b_active = 1
-        ENDIF
-    ELSE
-        IF NOT IS_BUTTON_PRESSED 0 DPADUP
-        AND NOT IS_BUTTON_PRESSED 0 DPADDOWN
-            b_active = 0
-        ENDIF
-    ENDIF
-    IF selected < 0
-        selected = max_item
-    ENDIF
-    IF selected > max_item
-        selected = 0
-    ENDIF
-    sc_float =# selected
-    sc_float *= 20.0
-    sc_pos = sc_float + 110.0
-    DRAW_RECT RECT_X sc_pos RECT_W 20.0 255 255 255 220
-    RETURN
-
-    pulse_color:
-    IF dummy = 1
-        r--
-        g--
-        b--
-        IF g < 60
-            IF r < 120
-                r = 120
-            ENDIF
-            IF b < 220
-                b = 220
-            ENDIF
-            g = 60
-            dummy = 2
-        ENDIF
-    ELSE
-        r++
-        g++
-        b++
-        IF r > 255
-            r = 255
-            dummy = 1
-        ENDIF
-        IF g > 255
-            g = 255
-            dummy = 1
-        ENDIF
-        IF b > 255
-            b = 255
-            dummy = 1
-        ENDIF
-    ENDIF
-
-    RETURN
-}
-
-
-{
-    cops_on_radar:
-    SCRIPT_NAME COPMARK 
-
-    LVAR_INT ped handler i pedtype blip char_ptr blip_added
-    LVAR_FLOAT x y z
-    
-    cops_ident_loop:
-    WAIT 250
-    IF IS_PLAYER_PLAYING player
-    AND IS_WANTED_LEVEL_GREATER player 0
-        TIMERA = 0
-
-        READ_MEMORY 0x66B918 4 0 (handler)
-        handler += 0x4
-
-        READ_MEMORY handler 4 0 (handler)
-
-        i = 0
-        WHILE i <= 35584
-            READ_MEMORY handler 1 0 (ped)
-            handler += 0x1
-            IF ped >= 0x00 
-            AND 0x80 > ped
-                ped += i
-
-                GET_PED_TYPE ped (pedtype)
-                IF pedtype = 6
-                    GET_PED_POINTER ped (char_ptr)
-                    char_ptr += 0x7D6 //Padding, we'll use it to store our flag
-                    READ_MEMORY char_ptr 1 0 (blip_added)
-                    IF blip_added = 0x0
-                        ADD_BLIP_FOR_CHAR ped (blip)
-                        CHANGE_BLIP_DISPLAY blip 2
-                        WRITE_MEMORY char_ptr 1 0xFF 0
-                    ENDIF
-                ENDIF
-            ENDIF
-
-            i += 0x100
-        ENDWHILE
-
-    ENDIF
-    GOTO cops_ident_loop
 }
 
 {
@@ -3188,8 +3092,8 @@ VAR_INT num_carmod_instances dogcart1
 
         wanted_blip_loop:
         WAIT 0
-        IF IS_WANTED_LEVEL_GREATER player 0
-            WHILE IS_WANTED_LEVEL_GREATER player 0
+        IF IS_WANTED_LEVEL_GREATER iPlayer 0
+            WHILE IS_WANTED_LEVEL_GREATER iPlayer 0
                 WRITE_MEMORY 0x0026E29C 4 0x240500FF 0
                 WRITE_MEMORY 0x0026E2A4 4 0x240600A5 0
                 WRITE_MEMORY 0x0026E2A8 4 0x240700A5 0
@@ -3305,7 +3209,7 @@ VAR_INT num_carmod_instances dogcart1
 
     TIMERA = CHANGE_MOVE_AFTER
 
-    // Initilize player once (optional)
+    // Initilize iPlayer once (optional)
     GOSUB Switch_SetPlayer
 
 
@@ -3315,14 +3219,30 @@ VAR_INT num_carmod_instances dogcart1
     WHILE NOT IS_GERMAN_GAME
         WAIT 0  
 
-        IF IS_PLAYER_CONTROL_ON player // more?
+        IF IS_PLAYER_CONTROL_ON iPlayer // more?
+
             IF IS_BUTTON_PRESSED PAD1 DPADDOWN
+                TIMERA = 0
+                WHILE IS_BUTTON_PRESSED PAD1 DPADDOWN
+                    WAIT 0
+                    IF TIMERA > 500
+                        BREAK
+                    ENDIF
+                ENDWHILE
+            ENDIF
+            
+            IF IS_BUTTON_PRESSED PAD1 DPADDOWN
+            AND NOT READ_MEMORY_BOOL (pRadioWheelVisible, 1)
             AND is_drawing = 0
                 is_drawing = 1
+                WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 0 TRUE)
                 SHAKE_PAD PAD1 100 999999
                 LOAD_TEXTURE_DICTIONARY VHUD
                 SET_TIME_SCALE 0.2
-                WRITE_MEMORY filter_call 4 0x0C1458AC 0
+
+                IF GET_DYNAMIC_LIBRARY_PROCEDURE ("enable_blur", 0) (pLibraryObjectAddress)
+                    WRITE_MEMORY (pLibraryObjectAddress, 4, 1, TRUE)
+                ENDIF
 
                 // do postfx IF valid
                 SET_DARKNESS_EFFECT 1 50
@@ -3343,14 +3263,14 @@ VAR_INT num_carmod_instances dogcart1
 
                 // selection loop
                 fStoredStickX = 0.0
-                fStoredStickY = 0.0         
+                fStoredStickY = 0.0    
 
                 WHILE IS_BUTTON_PRESSED PAD1 DPADDOWN
                     WAIT 0
 
-                    IF NOT IS_PLAYER_PLAYING player
-                    OR IS_CHAR_DEAD scplayer
-                    OR HAS_CHAR_BEEN_ARRESTED scplayer
+                    IF NOT IS_PLAYER_PLAYING iPlayer
+                    OR IS_CHAR_DEAD hPlayerPed
+                    OR HAS_CHAR_BEEN_ARRESTED hPlayerPed
                         iCurSide = -1
                         BREAK
                     ENDIF    
@@ -3389,7 +3309,7 @@ VAR_INT num_carmod_instances dogcart1
                 // set selected new char
                 IF iCurSide > -1
                 AND NOT iCurSide = switch_cur_char
-                AND NOT IS_WANTED_LEVEL_GREATER player 0
+                AND NOT IS_WANTED_LEVEL_GREATER iPlayer 0
                     switch_new_char = iCurSide
                     DISPLAY_HUD 0
                     DISPLAY_RADAR 0
@@ -3398,12 +3318,15 @@ VAR_INT num_carmod_instances dogcart1
 
                 // pad          
                 WRITE_MEMORY 0x665204 4 backupSensValue 0
-                WRITE_MEMORY filter_call 4 0x0C1467DC 0
+                IF GET_DYNAMIC_LIBRARY_PROCEDURE ("enable_blur", 0) (pLibraryObjectAddress)
+                    WRITE_MEMORY (pLibraryObjectAddress, 4, 0, TRUE)
+                ENDIF
 
                 SET_TIME_SCALE 1.0
                 WAIT 100  
                 REMOVE_TEXTURE_DICTIONARY 
                 is_drawing = 0
+                WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
             ENDIF
         ENDIF
 
@@ -3496,21 +3419,21 @@ VAR_INT num_carmod_instances dogcart1
             GOSUB Switch_ProcessFakeMove_ProcessThisPlayer   
           //  0165: set_marker y8 color_to 3
         ELSE
-            GET_CHAR_COORDINATES scplayer switch_x[0] switch_y[0] switch_z[0]
+            GET_CHAR_COORDINATES hPlayerPed switch_x[0] switch_y[0] switch_z[0]
         ENDIF
         IF NOT switch_cur_char = PLAYER_MICHAEL
             tmp_player = PLAYER_MICHAEL
             GOSUB Switch_ProcessFakeMove_ProcessThisPlayer   
           //  0165: set_marker y8 color_to 1
         ELSE
-            GET_CHAR_COORDINATES scplayer switch_x[1] switch_y[1] switch_z[1]
+            GET_CHAR_COORDINATES hPlayerPed switch_x[1] switch_y[1] switch_z[1]
         ENDIF
         IF NOT switch_cur_char = PLAYER_TREVOR
             tmp_player = PLAYER_TREVOR
             GOSUB Switch_ProcessFakeMove_ProcessThisPlayer    
         //    0165: set_marker y8 color_to 5
         ELSE
-            GET_CHAR_COORDINATES scplayer switch_x[2] switch_y[2] switch_z[2]
+            GET_CHAR_COORDINATES hPlayerPed switch_x[2] switch_y[2] switch_z[2]
         ENDIF
     ENDIF
     RETURN
@@ -3567,7 +3490,7 @@ VAR_INT num_carmod_instances dogcart1
     RETURN
 
     Switch_ProcessFakeMove_ProcessThisPlayer:
-    // tmp_player = switch player id
+    // tmp_player = switch iPlayer id
     iTmp[0] = switch_in_car[tmp_player]
 
     fTmp[1] = switch_x[tmp_player]
@@ -3680,8 +3603,10 @@ VAR_INT num_carmod_instances dogcart1
     Switch_Run:
     SET_TIME_SCALE 1.0 // the camera movement is too slow IF we decrease it
 
-    SET_PLAYER_CONTROL player 0
-    GET_CHAR_COORDINATES scplayer playerCoords[0] playerCoords[1] playerCoords[2]
+    SET_PLAYER_CONTROL iPlayer 0
+    GET_CHAR_COORDINATES hPlayerPed playerCoords[0] playerCoords[1] playerCoords[2]
+
+    switch_ability[switch_cur_char] = fAbilityPercent
 
     GOSUB Switch_ProcessFadeDelayStart
 
@@ -3691,8 +3616,6 @@ VAR_INT num_carmod_instances dogcart1
     POINT_CAMERA_AT_POINT playerCoords[0] playerCoords[1] playerCoords[2] 1 
 
     GOSUB Switch_ProcessFadeDelay
-
-    WRITE_MEMORY filter_call 4 0x0C1467DC 0
 
     SET_FIXED_CAMERA_POSITION playerCoords[0] playerCoords[1] 200.0 0.0 0.0 0.0 
     POINT_CAMERA_AT_POINT playerCoords[0] playerCoords[1] playerCoords[2] 1 
@@ -3709,7 +3632,7 @@ VAR_INT num_carmod_instances dogcart1
     SET_FIXED_CAMERA_POSITION fTmp[1] fTmp[2] 300.0 0.0 0.0 0.0 
     POINT_CAMERA_AT_POINT fTmp[1] fTmp[2] fTmp[3] 1 
 
-    SET_CHAR_COORDINATES scplayer fTmp[1] fTmp[2] fTmp[3]
+    SET_CHAR_COORDINATES hPlayerPed fTmp[1] fTmp[2] fTmp[3]
     LOAD_SCENE fTmp[1] fTmp[2] fTmp[3] 
     REQUEST_COLLISION fTmp[1] fTmp[2]
 
@@ -3746,8 +3669,8 @@ VAR_INT num_carmod_instances dogcart1
     GOSUB Switch_ProcessFadeEnd
 
     RESTORE_CAMERA
-    SET_PLAYER_CONTROL player 1
-    SET_CURRENT_CHAR_WEAPON scplayer 0
+    SET_PLAYER_CONTROL iPlayer 1
+    SET_CURRENT_CHAR_WEAPON hPlayerPed 0
 
     DISPLAY_RADAR 1
     DISPLAY_HUD 1
@@ -3757,9 +3680,9 @@ VAR_INT num_carmod_instances dogcart1
 
 
     Swtich_PrepareAndSetNewPlayerCoord:
-    IF IS_CHAR_IN_ANY_CAR scplayer
-        STORE_CAR_CHAR_IS_IN_NO_SAVE scplayer (iTmp[0])
-        WARP_CHAR_FROM_CAR_TO_COORD scplayer fTmp[1] fTmp[2] -100.0
+    IF IS_CHAR_IN_ANY_CAR hPlayerPed
+        STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed (iTmp[0])
+        WARP_CHAR_FROM_CAR_TO_COORD hPlayerPed fTmp[1] fTmp[2] -100.0
         SET_CAR_COORDINATES iTmp[0] 0.0 0.0 -20.0 // dummy pos
         switch_in_car[switch_cur_char] = 1
         switch_last_used_car[switch_cur_char] = iTmp[0]
@@ -3768,8 +3691,8 @@ VAR_INT num_carmod_instances dogcart1
         switch_last_used_car[switch_cur_char] = -1
     ENDIF
 
-    CLEAR_CHAR_TASKS_IMMEDIATELY scplayer
-    SET_CHAR_COORDINATES scplayer fTmp[1] fTmp[2] -100.0
+    CLEAR_CHAR_TASKS_IMMEDIATELY hPlayerPed
+    SET_CHAR_COORDINATES hPlayerPed fTmp[1] fTmp[2] -100.0
     LOAD_SCENE fTmp[1] fTmp[2] fTmp[3]
     REQUEST_COLLISION fTmp[1] fTmp[2]
 
@@ -3799,7 +3722,7 @@ VAR_INT num_carmod_instances dogcart1
             CREATE_CAR iTmp[1] switch_x[switch_new_char] switch_y[switch_new_char] -100.0 (iTmp[0])
             MARK_MODEL_AS_NO_LONGER_NEEDED iTmp[1] 
             MARK_CAR_AS_NO_LONGER_NEEDED iTmp[0]
-            TASK_WARP_CHAR_INTO_CAR_AS_DRIVER scplayer iTmp[0]
+            TASK_WARP_CHAR_INTO_CAR_AS_DRIVER hPlayerPed iTmp[0]
         ENDIF
     ENDIF
     RETURN
@@ -3807,7 +3730,7 @@ VAR_INT num_carmod_instances dogcart1
 
     Switch_GetSetStats:
     // Money
-    STORE_SCORE player (switch_money[switch_cur_char])
+    STORE_SCORE iPlayer (switch_money[switch_cur_char])
     iTmp[0] = switch_money[switch_cur_char]
 
     // reset money zero, maybe better use another way
@@ -3815,60 +3738,76 @@ VAR_INT num_carmod_instances dogcart1
     IF iTmp[0] > 0 // fix negative money
         iTmp[0] = 0
     ENDIF
-    ADD_SCORE player iTmp[0]
+    ADD_SCORE iPlayer iTmp[0]
 
-    ADD_SCORE player switch_money[switch_new_char]
+    ADD_SCORE iPlayer switch_money[switch_new_char]
 
     // Wanted
-    STORE_WANTED_LEVEL player (switch_wanted[switch_cur_char])
-    ALTER_WANTED_LEVEL player switch_wanted[switch_new_char] 
+    STORE_WANTED_LEVEL iPlayer (switch_wanted[switch_cur_char])
+    ALTER_WANTED_LEVEL iPlayer switch_wanted[switch_new_char] 
     RETURN
 
 
     Switch_SetPlayer:
     GOSUB Switch_GetSetStats
     IF switch_new_char = PLAYER_MICHAEL
-        GIVE_MELEE_ATTACK_TO_CHAR scplayer 5 6 
-        GIVE_PLAYER_CLOTHES player 0 0 13 
-        GIVE_PLAYER_CLOTHES player 0 0 14 
-        GIVE_PLAYER_CLOTHES player 0 0 15 
-        GIVE_PLAYER_CLOTHES player 0 0 16 
-        GIVE_PLAYER_CLOTHES player 0 0 17 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SUIT1YELLOW SUIT1 0 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SUIT1TRYELLOW SUIT1TR 2 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SHOEDRESSBLK SHOE 3 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player JHERICURL JHERI 1 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player 4RIP 4RIP 4  
-        BUILD_PLAYER_MODEL player  
+        GIVE_MELEE_ATTACK_TO_CHAR hPlayerPed 5 6 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 13 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 14 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 15 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 16 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 17 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer SUIT1YELLOW SUIT1 0 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer SUIT1TRYELLOW SUIT1TR 2 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer SHOEDRESSBLK SHOE 3 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer JHERICURL JHERI 1 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer 4RIP 4RIP 4  
+        BUILD_PLAYER_MODEL iPlayer  
     ENDIF  
     IF switch_new_char = PLAYER_FRANKLIN
-        GIVE_MELEE_ATTACK_TO_CHAR scplayer 5 6 
-        GIVE_PLAYER_CLOTHES player 0 0 13 
-        GIVE_PLAYER_CLOTHES player 0 0 14 
-        GIVE_PLAYER_CLOTHES player 0 0 15 
-        GIVE_PLAYER_CLOTHES player 0 0 16 
-        GIVE_PLAYER_CLOTHES player 0 0 17 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SHIRTABLUE SHIRTA 0 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player LEATHERTR LEATHERTR 2 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SHOEDRESSBLK SHOE 3 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player PLAYER_FACE HEAD 1   
-        BUILD_PLAYER_MODEL player 
+        GIVE_MELEE_ATTACK_TO_CHAR hPlayerPed 5 6 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 13 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 14 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 15 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 16 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 17 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer SHIRTABLUE SHIRTA 0 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer LEATHERTR LEATHERTR 2 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer SHOEDRESSBLK SHOE 3 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer PLAYER_FACE HEAD 1   
+        BUILD_PLAYER_MODEL iPlayer 
     ENDIF 
     IF switch_new_char = PLAYER_TREVOR
-        GIVE_MELEE_ATTACK_TO_CHAR scplayer 5 6 
-        GIVE_PLAYER_CLOTHES player 0 0 13 
-        GIVE_PLAYER_CLOTHES player 0 0 14 
-        GIVE_PLAYER_CLOTHES player 0 0 15 
-        GIVE_PLAYER_CLOTHES player 0 0 16 
-        GIVE_PLAYER_CLOTHES player 0 0 17 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player TSHIRT TSHIRT 0 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player LEATHERTR LEATHERTR 2 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player SHOEDRESSBLK SHOE 3 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player WEDGE WEDGE 1 
-        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP player 4RIP 4RIP 4     
-        BUILD_PLAYER_MODEL player  
+        GIVE_MELEE_ATTACK_TO_CHAR hPlayerPed 5 6 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 13 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 14 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 15 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 16 
+        GIVE_PLAYER_CLOTHES iPlayer 0 0 17 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer TSHIRT TSHIRT 0 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer LEATHERTR LEATHERTR 2 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer SHOEDRESSBLK SHOE 3 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer WEDGE WEDGE 1 
+        GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP iPlayer 4RIP 4RIP 4     
+        BUILD_PLAYER_MODEL iPlayer  
     ENDIF 
     switch_cur_char = switch_new_char
+
+    fAbilityPercent = switch_ability[switch_cur_char]
+    WRITE_MEMORY pAbilityPercent 4 fAbilityPercent TRUE
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE "radio_wheel_bgcolor" 0 (pLibraryObjectAddress)
+        WRITE_STRUCT_OFFSET_MULTI pLibraryObjectAddress 0 4 1 char_r[switch_cur_char] char_g[switch_cur_char] char_b[switch_cur_char] 255
+    ENDIF
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE "MenuBGAddColor" 0 (pLibraryObjectAddress)
+        WRITE_MEMORY pLibraryObjectAddress 4 char_add_color[switch_cur_char] TRUE
+    ENDIF
+
+    IF GET_DYNAMIC_LIBRARY_PROCEDURE "MenuBGReplaceColor" 0 (pLibraryObjectAddress)
+        WRITE_MEMORY pLibraryObjectAddress 4 char_replace_color[switch_cur_char] TRUE
+    ENDIF
+
     TIMERA = CHANGE_MOVE_AFTER // force recalculate fake move
     RETURN
 
@@ -4005,10 +3944,9 @@ VAR_INT num_carmod_instances dogcart1
         AND iSlot = 0
         AND NOT iCurWeapon = 1   
         AND NOT iCurSpriteId = 2
-
-            IF IS_PLAYER_CONTROL_ON player
-            AND NOT IS_CHAR_IN_ANY_CAR scplayer
-                IF IS_BUTTON_PRESSED PAD1 4
+            IF IS_PLAYER_CONTROL_ON iPlayer
+            AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed
+                IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER1
                 AND is_drawing = 0
                     is_drawing = 1
                     SHAKE_PAD PAD1 100 999999
@@ -4017,7 +3955,7 @@ VAR_INT num_carmod_instances dogcart1
                     SET_TIME_SCALE 0.2
                     SET_DARKNESS_EFFECT 1 50    
 
-                    WRITE_MEMORY filter_call 4 0x0C1458AC 0
+                    CALL_FUNCTION toggleBlur 0 0 
 
                     IF NOT GET_FADING_STATUS
                         SET_FADING_COLOUR char_r[switch_cur_char] char_g[switch_cur_char] char_b[switch_cur_char]
@@ -4039,15 +3977,15 @@ VAR_INT num_carmod_instances dogcart1
                     fStoredStickY = 0.0
                     iDisablePrev = 0  
                     iDisableNext = 0          
-                    GET_CURRENT_CHAR_WEAPON scplayer (iCurWeapon)
+                    GET_CURRENT_CHAR_WEAPON hPlayerPed (iCurWeapon)
                     GOSUB GetPreferedMeleeSlot
 
-                    WHILE IS_BUTTON_PRESSED PAD1 4
+                    WHILE IS_BUTTON_PRESSED PAD1 LEFTSHOULDER1
                         WAIT 0  
 
-                        IF NOT IS_PLAYER_PLAYING player
-                        OR IS_CHAR_DEAD scplayer
-                        OR HAS_CHAR_BEEN_ARRESTED scplayer
+                        IF NOT IS_PLAYER_PLAYING iPlayer
+                        OR IS_CHAR_DEAD hPlayerPed
+                        OR HAS_CHAR_BEEN_ARRESTED hPlayerPed
                             BREAK
                         ENDIF    
 
@@ -4090,7 +4028,7 @@ VAR_INT num_carmod_instances dogcart1
                         iSide = iCurSide              
                         GOSUB GetSlotAndPosition
                         GOSUB GetWeapon
-                        SET_CURRENT_CHAR_WEAPON scplayer iCheckWeapon
+                        SET_CURRENT_CHAR_WEAPON hPlayerPed iCheckWeapon
                     ENDIF
 
                     // disable camera
@@ -4098,7 +4036,7 @@ VAR_INT num_carmod_instances dogcart1
                     // pad          
                     WRITE_MEMORY 0x665204 4 backupSensValue 0
 
-                    WRITE_MEMORY filter_call 4 0x0C1467DC 0
+                    CALL_FUNCTION toggleBlur 0 0 
                     SET_TIME_SCALE 1.0  
                     SET_DARKNESS_EFFECT 0 0
                     WAIT 100
@@ -4176,7 +4114,7 @@ VAR_INT num_carmod_instances dogcart1
             ENDIF
         ENDIF
 
-        GET_CHAR_WEAPON_IN_SLOT scplayer iPreferMeleeSlot i j j
+        GET_CHAR_WEAPON_IN_SLOT hPlayerPed iPreferMeleeSlot i j j
 
         IF iPreferMeleeSlot = 1
         AND i = 0
@@ -4323,7 +4261,7 @@ VAR_INT num_carmod_instances dogcart1
     
            iSide = iCurSide
         GOSUB GetSlotAndPosition
-        GET_CHAR_WEAPON_IN_SLOT scplayer iSlot weapon iCheckWeapon ammo i model i
+        GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon ammo i model i
         IF iCheckWeapon <= 0
         
             IF iSlot <> 1
@@ -4343,7 +4281,7 @@ VAR_INT num_carmod_instances dogcart1
     RETURN
 
     ShowDetonator:
-    GET_CHAR_WEAPON_IN_SLOT scplayer 9 k j j
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed 9 k j j
     IF k = 39
         GOTO TrueReturn
     ELSE
@@ -4443,7 +4381,7 @@ VAR_INT num_carmod_instances dogcart1
     RETURN
 
     GetWeapon:
-    GET_CHAR_WEAPON_IN_SLOT scplayer iSlot iCheckWeapon iCheckAmmo i
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon iCheckAmmo i
 
     IF iCheckWeapon = 0
         IF NOT iSlot = 1
@@ -4510,7 +4448,7 @@ VAR_INT num_carmod_instances dogcart1
 
     IF iSlot = 1
         IF iPreferMeleeSlot > 1
-            GET_CHAR_WEAPON_IN_SLOT scplayer iPreferMeleeSlot iCheckWeapon iCheckAmmo i  
+            GET_CHAR_WEAPON_IN_SLOT hPlayerPed iPreferMeleeSlot iCheckWeapon iCheckAmmo i  
         ENDIF
 
         iCurSpriteId = weapon_icon_4
@@ -4669,31 +4607,31 @@ VAR_INT num_carmod_instances dogcart1
     GetPreferedMeleeSlot:  
     iPreferMeleeSlot = 1
     iSlot = 1
-    GET_CHAR_WEAPON_IN_SLOT scplayer iSlot iCheckWeapon iCheckAmmo i 
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon iCheckAmmo i 
     IF iCheckWeapon = iCurWeapon
         iPreferMeleeSlot = iSlot
         RETURN
     ENDIF
     iSlot = 2  
-    GET_CHAR_WEAPON_IN_SLOT scplayer iSlot iCheckWeapon iCheckAmmo i 
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon iCheckAmmo i 
     IF iCheckWeapon = iCurWeapon
         iPreferMeleeSlot = iSlot 
         RETURN
     ENDIF  
     iSlot = 11             
-    GET_CHAR_WEAPON_IN_SLOT scplayer iSlot iCheckWeapon iCheckAmmo i 
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon iCheckAmmo i 
     IF iCheckWeapon = iCurWeapon
         iPreferMeleeSlot = iSlot     
         RETURN
     ENDIF
     iSlot = 13            
-    GET_CHAR_WEAPON_IN_SLOT scplayer iSlot iCheckWeapon iCheckAmmo i 
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon iCheckAmmo i 
     IF iCheckWeapon = iCurWeapon
         iPreferMeleeSlot = iSlot    
         RETURN
     ENDIF    
     iSlot = 12        
-    GET_CHAR_WEAPON_IN_SLOT scplayer iSlot iCheckWeapon iCheckAmmo i 
+    GET_CHAR_WEAPON_IN_SLOT hPlayerPed iSlot iCheckWeapon iCheckAmmo i 
     IF iCheckWeapon = iCurWeapon
         iPreferMeleeSlot = iSlot   
         RETURN
@@ -4755,7 +4693,7 @@ VAR_INT num_carmod_instances dogcart1
         IF GOSUB ProcessCancel
             RETURN
         ENDIF
-        GET_CHAR_HEALTH scplayer (iCurHealth)
+        GET_CHAR_HEALTH hPlayerPed (iCurHealth)
         IF NOT iLastCurHealth = iCurHealth
             RETURN
         ENDIF
@@ -4766,7 +4704,7 @@ VAR_INT num_carmod_instances dogcart1
         IF GOSUB ProcessCancel
             RETURN
         ENDIF
-        GET_CHAR_HEALTH scplayer (iCurHealth)
+        GET_CHAR_HEALTH hPlayerPed (iCurHealth)
         IF iCurHealth < iLastCurHealth // was damaged
             RETURN
         ENDIF
@@ -4791,11 +4729,11 @@ VAR_INT num_carmod_instances dogcart1
     SetHealthByPercent:
     fFinalHealth = fMaxHealth * fRegeHealthPercent
     iFinalHealth =# fFinalHealth
-    SET_CHAR_HEALTH scplayer iFinalHealth
+    SET_CHAR_HEALTH hPlayerPed iFinalHealth
     RETURN
 
     StoreValues:
-    GET_CHAR_HEALTH scplayer (iCurHealth)
+    GET_CHAR_HEALTH hPlayerPed (iCurHealth)
 
     READ_MEMORY 0x2A9D14 4 0 (cur_color)
     IF fCurHealthPercent < 0.3
@@ -4821,9 +4759,9 @@ VAR_INT num_carmod_instances dogcart1
 
     ProcessCancel:
     WAIT 0
-    GET_CHAR_SPEED scplayer (char_speed)
+    GET_CHAR_SPEED hPlayerPed (char_speed)
     IF char_speed > 0.0
-    AND NOT IS_CHAR_IN_ANY_CAR scplayer
+    AND NOT IS_CHAR_IN_ANY_CAR hPlayerPed
         IS_INT_LVAR_GREATER_THAN_CONSTANT TIMERA -1
         RETURN
     ENDIF
@@ -4832,9 +4770,1974 @@ VAR_INT num_carmod_instances dogcart1
 }
 
 
+{
+    taxi:
+    SCRIPT_NAME TAXI
+    VAR_FLOAT temp_float[4]
+    LVAR_INT temp_driver temp_car car_model taxis[5] n i
+    LVAR_FLOAT x1 y1 x2 y2 z1 z2 scplayer_x scplayer_y
+
+    CONST_INT CRadar_ms_RadarTrace 0x701F00
+    CONST_INT FrontEndMenuManager_m_nTargetBlipIndex 0x6FF970
+    LVAR_INT targetBlip tmp
+
+    // for debug purposes
+    /*    REQUEST_MODEL TAXI
+        LOAD_ALL_MODELS_NOW
+        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed -0f 10f 0f x1 y1 z1  
+        CREATE_CAR TAXI x1 y1 z1 n 
+        taxis[0] = n
+        CREATE_RANDOM_CHAR_AS_DRIVER n n */
+    //
+
+    taxi_loop:
+        WAIT 0
+        IF NOT IS_CHAR_IN_ANY_CAR hPlayerPed
+            GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed -10f -10f 0f x1 y1 z1  
+            GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 10f 10f 0f x2 y2 z1  
+            GET_RANDOM_CAR_OF_TYPE_IN_AREA x1 y1 x2 y2 TAXI temp_car 
+            IF DOES_VEHICLE_EXIST temp_car
+                REPEAT 5 n 
+                    IF taxis[n] = 0
+                        taxis[n] = temp_car
+                        BREAK
+                    ELSE
+                        IF DOES_VEHICLE_EXIST taxis[n]
+                            IF NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPlayerPed taxis[n] 10f 10f 10f 0
+                                taxis[n] = temp_car
+                                BREAK
+                            ENDIF
+                        ELSE    
+                            taxis[n] = temp_car
+                            BREAK
+                        ENDIF
+                    ENDIF
+                ENDREPEAT   
+            ENDIF
+
+            
+            REPEAT 5 n 
+                IF taxis[n] > 0
+                    IF DOES_VEHICLE_EXIST taxis[n]
+                        IF IS_CAR_HEALTH_GREATER taxis[n] 100
+                            GET_DRIVER_OF_CAR taxis[n] temp_driver
+                            //PRINT_FORMATTED_NOW "%i" 1 temp_driver
+                            IF LOCATE_CHAR_ANY_MEANS_CAR_3D hPlayerPed taxis[n] 8f 8f 8f 0 
+                            AND NOT temp_driver = -1  
+                                //PRINT_HELP TAX1
+                                PRINT_HELP_STRING "Press ~t~ to get into the taxi."
+                                SET_PLAYER_ENTER_CAR_BUTTON 0 0
+                                WHILE LOCATE_CHAR_ANY_MEANS_CAR_3D hPlayerPed taxis[n] 8f 8f 8f 0
+                                    WAIT 0
+                                    IF NOT IS_CAR_HEALTH_GREATER taxis[n] 0
+                                    OR IS_CHAR_IN_ANY_CAR hPlayerPed
+                                        BREAK
+                                    ENDIF
+                                    //PRINT_FORMATTED_NOW "esta perto" 1 
+                                    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                        TIMERA = 0
+                                        TASK_CAR_MISSION temp_driver taxis[n] -1 1 0f 0
+                                        WHILE IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                            WAIT 0
+                                            IF TIMERA > 1500
+                                                BREAK
+                                            ENDIF
+                                        ENDWHILE
+                                        IF TIMERA < 1500
+                                            SET_PLAYER_CONTROL 0 0
+                                            GET_OFFSET_FROM_CAR_IN_WORLD_COORDS taxis[n] -1f 0f 0f x1 y1 z1  
+                                            GET_OFFSET_FROM_CAR_IN_WORLD_COORDS taxis[n] 1f 0f 0f x2 y2 z2
+                                            GET_CHAR_COORDINATES hPlayerPed scplayer_x scplayer_y z1
+                                            GET_DISTANCE_BETWEEN_COORDS_2D x1 y1 scplayer_x scplayer_y x1
+                                            GET_DISTANCE_BETWEEN_COORDS_2D x2 y2 scplayer_x scplayer_y x2
+                                            IF x2 > x1 
+                                                TASK_ENTER_CAR_AS_PASSENGER hPlayerPed taxis[n] 10000 1
+                                            ELSE
+                                                TASK_ENTER_CAR_AS_PASSENGER hPlayerPed taxis[n] 10000 2
+                                            ENDIF
+                                            WHILE NOT IS_CHAR_IN_ANY_CAR hPlayerPed
+                                                WAIT 0
+                                            ENDWHILE
+                                            // 067C: attach_camera_to_char hPlayerPed offset 0.0 -0.17 0.7 rotation 0.0 1.5 0.4 tilt 0.0 switchstyle 2
+                                            ATTACH_CAMERA_TO_CHAR hPlayerPed 0.0 -0.17 0.7 , -0.5 1.5 0.4 0.0 2
+                                            TASK_LOOK_AT_CHAR temp_driver hPlayerPed -1
+                                            menu_flags = 0
+                                            STREAM_SCRIPT MODMENU
+                                            LOAD_ALL_MODELS_NOW
+                                            START_NEW_STREAMED_SCRIPT MODMENU 1  // Tip: You can send values just like START_NEW_SCRIPT
+                                            WHILE menu_flags = 0
+                                            OR IS_BUTTON_PRESSED PAD1 CROSS
+                                                WAIT 0
+                                            ENDWHILE
+                                            //switch_cur_char = PLAYER_MICHAEL
+                                            SWITCH menu_flags
+                                                CASE 1 // HOME
+                                                    IF switch_cur_char = PLAYER_FRANKLIN
+                                                        x1 = 1684.828
+                                                        y1 = -2108.3677
+                                                        z1 = 13f
+                                                    ENDIF
+                                                    IF switch_cur_char = PLAYER_MICHAEL
+                                                        x1 = 273.0
+                                                        y1 = -1236.0
+                                                        z1 = 73.6825
+                                                    ENDIF
+                                                    IF switch_cur_char = PLAYER_TREVOR
+                                                        x1 = -1041.3763 
+                                                        y1 = 1562.1898
+                                                        z1 = 32f
+                                                    ENDIF
+                                                BREAK
+                                                CASE 2 // AIRP
+                                                    x1 = 1682.5110 
+                                                    y1 = -2251.3920 
+                                                    z1 = 13f
+                                                BREAK
+                                                CASE 3 // WAYPOINT
+                                                    GET_TARGET_BLIP_COORDS x1 y1 z1
+                                                BREAK
+                                            ENDSWITCH
+                                            GET_CHAR_COORDINATES hPlayerPed scplayer_x scplayer_y z2
+                                            GET_DISTANCE_BETWEEN_COORDS_2D x1 y1 scplayer_x scplayer_y z2
+                                            z2 /= 100f
+                                            i =# z2
+                                            RESTORE_CAMERA_JUMPCUT
+                                            SET_CAR_DRIVING_STYLE taxis[n] DRIVINGMODE_AVOIDCARS
+                                            TASK_CAR_DRIVE_TO_COORD temp_driver taxis[n] x1 y1 z1 30f 0 0 0
+                                            PRINT_HELP_STRING "Press ~x~ to skip the trip."
+                                            //TASK_CAR_MISSION temp_driver taxis[n] -1 1 15.0 0 
+                                            WHILE NOT IS_GERMAN_GAME
+                                                WAIT 0
+                                                IF IS_BUTTON_PRESSED PAD1 CROSS
+                                                    DO_FADE 3000 0 
+                                                    WAIT 3000
+                                                    CLEAR_CHAR_TASKS temp_driver
+                                                    LOAD_SCENE x1 y1 z1
+                                                    REQUEST_COLLISION x1 y1
+                                                    LOAD_ALL_MODELS_NOW
+                                                    GET_CLOSEST_CAR_NODE_WITH_HEADING x1 y1 z1 x1 y1 z1 x2
+                                                    SET_CAR_COORDINATES taxis[n] x1 y1 z1
+                                                    SET_CAR_HEADING taxis[n] x2
+                                                    DO_FADE 2000 1
+                                                    WAIT 2000
+                                                    BREAK
+                                                ENDIF
+                                                IF LOCATE_STOPPED_CAR_2D taxis[n] x1 y1 20f 20f 0
+                                                    BREAK
+                                                ENDIF
+                                            ENDWHILE
+                                            TASK_LEAVE_CAR_IMMEDIATELY hPlayerPed taxis[n]
+                                            WHILE IS_CHAR_IN_ANY_CAR hPlayerPed
+                                                WAIT 0
+                                            ENDWHILE
+                                            WAIT 200
+                                            MARK_CAR_AS_NO_LONGER_NEEDED taxis[n]
+                                            MARK_CHAR_AS_NO_LONGER_NEEDED temp_driver
+                                            TASK_CAR_MISSION temp_driver taxis[n] -1 1 15.0 0 
+                                            SET_PLAYER_CONTROL 0 1                                        
+                                            SET_PLAYER_ENTER_CAR_BUTTON 0 1
+                                            IF IS_SCORE_GREATER 0 i 
+                                                i *= -1
+                                                ADD_SCORE 0 i
+                                            ELSE 
+                                                STORE_WANTED_LEVEL 0 i 
+                                                i++
+                                                ALTER_WANTED_LEVEL 0 i
+                                            ENDIF
+                                        ELSE
+                                            TASK_ENTER_CAR_AS_DRIVER hPlayerPed taxis[n] -1
+                                            WHILE NOT IS_CHAR_IN_ANY_CAR hPlayerPed
+                                                WAIT 0
+                                            ENDWHILE
+                                            BREAK
+                                        ENDIF
+                                    ENDIF
+                                ENDWHILE
+                                SET_PLAYER_ENTER_CAR_BUTTON 0 1
+                                CLEAR_HELP
+                            ENDIF
+                        ENDIF
+                    ELSE
+                        taxis[n] = 0
+                    ENDIF
+                ENDIF
+            ENDREPEAT
+        ENDIF
+    GOTO taxi_loop
+}
+
+{
+    shoreline_waves:
+    SCRIPT_NAME SHRLNWV
+
+    LVAR_INT instance // In
+    LVAR_FLOAT radius radiusNeg // In
+    LVAR_INT fx creators i
+    LVAR_FLOAT x y z rand waterHeight dist
+
+    radius = 50.0
+    radiusNeg = radius * -1.0
+
+    instance *= 10
+    WAIT instance // add start delay for each script
+
+    WHILE NOT IS_GERMAN_GAME
+        WAIT 0
+        
+        GET_AREA_VISIBLE i
+        IF i = 0
+
+            GET_ACTIVE_CAMERA_COORDINATES x y z
+            IF z < 100.0
+                GOSUB RandomizeCamCoord
+                GET_WATER_HEIGHT_AT_COORDS x y FALSE (waterHeight)
+                IF waterHeight > -1000.0
+                    IF GOSUB IsValid
+                        waterHeight += 0.01 // avoid z-fighting
+                        CREATE_FX_SYSTEM "shore_wave" x y waterHeight 1 (fx)
+                        PLAY_FX_SYSTEM fx
+                        WAIT 500 // play time
+                        KILL_FX_SYSTEM fx
+                        CONTINUE // don't run next WAIT
+                    ENDIF
+                ENDIF
+            ENDIF
+
+        ENDIF
+
+        WAIT 150
+
+    ENDWHILE
+
+    RandomizeCamCoord:
+    GENERATE_RANDOM_FLOAT_IN_RANGE radiusNeg radius (rand)
+    x += rand
+    GENERATE_RANDOM_FLOAT_IN_RANGE radiusNeg radius (rand)
+    y += rand
+    GENERATE_RANDOM_FLOAT_IN_RANGE radiusNeg radius (rand)
+    z += rand
+    RETURN
+
+    IsValid:
+    // BoB
+    GET_DISTANCE_BETWEEN_COORDS_2D x y -655.4575 -1889.0964 (dist)
+    IF dist < 400.0
+        IS_INT_LVAR_EQUAL_TO_CONSTANT TIMERA -1
+        RETURN
+    ENDIF
+
+    // Riacho Sombrio
+    GET_DISTANCE_BETWEEN_COORDS_2D x y -1517.027 -2197.4331 (dist)
+    IF dist < 300.0
+        IS_INT_LVAR_EQUAL_TO_CONSTANT TIMERA -1
+        RETURN
+    ENDIF
+
+    // Tierra Robada
+    GET_DISTANCE_BETWEEN_COORDS_2D x y -1260.0477 2132.3345 (dist)
+    IF dist < 400.0
+        IS_INT_LVAR_EQUAL_TO_CONSTANT TIMERA -1
+        RETURN
+    ENDIF
+
+    // Las Venturas
+    GET_DISTANCE_BETWEEN_COORDS_2D x y 2053.2419 1617.0974 (dist)
+    IF dist < 1000.0
+        IS_INT_LVAR_EQUAL_TO_CONSTANT TIMERA -1
+        RETURN
+    ENDIF
+
+    // Near LS west
+    GET_DISTANCE_BETWEEN_COORDS_2D x y 46.8252 -1040.2834 (dist)
+    IF dist < 210.0
+        IS_INT_LVAR_EQUAL_TO_CONSTANT TIMERA -1
+        RETURN
+    ENDIF
+    
+    IS_INT_LVAR_GREATER_THAN_CONSTANT TIMERA -1
+    RETURN
+
+}
+
+{
+    robbery:
+    SCRIPT_NAME ROBBERY
+
+    LVAR_INT seller_char visible_area int_2 int_3 int_4 int_5 int_23 int_24 int_25 int_26 int_27 int_30 test
+    LVAR_FLOAT player_offset[3] vector_0[3] vector_1[3] vector_2[3]
+
+    robbery_init:
+    WAIT 0 
+    int_5 = 0 
+
+    robbery_loop:
+    WAIT 0 
+    IF IS_PLAYER_PLAYING iPlayer
+        IF flag_player_on_mission = 0 
+            GET_AREA_VISIBLE visible_area 
+            IF visible_area = 3 
+            OR visible_area = 4 
+            OR visible_area = 6 
+            OR visible_area = 16 
+            OR visible_area = 18 
+                REQUEST_MODEL 349 
+                REQUEST_ANIMATION "SHOP" 
+                IF HAS_MODEL_LOADED 349 
+                AND HAS_ANIMATION_LOADED "SHOP" 
+                    GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.0 0.0 0.0 (player_offset[0] player_offset[1] player_offset[2]) 
+                    IF GET_RANDOM_CHAR_IN_SPHERE_NO_SAVE_RECURSIVE player_offset[0] player_offset[1] player_offset[2] 5.0 1 1 (seller_char) 
+                        IF DOES_CHAR_EXIST seller_char 
+                            IF IS_CHAR_MODEL seller_char 178 
+                            OR IS_CHAR_MODEL seller_char 147 
+                            OR IS_CHAR_MODEL seller_char 17 
+                            OR IS_CHAR_MODEL seller_char 217 
+                            OR IS_CHAR_MODEL seller_char 141 
+                                IF LOCATE_CHAR_ANY_MEANS_CHAR_2D seller_char hPlayerPed 10.0 10.0 0 
+                                    IF int_5 = 0 
+                                        IF NOT IS_WANTED_LEVEL_GREATER iPlayer 0 
+                                            IF NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 0 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 1 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 2 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 3 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 4 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 5 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 6 
+                                            AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 7 
+                                                IF NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 8 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 10 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 11 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 12 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 13 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 14 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 15 
+                                                AND NOT IS_CURRENT_CHAR_WEAPON hPlayerPed 46 
+                                                    IF IS_PLAYER_TARGETTING_CHAR iPlayer seller_char 
+                                                        TASK_SAY hPlayerPed 182 
+                                                        TASK_PLAY_ANIM_NON_INTERRUPTABLE seller_char "SHP_ROB_REACT" "SHOP" 4.0 0 0 0 0 2320 
+                                                        GENERATE_RANDOM_INT_IN_RANGE 1 3 int_2 
+                                                        WAIT 1300 
+                                                        TASK_SAY seller_char 118 
+                                                        WAIT 1000 
+                                                        
+                                                        WAIT 0 
+                                                        IF int_2 = 1 
+                                                            IF IS_CHAR_HEALTH_GREATER seller_char 99 
+                                                            AND NOT IS_CHAR_DEAD seller_char 
+                                                                TASK_PLAY_ANIM_NON_INTERRUPTABLE seller_char "SHP_ROB_GIVECASH" "SHOP" 4.0 0 0 0 0 3600 
+                                                                GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS seller_char 0.0  1.6 -0.6 (vector_0[0] vector_0[1] vector_0[2]) 
+                                                                GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS seller_char 0.2  1.7 -0.6 (vector_1[0] vector_1[1] vector_1[2]) 
+                                                                GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS seller_char -0.2 1.8 -0.6 (vector_2[0] vector_2[1] vector_2[2]) 
+                                                                GENERATE_RANDOM_INT_IN_RANGE 167 1001 int_3 
+                                                                GENERATE_RANDOM_INT_IN_RANGE 167 1001 int_26 
+                                                                GENERATE_RANDOM_INT_IN_RANGE 166 1001 int_27 
+                                                                CREATE_MONEY_PICKUP vector_0[0] vector_0[1] vector_0[2] int_3 0 int_23 
+                                                                CREATE_MONEY_PICKUP vector_1[0] vector_1[1] vector_1[2] int_26 0 int_24 
+                                                                CREATE_MONEY_PICKUP vector_2[0] vector_2[1] vector_2[2] int_27 0 int_25 
+                                                                ADD_ONE_OFF_SOUND 0.0 0.0 0.0 1058 
+                                                                TASK_SAY hPlayerPed 172 
+                                                                WAIT 2000 
+                                                            ENDIF
+                                                        ELSE
+                                                            IF int_2 = 2 
+                                                        robbery_shoot:
+                                                                IF NOT IS_CHAR_DEAD seller_char 
+                                                                    TASK_SAY seller_char 118 
+                                                                    GIVE_WEAPON_TO_CHAR seller_char 25 100 
+                                                                    LOAD_CHAR_DECISION_MAKER 0 int_30 
+                                                                    SET_CHAR_DECISION_MAKER seller_char int_30 
+                                                                    TASK_KILL_CHAR_ON_FOOT seller_char hPlayerPed 
+                                                                    MARK_MODEL_AS_NO_LONGER_NEEDED 349 
+                                                                ENDIF 
+                                                            ENDIF
+                                                        ENDIF
+
+                                                        int_5 = 1 
+                                                        IF NOT IS_WANTED_LEVEL_GREATER iPlayer 1 
+                                                            ALTER_WANTED_LEVEL iPlayer 2 
+                                                        ENDIF
+
+                                                        GOTO robbery_extarea_loop 
+                                                    ENDIF
+                                                ENDIF
+                                            ENDIF
+                                        ELSE
+                                            GOTO robbery_shoot 
+                                        ENDIF
+                                    ELSE
+                                        GOTO robbery_shoot 
+                                    ENDIF
+                                ELSE
+                                    GOTO robbery_extarea_loop 
+                                ENDIF
+                            ENDIF
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+    GOTO robbery_loop
+
+    robbery_extarea_loop:
+    WAIT 0 
+    GET_AREA_VISIBLE visible_area 
+    IF visible_area = 0 
+        REMOVE_ANIMATION "SHOP" 
+        GENERATE_RANDOM_INT_IN_RANGE 1 3 int_4 
+    ELSE
+        GOTO robbery_extarea_loop
+    ENDIF
+
+    WAIT 0 
+    IF int_4 = 2 
+        GOTO robbery_loop
+    ELSE
+        IF int_4 = 1 
+            GOTO robbery_init
+        ENDIF
+    ENDIF
+}
+
+{
+    plane_camera:
+    SCRIPT_NAME PLN_CAM
+
+    LVAR_INT veh_handle model_id plane_health
+    LVAR_FLOAT plane_rotation plane_lbb[3] plane_rtf[3]
+
+    plane_camera_loop:
+    WAIT 0 
+    IF IS_PLAYER_PLAYING iPlayer 
+        IF IS_CHAR_IN_ANY_PLANE hPlayerPed 
+            STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed veh_handle 
+            GOSUB get_plane_dimensions
+
+            WHILE IS_CHAR_IN_ANY_PLANE hPlayerPed 
+                WAIT 0 
+                IF IS_PLAYER_PLAYING iPlayer 
+                AND DOES_VEHICLE_EXIST veh_handle
+                    GOSUB get_plane_angle 
+                    ATTACH_CAMERA_TO_VEHICLE veh_handle 0.0 plane_lbb[1] plane_rtf[2] 0.0 0.0 0.0 plane_rotation 2 
+                ENDIF
+            ENDWHILE
+            RESTORE_CAMERA 
+
+        ENDIF
+    ENDIF
+    GOTO plane_camera_loop
+
+    get_plane_dimensions:
+    GET_CAR_MODEL veh_handle model_id 
+    GET_MODEL_DIMENSIONS model_id (plane_lbb[0] plane_lbb[1] plane_lbb[2] plane_rtf[0] plane_rtf[1] plane_rtf[2])
+    plane_lbb[1] *= 3.0 
+    plane_rtf[2] *= 2.0 
+    RETURN
+
+    get_plane_angle:
+    GET_CAR_ROLL veh_handle plane_rotation 
+    plane_rotation *= -1.0 
+    RETURN
+}
+
+{
+    break_locked_car_glass:
+    SCRIPT_NAME GLS_CAR
+
+    CONST_FLOAT fVolume 1f
+
+    LVAR_INT int_15 int_16 int_17 hTargetVehicle pTargetVehicle i int_29 int_30 int_31 fxSystem hPossibleCopPed iAlarmPlaying iDoorLock
+    LVAR_FLOAT player_offset[3] v3dTempCoords[3] v3dPedArmCoords[3] fLeftDoorAngle fRightDoorAngle float_0 float_1 float_4
+
+    LVAR_TEXT_LABEL16 sBreakWindowAnim
+
+    gls_car_main_loop:
+        WAIT 0
+        IF IS_PLAYER_PLAYING iPlayer
+            IF flag_player_on_mission = 0
+            AND NOT HAS_CHAR_BEEN_ARRESTED hPlayerPed
+            AND NOT IS_CHAR_DEAD hPlayerPed
+            AND NOT IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                int_15 = 0
+                int_16 = 0
+                int_17 = 0
+
+                GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.0 0.0 0.0 (player_offset[0] player_offset[1] player_offset[2])
+                IF GET_RANDOM_CAR_IN_SPHERE_NO_SAVE_RECURSIVE player_offset[0] player_offset[1] player_offset[2] 6f 1 1 (hTargetVehicle)
+                    GET_VEHICLE_POINTER hTargetVehicle (pTargetVehicle)
+                    GET_CAR_DOOR_LOCK_STATUS hTargetVehicle (iDoorLock)
+                    IF iDoorLock = CARLOCK_LOCKED
+                        GET_DOOR_ANGLE_RATIO hTargetVehicle 2 (fLeftDoorAngle)
+                        GET_DOOR_ANGLE_RATIO hTargetVehicle 3 (fRightDoorAngle)
+
+                        IF fLeftDoorAngle = 0f
+                        AND fRightDoorAngle = 0f
+                        AND NOT IS_CAR_DEAD hTargetVehicle
+                        AND NOT IS_CAR_UPSIDEDOWN hTargetVehicle
+                        AND NOT IS_CAR_IN_WATER hTargetVehicle
+                        AND NOT IS_CAR_ON_FIRE hTargetVehicle
+                            GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.0 0.0 -1.0 (player_offset[0] player_offset[1] player_offset[2])
+                            GET_CAR_DUMMY_COORD hTargetVehicle VEHICLE_DUMMY_PED_FRONTSEAT TRUE TRUE (v3dTempCoords[0] v3dTempCoords[1] v3dTempCoords[2])
+                            v3dTempCoords[2] -= player_offset[2]
+
+                            IF v3dTempCoords[2] < 1.5
+                                IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_LHS"
+                                    int_31 = 10 // door L for windows 0D33 
+                                    int_30 = 2 // door L for angle door
+                                    int_29 = 0 // for 10 dummy "ped_arm" left
+
+                                    GOTO gls_car_start
+                                ENDIF
+                                IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_RHS"
+                                    int_31 = 8 // door L for windows 0D33 
+                                    int_30 = 3 // door L for angle door
+                                    int_29 = 1 // for 10 dummy "ped_arm" left
+
+                                    GOTO gls_car_start
+                                ENDIF
+                            ENDIF
+                        ENDIF
+                    ENDIF
+                ENDIF
+            ELSE
+                IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+                AND iAlarmPlaying = TRUE
+                AND TIMERB > 15000
+                    GET_CAR_CHAR_IS_USING hPlayerPed (hTargetVehicle)
+                    SET_CAR_ALARM hTargetVehicle CAR_ALARM_OFF
+                    iAlarmPlaying = FALSE
+                ENDIF
+            ENDIF
+        ENDIF
+    GOTO gls_car_main_loop
+
+    gls_car_start:
+    GET_CHAR_ANIM_CURRENT_TIME hPlayerPed "CAR_doorlocked_LHS" (float_0)
+    GET_CHAR_ANIM_CURRENT_TIME hPlayerPed "CAR_doorlocked_RHS" (float_1)
+
+    IF float_0 >= 0.8
+    OR float_1 >= 0.8
+        IF NOT IS_BUTTON_PRESSED PAD1 LEFTSTICKX
+        AND NOT IS_BUTTON_PRESSED PAD1 LEFTSTICKY
+            REQUEST_ANIMATION "WINDOWS"
+            WHILE NOT HAS_ANIMATION_LOADED "WINDOWS"
+                WAIT 0
+                REQUEST_ANIMATION "WINDOWS"
+            ENDWHILE
+
+            HIDE_CHAR_WEAPON_FOR_SCRIPTED_CUTSCENE hPlayerPed TRUE
+            SET_PLAYER_CONTROL iPlayer FALSE
+            GET_CAR_DUMMY_COORD hTargetVehicle VEHICLE_DUMMY_PED_ARM TRUE int_29 (v3dPedArmCoords[0] v3dPedArmCoords[1] v3dPedArmCoords[2])
+            GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.0 0.0 -1.0 (player_offset[0] player_offset[1] player_offset[2])
+            GET_CAR_DUMMY_COORD hTargetVehicle VEHICLE_DUMMY_PED_FRONTSEAT TRUE TRUE (v3dTempCoords[0] v3dTempCoords[1] v3dTempCoords[2])
+            v3dTempCoords[2] -= player_offset[2]
+
+            IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_LHS"
+            AND v3dTempCoords[2] > 0.9
+            AND v3dTempCoords[2] < 1.5
+                sBreakWindowAnim = "WindowLeft_H"
+            ENDIF
+            IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_RHS"
+            AND v3dTempCoords[2] > 0.9
+            AND v3dTempCoords[2] < 1.5
+                sBreakWindowAnim = "WindowRight_H"
+            ENDIF
+            IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_LHS"
+            AND v3dTempCoords[2] < 0.4
+                sBreakWindowAnim = "WindowLeft_L"
+            ENDIF
+            IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_RHS"
+            AND v3dTempCoords[2] < 0.4
+                sBreakWindowAnim = "WindowRight_L"
+            ENDIF
+            IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_LHS"
+            AND v3dTempCoords[2] < 0.9
+            AND v3dTempCoords[2] > 0.4
+                sBreakWindowAnim = "WindowLeft"
+            ENDIF
+            IF IS_CHAR_PLAYING_ANIM hPlayerPed "CAR_doorlocked_RHS"
+            AND v3dTempCoords[2] < 0.9
+            AND v3dTempCoords[2] > 0.4
+                sBreakWindowAnim = "WindowRight"
+            ENDIF
+
+            TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed $sBreakWindowAnim "WINDOWS" 4.0 FALSE FALSE FALSE FALSE -1
+            TIMERA = 0
+
+            int_15 = 0
+            
+            CREATE_FX_SYSTEM "prt_glass" player_offset[0] player_offset[1] player_offset[2] 1 (fxSystem)
+            //PLAY_FX_SYSTEM fxSystem
+
+            gls_car_unlock_loop:
+                WAIT 0
+                GET_CHAR_ANIM_CURRENT_TIME hPlayerPed $sBreakWindowAnim (float_4) 
+
+                IF int_15 = 0
+                AND float_4 > 0.4
+                    int_15 = 1
+                    SET_CAR_DOOR_WINDOW_STATE hTargetVehicle int_31 TRUE
+                    GENERATE_RANDOM_INT_IN_RANGE 1 4 (i)
+
+                    CALL_FUNCTION 0x321700 1 0 (pTargetVehicle) // Glass effect
+
+                    IF i = 1
+                        SET_CAR_ALARM hTargetVehicle CAR_ALARM_PLAYING
+                        TIMERB = 0
+                        iAlarmPlaying = TRUE
+                    ENDIF
+                ENDIF
+
+                IF int_15 = 1
+                float_4 > 0.7
+                    int_15 = 2
+                    OPEN_CAR_DOOR_A_BIT hTargetVehicle int_30 0.1
+                    LOCK_CAR_DOORS hTargetVehicle CARLOCK_UNLOCKED
+                    TASK_ENTER_CAR_AS_DRIVER hPlayerPed hTargetVehicle -2
+                    GOTO gls_car_terminate_lock
+                ENDIF
+
+                IF TIMERA > 1000
+                    IF IS_CHAR_DEAD hPlayerPed
+                    OR NOT IS_CHAR_PLAYING_ANIM hPlayerPed $sBreakWindowAnim
+                    OR HAS_CHAR_BEEN_ARRESTED hPlayerPed
+                        GOTO gls_car_terminate_lock
+                    ENDIF
+                ENDIF
+
+                GET_CHAR_COORDINATES hPlayerPed (player_offset[0] player_offset[1] player_offset[2])
+
+                IF int_15 = 1
+                AND GET_RANDOM_CHAR_IN_SPHERE_NO_SAVE_RECURSIVE player_offset[0] player_offset[1] player_offset[2] 25.0 TRUE TRUE (hPossibleCopPed)
+                    GET_PED_TYPE hPossibleCopPed (i)
+
+                    IF i = 6
+                        ALTER_WANTED_LEVEL_NO_DROP hPlayerPed 1
+                    ENDIF
+                ENDIF
+            GOTO gls_car_unlock_loop
+
+        ENDIF
+    ENDIF
+
+    gls_car_terminate_lock:
+    REMOVE_ANIMATION "WINDOWS"
+    HIDE_CHAR_WEAPON_FOR_SCRIPTED_CUTSCENE hPlayerPed FALSE
+    KILL_FX_SYSTEM fxSystem
+    SET_PLAYER_CONTROL iPlayer TRUE
+    WAIT 500
+    GOTO gls_car_main_loop
+
+}
+
+{
+    manual_driveby:
+    SCRIPT_NAME MNDRVBY
+
+    LVAR_INT driveby_control_type restore_camera_after player_veh passenger_handle[3] player_ped weapon_type weapon_ammo weapon_model max_passengers
+    LVAR_INT aim_button_state fire_button_state switch_button_state
+    LVAR_INT i j k
+
+    CONST_INT PADMEM_LEFTSTICKX 0x700B40       //<L3>
+    CONST_INT PADMEM_LEFTSTICKY 0x700B42       //L3^
+    CONST_INT PADMEM_RIGHTSTICKX 0x700B44      //<R3>
+    CONST_INT PADMEM_RIGHTSTICKY 0x700B46      //R3^
+    CONST_INT PADMEM_LEFTSHOULDER1 0x700B48    //L1
+    CONST_INT PADMEM_LEFTSHOULDER2 0x700B4A    //L2
+    CONST_INT PADMEM_RIGHTSHOULDER1 0x700B4C   //R1
+    CONST_INT PADMEM_RIGHTSHOULDER2 0x700B4E   //R2
+    CONST_INT PADMEM_DPADUP 0x700B50           //UP
+    CONST_INT PADMEM_DPADDOWN 0x700B52         //DOWN
+    CONST_INT PADMEM_DPADLEFT 0x700B54        //LEFT
+    CONST_INT PADMEM_DPADRIGHT 0x700B56       //RIGHT
+    CONST_INT PADMEM_START 0x700B58           //START
+    CONST_INT PADMEM_SELECT 0x700B5A          //SELECT
+    CONST_INT PADMEM_SQUARE 0x700B5C          //X
+    CONST_INT PADMEM_TRIANGLE 0x700B5E        //Y
+    CONST_INT PADMEM_CROSS 0x700B60           //A
+    CONST_INT PADMEM_CIRCLE 0x700B62          //B
+    CONST_INT PADMEM_LEFTSHOCK 0x700B64       //LS
+    CONST_INT PADMEM_RIGHTSHOCK 0x700B66      //RS
+    CONST_INT PADMEM_GUIDE 0x700B68           //Guide
+
+    // driveby camera movement
+    WRITE_MEMORY 0x438E78 4 0x00000000 TRUE
+    WRITE_MEMORY 0x438E7C 4 0x00000000 TRUE
+
+    /* auto switch to smg
+    WRITE_MEMORY 0x64DB49 4 0x90909090 TRUE
+    WRITE_MEMORY 0x64DB4D 4 0x90909090 TRUE
+    WRITE_MEMORY 0x64DB51 1 0x90 TRUE */ 
+
+    WRITE_MEMORY 0x205DCC 4 0x00000000 TRUE  //camera zoom   
+
+    driveby_control_type = 0
+    restore_camera_after = 1
+
+    WHILE NOT IS_PC_VERSION
+        WAIT 0
+        IF IS_CHAR_IN_ANY_CAR hPlayerPed
+        AND NOT IS_CHAR_IN_FLYING_VEHICLE hPlayerPed
+        AND NOT IS_CHAR_IN_ANY_BOAT hPlayerPed 
+        AND NOT IS_CHAR_IN_MODEL hPlayerPed RHINO
+        AND NOT IS_CHAR_IN_MODEL hPlayerPed FIRETRUK
+        AND NOT IS_CHAR_IN_MODEL hPlayerPed SWATVAN 
+        AND NOT IS_PLAYER_IN_REMOTE_MODE iPlayer
+            GET_CAR_CHAR_IS_USING hPlayerPed player_veh 
+
+            GET_MAXIMUM_NUMBER_OF_PASSENGERS player_veh max_passengers
+
+            k = 0
+            WHILE k < max_passengers
+			    IF NOT IS_CAR_PASSENGER_SEAT_FREE player_veh k
+			     	GET_CHAR_IN_CAR_PASSENGER_SEAT player_veh k (passenger_handle[k])  
+			    ENDIF
+                 
+                k++
+            ENDWHILE
+
+            GET_PED_POINTER hPlayerPed (player_ped)
+            i = player_ped + 0x758 //m_nActiveWeaponSlot
+            READ_MEMORY i 1 TRUE (i)
+
+            i += 1
+    	    GET_CHAR_WEAPON_IN_SLOT hPlayerPed i weapon_type weapon_ammo weapon_model
+
+            IF i = 1
+    		    WRITE_MEMORY 0x20266C 4 0x10400011 TRUE   //disable CPad::GetLookLeft(void)
+                WRITE_MEMORY 0x2026C4 4 0x10400012 TRUE   //disable CPad::GetLookRight(void)
+            ELSE
+    		    WRITE_MEMORY 0x20266C 4 0x00000000 TRUE   //disable CPad::GetLookLeft(void)
+                WRITE_MEMORY 0x2026C4 4 0x00000000 TRUE   //disable CPad::GetLookRight(void)
+            ENDIF
+
+            IF NOT hPlayerPed = passenger_handle[0]
+            AND NOT hPlayerPed = passenger_handle[1]
+            AND NOT hPlayerPed = passenger_handle[2]
+                READ_MEMORY PADMEM_LEFTSHOULDER1 2 TRUE (aim_button_state)
+    	        IF NOT aim_button_state = 0
+                    GET_PED_POINTER hPlayerPed (player_ped)
+                    i = player_ped + 0x758 //m_nActiveWeaponSlot
+                    READ_MEMORY i 1 TRUE (i)
+
+                    i += 1
+    	            GET_CHAR_WEAPON_IN_SLOT hPlayerPed i weapon_type weapon_ammo weapon_model
+
+    	            READ_MEMORY PADMEM_RIGHTSHOULDER1 2 TRUE (fire_button_state)
+
+    				IF weapon_ammo > 0
+    				AND fire_button_state = 0
+    				AND i > 2
+    				AND i < 7
+    				    WRITE_MEMORY 0x204E40 4 0x1000002A TRUE
+    				    TASK_DRIVE_BY hPlayerPed -1 -1 0f 0f 0f 900.0 4 0 100
+
+                        WRITE_MEMORY 0x249C6C 4 0x8642000C TRUE
+                        WRITE_MEMORY 0x249C70 4 0x8643000C TRUE
+
+    					WHILE NOT IS_PC_VERSION
+    					    WAIT 0
+    					    READ_MEMORY PADMEM_LEFTSHOULDER1 2 TRUE (aim_button_state)
+
+    						IF aim_button_state = 0
+                                WRITE_MEMORY 0x249C6C 4 0x8642000E TRUE
+                                WRITE_MEMORY 0x249C70 4 0x8643000E TRUE
+    							BREAK
+    						ENDIF
+    
+    						GOSUB weaponswitch
+    
+                            GET_PED_POINTER hPlayerPed (player_ped)
+                            i = player_ped + 0x758 //m_nActiveWeaponSlot
+                            READ_MEMORY i 1 TRUE (i)
+
+      			            i += 1
+    				        GET_CHAR_WEAPON_IN_SLOT hPlayerPed i weapon_type weapon_ammo weapon_model
+
+                            IF weapon_ammo <= 0
+                                BREAK
+                            ENDIF
+    
+    						//IF NOT aim_button_state = 0
+    						//	IF driveby_control_type = 0
+    						//	    //WRITE_MEMORY PADMEM_CIRCLE 2 0xFF TRUE 
+                            //        // patch=0,EE,20249C6C,extended,8642000E //Set fire to R2
+                            //        // patch=0,EE,20249C70,extended,8643000E //Set fire to R2
+    						//	ELSE
+    						//	    READ_MEMORY PADMEM_RIGHTSHOULDER1 2 TRUE (fire_button_state)
+    						//		IF fire_button_state = 0
+    						//		    //WRITE_MEMORY PADMEM_CIRCLE 2 0xFF TRUE
+    						//		ENDIF
+    						//	ENDIF
+    						//ENDIF
+    					ENDWHILE
+
+    					CLEAR_CHAR_TASKS hPlayerPed
+    				    WRITE_MEMORY 0x204E40 4 0x82440758 TRUE
+
+    				    IF NOT restore_camera_after = 0
+                            RESTORE_CAMERA_JUMPCUT
+    					ENDIF
+                    ENDIF
+    		    ENDIF			    
+                GOSUB weaponswitch
+            ENDIF 
+        ENDIF
+    ENDWHILE
+
+
+    weaponswitch:
+    READ_MEMORY PADMEM_SQUARE 2 TRUE (switch_button_state)
+    IF NOT switch_button_state = 0
+        GET_PED_POINTER hPlayerPed (player_ped)
+        j = player_ped + 0x758 //m_nActiveWeaponSlot
+        READ_MEMORY j 1 TRUE (j)
+        j += 1
+
+        k = 1
+        WHILE k < 7
+            j += 1
+            IF j >= 7
+                j = 1
+            ENDIF
+            IF j = 2
+                j = 3
+            ENDIF
+            GET_CHAR_WEAPON_IN_SLOT hPlayerPed j weapon_type weapon_ammo weapon_model
+            IF j = 1
+            OR weapon_ammo > 0
+                READ_MEMORY PADMEM_LEFTSHOULDER1 2 TRUE (aim_button_state)
+                IF j = 1
+                AND NOT aim_button_state = 0
+                    CONTINUE
+                ENDIF
+                GET_PED_POINTER hPlayerPed (player_ped)
+                CALL_METHOD 0x1993B0 player_ped 1 0 weapon_type // CPed::SetCurrentWeapon(eWeaponType)
+                BREAK
+            ENDIF
+
+            k++    
+        ENDWHILE
+
+        WHILE NOT IS_PC_VERSION
+            WAIT 0
+            READ_MEMORY PADMEM_SQUARE 2 TRUE (switch_button_state)
+            IF switch_button_state = 0
+                BREAK
+            ENDIF
+        ENDWHILE
+    ENDIF
+    RETURN
+}
+
+{
+    rpg_backview:
+    SCRIPT_NAME RPGBCKV
+
+    VAR_INT tmp_int1
+
+    LVAR_INT int_0 int_2 int_3
+    LVAR_FLOAT float_4 float_5 float_6 float_7 float_8 float_9 float_10 float_11 float_12 float_13 float_14 
+    LVAR_FLOAT float_15 float_16 float_19 float_21 float_22 float_23 float_27 float_28 float_29 float_30 float_31
+
+    LVAR_INT vecUnknownPtr vecOutputPtr vecInputPtr
+
+    LVAR_FLOAT distance player_cam_x player_cam_y player_cam_z
+
+    rpg_backview_init:
+    TIMERA = 0 
+
+    rpg_backview_loop:
+    WAIT 0 
+    IF IS_PLAYER_PLAYING iPlayer 
+    	IF IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_ROCKETLAUNCHER 
+            IVSTYLE_126:
+    		WAIT 0 
+    		IF IS_PLAYER_PLAYING iPlayer 
+    			IF IS_CURRENT_CHAR_WEAPON hPlayerPed WEAPONTYPE_ROCKETLAUNCHER
+    				IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+    				AND TIMERA > 1000 
+    					ADD_ONE_OFF_SOUND 0.0 0.0 0.0 1131 
+    					TIMERA = 0 
+
+    					REQUEST_MODEL 345 
+                        REQUEST_MODEL 1598 
+                        int_0 = 22 
+                        int_0 *= 0x70 
+                        int_0 += 0x6882B0 
+                        int_0 += 8 
+                        READ_MEMORY int_0 4 0 (distance) 
+                        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed -0.2 0.0 0.4 (player_cam_x player_cam_y player_cam_z) 
+
+                        GET_VAR_POINTER player_cam_x (vecInputPtr)
+                        GET_VAR_POINTER float_4 (vecUnknownPtr)
+                        GET_VAR_POINTER float_7 (vecOutputPtr)
+
+                        CALL_METHOD 0x21AA90 0x6FE530 4 0 vecInputPtr vecUnknownPtr vecOutputPtr 55.0 
+                        // CCamera::Find3rdPersonCamTargetVector(CCamera *this, float dist, float posX, float posY, float posZ, RwV3d *unkVec, RwV3d *output)
+
+                        WAIT 0 
+                        float_31 = float_9 
+                        float_30 = 350.0 
+                        float_30 += float_31 
+                        float_31 /= 5.0 
+
+                        WHILE NOT HAS_MODEL_LOADED 345 
+                        AND NOT HAS_MODEL_LOADED 1598 
+                        	WAIT 0
+                        ENDWHILE 
+
+                        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed 0.2 5.0 0.4 float_11 float_12 float_13 
+                        float_27 = float_13 
+                        float_28 = float_11 
+                        float_29 = float_12 
+                        float_11 -= float_7 
+                        float_12 -= float_8 
+                        GET_HEADING_FROM_VECTOR_2D float_11 float_12 float_19 
+                        float_9 -= float_13 
+                        float_14 = float_9 
+                        float_30 = float_14 
+                        float_30 *= 10.0 
+                        IF 0.0 > float_14 
+                        	float_14 /= -2.0 
+                        	float_14 -= 0.7 
+                        	float_30 = 350.0 
+                        	float_31 *= 10.0 
+                        	float_30 += float_31 
+                        	float_31 /= 10.0 
+                        ELSE
+                        	float_14 /= 10.0 
+                        	float_14 += 1.1 
+                        ENDIF
+
+                        float_31 *= 2.0 
+                        CREATE_OBJECT 1598 float_28 float_29 float_27 int_2 
+                        SET_OBJECT_VISIBLE int_2 0 
+                        SET_OBJECT_RECORDS_COLLISIONS int_2 1 
+                        SET_OBJECT_COLLISION int_2 1 
+                        SET_OBJECT_MASS int_2 100.0 
+                        SET_OBJECT_TURN_MASS int_2 100.0 
+                        CREATE_OBJECT 345 float_28 float_29 500.0 tmp_int1 
+                        ATTACH_OBJECT_TO_OBJECT tmp_int1 int_2 0.0 1.0 0.0 float_30 0.0 180.0 
+                        SET_OBJECT_COLLISION tmp_int1 0 
+                        SET_OBJECT_HEADING int_2 float_19 
+                        float_9 *= float_14 
+                        float_10 = 80.1 
+                        SIN float_19 float_15 
+                        COS float_19 float_16 
+                        float_15 *= float_10 
+                        float_16 *= float_10 
+                        float_15 *= -1.0 
+                        SET_OBJECT_DYNAMIC int_2 1 
+                        SET_OBJECT_VELOCITY int_2 float_15 float_16 float_9 
+                        TIMERB = 0 
+                        float_15 *= -1.0 
+                        float_16 *= -1.0 
+
+                        CNROCKM_672:
+                        WAIT 0 
+                        IF IS_PLAYER_PLAYING iPlayer 
+                        	GET_OFFSET_FROM_OBJECT_IN_WORLD_COORDS int_2 0.0 0.0 0.0 float_21 float_22 float_23 
+                        	ADD_SMOKE_PARTICLE float_21 float_22 float_23 0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.2 0.1 
+                        	SET_OBJECT_VELOCITY int_2 float_15 float_16 float_9 
+                        	GET_OBJECT_COORDINATES int_2 float_11 float_12 float_13 
+                        	IF HAS_OBJECT_COLLIDED_WITH_ANYTHING int_2 
+                        	OR NOT LOCATE_CHAR_ANY_MEANS_OBJECT_3D hPlayerPed int_2 200.0 200.0 100.0 0 
+                        	OR TIMERB > 7000 
+                        		ADD_EXPLOSION float_11 float_12 float_13 12 
+                        		ADD_EXPLOSION_NO_SOUND float_11 float_12 float_13 12 
+                        		WAIT 0 
+                        		ADD_EXPLOSION float_11 float_12 float_13 3 
+                        		ADD_EXPLOSION_NO_SOUND float_11 float_12 float_13 3 
+                        		WAIT 50 
+                        		ADD_EXPLOSION float_11 float_12 float_13 3 
+                        		ADD_EXPLOSION_NO_SOUND float_11 float_12 float_13 3 
+                        	ELSE
+                        		GOTO CNROCKM_672
+                        	ENDIF
+                        ENDIF
+
+                        DELETE_OBJECT int_2 
+                        DELETE_OBJECT tmp_int1 
+                        MARK_MODEL_AS_NO_LONGER_NEEDED 345 
+                        MARK_MODEL_AS_NO_LONGER_NEEDED 1598
+                        
+    				ENDIF
+    				GOTO IVSTYLE_126
+    			ENDIF
+    		ENDIF
+            
+    	ENDIF
+    ENDIF
+    GOTO rpg_backview_loop 
+}
+
+{
+    first_person_vehicle_camera:
+    SCRIPT_NAME FPV_CAM
+
+    LVAR_INT car objeto i2 cammode ativador modelo ivelocidade bancos teste cheat marca bMotion
+    LVAR_FLOAT giro_y fvelocidade altura[2] esq_dir[2] frente_tras[2] x y z a b c 
+
+    //write_memory 0x0052A50A 1 0 1
+
+    loop1:
+    WAIT 0
+
+    READ_MEMORY 0x6FE6B0 2 0 cammode
+    IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+        STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed car
+    	GET_CAR_MODEL car modelo
+
+        IF modelo = 532
+        OR modelo = 592
+        OR modelo = 601
+            WHILE IS_CHAR_IN_MODEL hPlayerPed modelo
+                WAIT 0
+            ENDWHILE
+            GOTO loop1
+        ENDIF
+
+        altura[0] = 0.622
+
+        GET_MAXIMUM_NUMBER_OF_PASSENGERS car bancos
+        IF bancos = 0
+        OR IS_CHAR_IN_ANY_PLANE hPlayerPed
+        OR IS_CHAR_IN_ANY_HELI hPlayerPed
+        OR IS_CHAR_ON_ANY_BIKE hPlayerPed
+            esq_dir[0] = 0.0
+        ELSE
+            esq_dir[0] = 0.075
+        ENDIF
+
+        frente_tras[0] = -0.35
+
+        //destino
+        GET_MODEL_DIMENSIONS modelo x y z a b c
+        c *= 1.8
+
+        altura[1] = 0.448
+
+        GET_MAXIMUM_NUMBER_OF_PASSENGERS car bancos
+        IF bancos = 0
+        OR IS_CHAR_IN_ANY_PLANE hPlayerPed
+        OR IS_CHAR_IN_ANY_HELI hPlayerPed
+        OR IS_CHAR_ON_ANY_BIKE hPlayerPed
+            esq_dir[1] = 0.0
+        ELSE
+            esq_dir[1] = -0.266
+        ENDIF
+
+        frente_tras[1] = c
+
+        //altura[0] -= 100.0
+
+        GET_MAXIMUM_NUMBER_OF_PASSENGERS car bancos
+        IF bancos = 0
+        OR IS_CHAR_IN_ANY_PLANE hPlayerPed
+        OR IS_CHAR_IN_ANY_HELI hPlayerPed
+            esq_dir[0] = 0.0
+        ENDIF
+
+        WHILE IS_CHAR_SITTING_IN_CAR hPlayerPed car
+            IF cammode = 16
+            OR cammode = 47
+                IF NOT DOES_CHAR_EXIST i2
+                    GOSUB criar_char
+                ENDIF
+                GOSUB grudar_char
+                GET_CAR_SPEED car fvelocidade
+                fvelocidade *= 3.6
+                fvelocidade /= 15.0
+                ivelocidade =# fvelocidade
+                SET_PLAYER_DRUNKENNESS iPlayer ivelocidade
+                //IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                //OR IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+                //    IF NOT IS_CHAR_IN_ANY_PLANE hPlayerPed
+                //    AND NOT IS_CHAR_IN_ANY_HELI hPlayerPed
+                //        WRITE_MEMORY 0x6FE6B0 2 18 0
+                //        RESTORE_CAMERA_JUMPCUT
+                //        RESTORE_CAMERA
+                //        DETACH_CHAR_FROM_CAR i2
+                //        SET_PLAYER_DRUNKENNESS 0 0
+                //        WHILE IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+                //        OR IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+                //            WAIT 0
+                //        ENDWHILE
+                //    ENDIF
+                //ENDIF
+
+                IF IS_BUTTON_PRESSED PAD1 SELECT
+                    WHILE IS_BUTTON_PRESSED PAD1 SELECT
+                        WAIT 0
+                    ENDWHILE
+                    WRITE_MEMORY 0x6FE6B0 2 18 0
+                    RESTORE_CAMERA_JUMPCUT
+                    RESTORE_CAMERA
+                ENDIF
+            ELSE            
+                READ_MEMORY 0x66CB0C 4 TRUE (bMotion)
+                IF bMotion = 1
+                    WRITE_MEMORY 0x66CB0C 4 0 TRUE
+                ENDIF
+                //SET_PLAYER_DRUNKENNESS 0 0
+                IF DOES_CHAR_EXIST i2
+                    DELETE_CHAR i2
+                ENDIF
+            ENDIF
+            READ_MEMORY 0x6FE6B0 2 0 cammode
+            WAIT 0
+        ENDWHILE
+        SET_PLAYER_DRUNKENNESS 0 0
+        WRITE_MEMORY 0x6FE6B0 2 18 0
+        WHILE IS_CHAR_IN_ANY_CAR hPlayerPed//timera < 500
+            WAIT 0
+            RESTORE_CAMERA
+            SET_CAMERA_BEHIND_PLAYER
+            RESTORE_CAMERA_JUMPCUT
+        ENDWHILE
+        IF DOES_CHAR_EXIST i2
+            DETACH_CHAR_FROM_CAR i2
+            DELETE_CHAR i2
+        ENDIF
+    ENDIF
+
+    GOTO loop1
+
+    grudar_char:
+        GET_CAR_ROLL car giro_y
+        giro_y *= -1.0
+        ATTACH_CHAR_TO_CAR i2 car esq_dir[1] frente_tras[1] altura[1] 0 0.0 0
+        ATTACH_CAMERA_TO_CHAR_LOOK_AT_CHAR hPlayerPed esq_dir[0] frente_tras[0] altura[0] i2 giro_y 2
+    RETURN
+
+    criar_char:
+        CREATE_RANDOM_CHAR 0.0 0.0 0.0 i2
+        SET_CHAR_PROOFS i2 1 1 1 1 1
+        SET_CHAR_ONLY_DAMAGED_BY_PLAYER i2 TRUE
+        SET_CHAR_VISIBLE i2 FALSE
+        DISABLE_CHAR_SPEECH i2 TRUE
+        SET_CHAR_NEVER_TARGETTED i2 TRUE
+        SET_CHAR_COLLISION i2 FALSE
+        //ADD_BLIP_FOR_CHAR i2 marca
+    RETURN
+}
+
+{
+    car_crash_inertia:
+    SCRIPT_NAME CCINERT
+    LVAR_INT hVeh pVeh p iSubClass pFrame iModel vPos hEffect bWindowPresent iDamage hPassenger
+    LVAR_FLOAT fSpeed x y z f dir_x dir_y dir_z fIntensity
+
+    LVAR_INT iPanel // In
+    LVAR_INT pDamageManager iPanelStatus
+
+    LVAR_INT i
+
+    LVAR_FLOAT g back front side car_x car_y car_z
+
+    CONST_INT m_vLastDamageDirection    0xE0
+    CONST_INT m_vLastDamagePoint        0xEC
+    CONST_INT m_nLastDamagePart         0xF8
+    CONST_INT m_fLastDamageIntensity    0xD8
+
+    CONST_INT DamageManager     0x5E0
+    CONST_INT GetPanelStatus    0x162560
+
+    CONST_INT GetFrameFromId    0x28B2D0
+    CONST_INT RpClump           0x18
+    CONST_INT SubClass          0x5D0
+
+    CONST_INT SUBCLASS_AUTOMOBILE 0 
+    CONST_INT SUBCLASS_MTRUCK     1 
+    CONST_INT SUBCLASS_QUAD       2 
+    CONST_INT SUBCLASS_HELI       3 
+    CONST_INT SUBCLASS_PLANE      4 
+    CONST_INT SUBCLASS_BOAT       5 
+    CONST_INT SUBCLASS_TRAIN      6 
+    CONST_INT SUBCLASS_FHELI      7 
+    CONST_INT SUBCLASS_FPLANE     8 
+    CONST_INT SUBCLASS_BIKE       9 
+    CONST_INT SUBCLASS_BMX        10
+    CONST_INT SUBCLASS_TRAILER    11 
+
+/////////////////////////////////////////////
+
+    CONST_FLOAT fImpactDamageHealth 0.5
+    CONST_FLOAT fThrowDamageHealth 1.0
+    CONST_FLOAT fGlassDamageBonus 1.5
+
+    CONST_FLOAT fMinIntensity        800.0
+    CONST_FLOAT fMaxMass             3700.0
+    CONST_FLOAT fDivStartInertia     3.0
+    CONST_FLOAT fInertiaEaseOut      0.2
+
+/////////////////////////////////////////////
+
+    WHILE NOT IS_PC_VERSION
+        WAIT 0
+
+        IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+
+            STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed (hVeh)
+
+            GOSUB GetCarCollisionIntensity
+
+            IF fIntensity > 0.0
+
+                GET_CAR_MODEL hVeh (iModel)
+                IF NOT iModel = RHINO
+                    
+                    GET_NUMBER_OF_PASSENGERS hVeh (p)
+                    IF p > 0
+                        GET_CHAR_IN_CAR_PASSENGER_SEAT hVeh 0 (hPassenger)
+                        IF NOT hPassenger > 0
+                            hPassenger = -1
+                        ENDIF
+                    ELSE
+                        hPassenger = -1
+                    ENDIF
+
+                    GET_VEHICLE_POINTER hVeh (pVeh)
+                    iSubClass = pVeh + SubClass
+                    READ_MEMORY iSubClass 4 FALSE (iSubClass)
+
+                    f = fIntensity / 100.0
+                    f *= fImpactDamageHealth
+
+                    IF NOT iSubClass = SUBCLASS_AUTOMOBILE
+                        f /= 2.0
+                        IF iSubClass = SUBCLASS_HELI
+                        OR iSubClass = SUBCLASS_PLANE
+                            f /= 2.0
+                        ENDIF
+                    ENDIF
+
+                    iDamage =# f
+                    IF iDamage > 0
+                        DAMAGE_CHAR hPlayerPed iDamage FALSE
+                        IF hPassenger > 0
+                            DAMAGE_CHAR hPassenger iDamage FALSE
+                        ENDIF
+                    ENDIF
+
+                    IF fIntensity > fMinIntensity
+
+                        IF iSubClass = SUBCLASS_AUTOMOBILE
+                        OR iSubClass = SUBCLASS_MTRUCK
+                            GET_CAR_MASS hVeh (f)
+
+                            IF f <= fMaxMass
+
+                                IF GOSUB IsCarCollisionFrontDirection
+                                    
+                                    p = pVeh + RpClump
+                                    READ_MEMORY p 4 FALSE (p)
+
+                                    //int __cdecl CClumpModelInfo::GetFrameFromId(RpClump *clump, int id)
+                                    CALL_FUNCTION_RETURN GetFrameFromId 2 0 (p 18)(pFrame)
+                                    IF pFrame > 0 // Has windows
+
+                                        /*
+                                        vPos = pFrame + 0x40 //modelling.pos
+                                        READ_MEMORY vPos 4 FALSE (x)
+                                        vPos += 0x4
+                                        READ_MEMORY vPos 4 FALSE (y)
+                                        vPos += 0x4
+                                        READ_MEMORY vPos 4 FALSE (z)
+                                        */
+                                        iPanel = 4
+                                        IF GOSUB IsPanelPresent
+                                            CALL_FUNCTION 0x321700 1 1 (pVeh) // Glass effect
+                                            POP_CAR_PANEL hVeh 4 OFF
+
+                                            bWindowPresent = TRUE
+                                        ELSE
+                                            bWindowPresent = FALSE
+                                        ENDIF
+                                    ENDIF
+
+                                    f = fIntensity / 100.0
+                                    f *= fThrowDamageHealth
+                                    IF bWindowPresent = TRUE
+                                        f *= fGlassDamageBonus
+                                    ENDIF
+                                    iDamage =# f
+                                    IF iDamage > 0
+                                        DAMAGE_CHAR hPlayerPed iDamage FALSE
+                                        IF hPassenger > 0
+                                            DAMAGE_CHAR hPassenger iDamage FALSE
+                                        ENDIF
+                                    ENDIF
+
+                                    //GET_MODEL_DIMENSIONS iModel (f fBack f, f fFront f)
+                                    //IF fBack > fFront
+                                    //    fFront = fBack
+                                    //ENDIF
+                                
+                                    GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPlayerPed (0.0 1.0 1.0) (x y z)
+                                    WARP_CHAR_FROM_CAR_TO_COORD hPlayerPed (x y z)
+                                    IF hPassenger > 0
+                                        GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS hPassenger (0.0 1.0 1.0) (x y z)
+                                        WARP_CHAR_FROM_CAR_TO_COORD hPassenger (x y z)
+                                    ENDIF
+                                    
+                                    // Simple inertia
+                                    TASK_PLAY_ANIM_NON_INTERRUPTABLE hPlayerPed FALL_FRONT PED 4.0 FALSE FALSE FALSE FALSE 1000
+                                    TASK_FALL_AND_GET_UP hPlayerPed 2 1000
+                                    TASK_SAY hPlayerPed 344
+
+                                    IF hPassenger > 0
+                                        TASK_PLAY_ANIM_NON_INTERRUPTABLE hPassenger FALL_FRONT PED 4.0 FALSE FALSE FALSE FALSE 1000
+                                        TASK_FALL_AND_GET_UP hPassenger 2 1000
+                                        TASK_SAY hPassenger 344
+                                    ENDIF
+
+                                    dir_x /= fDivStartInertia
+                                    dir_y /= fDivStartInertia
+                                    dir_y /= fDivStartInertia
+                                    f = fInertiaEaseOut
+
+                                    WHILE TRUE
+                                        SET_CHAR_VELOCITY hPlayerPed (dir_x dir_y dir_z)
+                                        IF hPassenger > 0
+                                            SET_CHAR_VELOCITY hPassenger (dir_x dir_y dir_z)
+                                        ENDIF
+
+                                        f +=@ f
+
+                                        dir_x -=@ f
+                                        dir_y -=@ f
+                                        dir_z -=@ f
+
+                                        IF dir_x < 0.05
+                                        OR dir_x < 0.05
+                                        OR dir_x < 0.05
+                                            BREAK
+                                        ENDIF
+
+                                        WAIT 0
+
+                                    ENDWHILE
+
+                                ENDIF
+
+                            ENDIF
+                        
+                        ENDIF
+
+                    ENDIF
+                    
+                ELSE
+
+                    // Store last speed (before big impact)
+                    GET_CAR_SPEED_VECTOR hVeh (dir_x dir_y dir_z)
+
+                ENDIF
+            
+            ENDIF
+
+        ENDIF
+
+    ENDWHILE
+
+    /////////////////////////////////////////////////
+
+    IsPanelPresent:
+        GET_VEHICLE_POINTER hVeh (pDamageManager)
+        pDamageManager += DamageManager
+        CALL_METHOD_RETURN GetPanelStatus pDamageManager 1 0 (4)(iPanelStatus)
+        IF NOT iPanelStatus = 3
+            IS_INT_LVAR_GREATER_THAN_CONSTANT TIMERA -1 // RETURN_TRUE
+        ELSE
+            IS_INT_LVAR_EQUAL_TO_CONSTANT TIMERA -1 // RETURN_FALSE
+        ENDIF
+    RETURN
+
+    GetCarCollisionIntensity:
+        GET_VEHICLE_POINTER hVeh (i)
+        i += m_fLastDamageIntensity
+        READ_MEMORY i 4 FALSE (fIntensity)
+    RETURN // fIntensity
+
+    IsCarCollisionFrontDirection:
+        GET_VEHICLE_POINTER hVeh (i)
+        i += m_vLastDamagePoint
+        READ_MEMORY i 4 FALSE (x)
+        i += 0x4
+        READ_MEMORY i 4 FALSE (y)
+        //i += 0x4
+        //READ_MEMORY i 4 FALSE (z)
+
+        // TODO: Maybe convert to euler angles, but need to preserve a condition like this 'side' one
+
+        GET_CAR_MODEL hVeh (i)
+        GET_MODEL_DIMENSIONS i (side back g, g front g)
+        IF back > front
+            front = back
+        ENDIF
+
+        GET_OFFSET_FROM_CAR_IN_WORLD_COORDS hVeh 0.0 front 0.0 (car_x car_y car_z)
+        GET_DISTANCE_BETWEEN_COORDS_2D (x y, car_x car_y) (g)
+        
+        ABS_LVAR_FLOAT side
+        side *= 1.3
+
+        IS_THING_GREATER_THAN_THING side g 
+    RETURN // side > g
+
+}
+
+{
+    speed_shake:
+    SCRIPT_NAME SDK_SHK 
+
+    LVAR_FLOAT fCarSpeed fShakeLevel
+    LVAR_INT hPlayerCar iShakeLevel
+
+    CONST_FLOAT fShakeIntensityMult 1f
+    CONST_FLOAT fMinSpeed 35f
+
+    speed_shake_loop:
+    WAIT 0 
+    IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed 
+    AND NOT IS_CHAR_IN_ANY_PLANE hPlayerPed 
+    AND NOT IS_CHAR_IN_ANY_HELI hPlayerPed
+        STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed hPlayerCar 
+        GET_CAR_SPEED hPlayerCar fCarSpeed 
+        fCarSpeed -= fMinSpeed 
+        IF fCarSpeed > 0.0 
+            fShakeLevel = fCarSpeed * fShakeIntensityMult
+            iShakeLevel =# fShakeLevel 
+            SHAKE_CAM iShakeLevel 
+        ENDIF
+    ENDIF
+
+    GOTO speed_shake_loop
+}
+
+{
+	street_racing:
+	SCRIPT_NAME STRRACE
+
+	LVAR_INT rival_model rival_class pRivalCar pRivalPed rival_blip rival_handle rival_ped iRivalCarModel proximity target_blip player_car iMoneyAmount i 
+	LVAR_FLOAT player_coords[3] rival_coords[3] target_coords[3] fMoneyAmount fCruiseSpeed fRewardCoefficient fRivalProbability player_dist rival_dist
+
+	CONST_FLOAT fRewardMaxMultiplier 2.86
+	CONST_INT CVehicle_m_nCreatedBy 0x4AC
+	CONST_INT CPed_m_nCreatedBy 0x4BC
+
+    CONST_INT RANDOM_VEHICLE 1
+    CONST_INT MISSION_VEHICLE 2
+    CONST_INT PARKED_VEHICLE 3
+    CONST_INT PERMANENT_VEHICLE 4
+
+	player_car = 0
+	rival_handle = 0
+
+	street_races_main_loop:
+		WAIT 0
+		IF IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+			IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+			AND IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+				TIMERA = 0
+
+				WHILE IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+				AND IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+					WAIT 0
+					IF TIMERA > 5000
+						WHILE player_car = rival_handle
+                            WAIT 0
+							GET_CHAR_COORDINATES hPlayerPed (player_coords[0] player_coords[1] player_coords[2])
+							GET_RANDOM_CAR_IN_SPHERE_NO_SAVE_RECURSIVE player_coords[0] player_coords[1] player_coords[2] 10f TRUE TRUE (rival_handle)
+							GET_CAR_CHAR_IS_USING hPlayerPed player_car
+
+							IF rival_handle = -1
+								GOTO reset_script_status
+							ENDIF
+
+							GET_DRIVER_OF_CAR rival_handle (rival_ped)
+
+							IF NOT IS_CHAR_SITTING_IN_CAR rival_ped rival_handle
+								GOTO reset_script_status
+							ENDIF
+						ENDWHILE
+
+						IF IS_CAR_MODEL rival_handle COPCARLA
+						OR IS_CAR_MODEL rival_handle COPCARSF
+						OR IS_CAR_MODEL rival_handle COPCARVG
+						OR IS_CAR_MODEL rival_handle COPCARRU
+						OR IS_CAR_MODEL rival_handle COPBIKE
+							ALTER_WANTED_LEVEL 0 1
+							GOTO reset_script_status
+						ENDIF
+
+						IF IS_CAR_MODEL rival_handle AMBULAN
+							GOTO reset_script_status
+						ENDIF
+
+						GENERATE_RANDOM_FLOAT_IN_RANGE 0f 1f (fRivalProbability)
+
+						IF fRivalProbability > 0.5f
+							GET_PED_POINTER rival_ped (pRivalPed)
+							GET_VEHICLE_POINTER rival_handle (pRivalCar)
+
+							IF IS_PC_VERSION
+								i = pRivalCar + 0x4A4
+							ELSE
+								i = pRivalCar + CVehicle_m_nCreatedBy
+							ENDIF
+
+							WRITE_MEMORY i 1 2 TRUE // MARK_CAR_AS_NEEDED
+
+							IF IS_PC_VERSION
+								i = pRivalPed + 0x484
+							ELSE
+								i = pRivalPed + CPed_m_nCreatedBy
+							ENDIF
+
+							WRITE_MEMORY i 1 2 TRUE // MARK_CHAR_AS_NEEDED
+
+							GET_CAR_COORDINATES rival_handle (player_coords[0] player_coords[1] player_coords[2])
+							GENERATE_RANDOM_FLOAT_IN_RANGE 1f fRewardMaxMultiplier fRewardCoefficient
+							fCruiseSpeed = fRewardCoefficient * 35f
+							fMoneyAmount = fRewardCoefficient * 1000f
+							iMoneyAmount =# fMoneyAmount
+							GET_NTH_CLOSEST_CAR_NODE player_coords[0] player_coords[1] player_coords[2] 1000 (target_coords[0] target_coords[1] target_coords[2])
+							ADD_BLIP_FOR_COORD target_coords[0] target_coords[1] target_coords[2] target_blip 
+							SET_CAR_DRIVING_STYLE rival_handle DRIVINGMODE_AVOIDCARS
+							SET_CAR_CRUISE_SPEED rival_handle fCruiseSpeed
+
+							CAR_GOTO_COORDINATES_RACING rival_handle target_coords[0] target_coords[1] target_coords[2]
+							ADD_BLIP_FOR_CAR rival_handle rival_blip
+                            flag_player_on_mission = TRUE
+							TIMERA = 0
+
+							WHILE DOES_VEHICLE_EXIST rival_handle
+							AND DOES_CHAR_EXIST rival_ped
+							AND IS_PLAYER_PLAYING 0
+							AND DOES_VEHICLE_EXIST player_car
+								WAIT 0
+								GET_CAR_COORDINATES player_car (player_coords[0] player_coords[1] player_coords[2])
+								GET_CAR_COORDINATES rival_handle (rival_coords[0] rival_coords[1] rival_coords[2])
+								GET_DISTANCE_BETWEEN_COORDS_3D target_coords[0] target_coords[1] target_coords[2] player_coords[0] player_coords[1] player_coords[2] (player_dist)
+								GET_DISTANCE_BETWEEN_COORDS_3D target_coords[0] target_coords[1] target_coords[2] rival_coords[0] rival_coords[1] rival_coords[2] (rival_dist)
+
+								IF TIMERA > 5000
+									IF player_dist < rival_dist
+										PRINT_FORMATTED_NOW "1/2" 1
+									ELSE
+										PRINT_FORMATTED_NOW "2/2" 1
+									ENDIF
+								ELSE
+									IF TIMERA > 2000
+										PRINT_FORMATTED_NOW "Reach the ~y~marker~w~ first to win the race" 1
+									ELSE
+										PRINT_FORMATTED_NOW "Come on, I'll finish you! I bet $%d" 1 iMoneyAmount
+									ENDIF
+								ENDIF
+
+								IF LOCATE_CHAR_ANY_MEANS_3D rival_ped target_coords[0] target_coords[1] target_coords[2] 5f 5f 5f TRUE
+									iMoneyAmount *= -1
+									ADD_SCORE 0 iMoneyAmount
+									MARK_CAR_AS_NO_LONGER_NEEDED rival_handle
+									MARK_CHAR_AS_NO_LONGER_NEEDED rival_ped
+									REMOVE_BLIP rival_blip
+									REMOVE_BLIP target_blip
+									PRINT_BIG_STRING "You lost!" 1 1
+                                    flag_player_on_mission = FALSE
+									GOTO reset_script_status
+								ELSE
+									IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed target_coords[0] target_coords[1] target_coords[2] 5f 5f 5f TRUE
+										ADD_SCORE 0 iMoneyAmount
+										MARK_CAR_AS_NO_LONGER_NEEDED rival_handle
+										MARK_CHAR_AS_NO_LONGER_NEEDED rival_ped
+										REMOVE_BLIP rival_blip
+										REMOVE_BLIP target_blip
+										PRINT_BIG_STRING "You won!" 1 1
+                                        flag_player_on_mission = FALSE
+										GOTO reset_script_status
+									ENDIF
+								ENDIF
+							ENDWHILE
+						ELSE
+							PRINT_FORMATTED_NOW "Get out of here you idiot asshole, I'll not race against you!" 5000
+							GOTO reset_script_status
+						ENDIF
+					ENDIF
+				ENDWHILE
+			ENDIF
+		ENDIF
+	GOTO street_races_main_loop
+
+	reset_script_status:
+	player_car = 0
+	rival_handle = 0
+	GOTO street_races_main_loop
+}
+
+CONST_INT PEOPLEGEN_ROW 0
+CONST_INT PEOPLEGEN_WALL 1 
+CONST_INT PEOPLEGEN_CIRCLE 2
+
+// CLEO_CALL people_generator 0 (iGenType, x, y, z, a, pad, count, model[0], model[1] ...)
+{
+    LVAR_INT iGeneratorType
+    LVAR_FLOAT v3dInitialCoords[3] fAngle fPadding
+    LVAR_INT iGeneratedPedsCount ped_ids[10] i iStep tmpInt
+    VAR_INT hGeneratedPeds[10] 
+    LVAR_FLOAT v2dAngledCoords[2] f fRowAngle fStep
+
+    people_generator:
+
+    i = 0
+    WHILE i < iGeneratedPedsCount
+        IF NOT ped_ids[0] = -1
+            REQUEST_MODEL (ped_ids[i])
+            WHILE NOT HAS_MODEL_LOADED (ped_ids[i])
+                WAIT 0
+            ENDWHILE
+        ENDIF 
+
+        i++
+    ENDWHILE
+
+    IF NOT iGeneratorType = PEOPLEGEN_CIRCLE
+        IF iGeneratorType = PEOPLEGEN_ROW
+            fRowAngle = fAngle + 90.0f
+        ELSE 
+            IF iGeneratorType = PEOPLEGEN_WALL
+                fRowAngle = fAngle
+            ENDIF
+        ENDIF
+
+        i = 0
+        WHILE i < iGeneratedPedsCount
+            f =# i
+            COS (fRowAngle) (v2dAngledCoords[0])
+            SIN (fRowAngle) (v2dAngledCoords[1])
+            v2dAngledCoords[0] *= fPadding
+            v2dAngledCoords[1] *= fPadding
+            v2dAngledCoords[0] *= f
+            v2dAngledCoords[1] *= f
+            v2dAngledCoords[0] *= -1.0
+            v2dAngledCoords[1] *= -1.0
+            v2dAngledCoords[0] += v3dInitialCoords[0]
+            v2dAngledCoords[1] += v3dInitialCoords[1]
+            IF ped_ids[0] = -1
+                CREATE_RANDOM_CHAR (v2dAngledCoords[0] v2dAngledCoords[1] v3dInitialCoords[2]) (hGeneratedPeds[i])
+            ELSE
+                CREATE_CHAR PEDTYPE_CIVMALE (ped_ids[i] v2dAngledCoords[0] v2dAngledCoords[1] v3dInitialCoords[2]) (hGeneratedPeds[i])
+            ENDIF
+            SET_CHAR_HEADING (hGeneratedPeds[i] fAngle) 
+
+            i++
+        ENDWHILE 
+    ELSE
+        i = 0
+        iStep = 360 / iGeneratedPedsCount
+        fStep =# iStep
+        WHILE i < iGeneratedPedsCount
+            f =# i
+            fRowAngle = fStep * f
+            fAngle = fRowAngle + 90.0f
+
+            COS (fRowAngle) (v2dAngledCoords[0])
+            SIN (fRowAngle) (v2dAngledCoords[1])
+            v2dAngledCoords[0] *= fPadding
+            v2dAngledCoords[1] *= fPadding
+            v2dAngledCoords[0] += v3dInitialCoords[0]
+            v2dAngledCoords[1] += v3dInitialCoords[1]
+
+            IF ped_ids[0] = -1
+                CREATE_RANDOM_CHAR (v2dAngledCoords[0] v2dAngledCoords[1] v3dInitialCoords[2]) (hGeneratedPeds[i])
+            ELSE
+                CREATE_CHAR PEDTYPE_CIVMALE (ped_ids[i] v2dAngledCoords[0] v2dAngledCoords[1] v3dInitialCoords[2]) (hGeneratedPeds[i])
+            ENDIF
+            SET_CHAR_HEADING (hGeneratedPeds[i] fAngle) 
+
+            i++
+        ENDWHILE 
+    ENDIF
+
+    WAIT 0
+
+    CLEO_RETURN 0
+
+}
+
+{
+    people_gen_squares:
+    SCRIPT_NAME PPLSQGN
+    LVAR_INT hSquarePed iPedsQuantity iPedsToGenerate iPedPackToGenerate i j k iPedModels[4] iObject pTmp iRandomTime iCurTime iMaxTime iRandomNum
+    LVAR_FLOAT v3dRandomCoords[3] fRandom v3dPlayerCoords[3]
+
+    people_gen_squares_loop:
+        WAIT 0
+        IF IS_CHAR_IN_ZONE hPlayerPed PER1
+            v3dRandomCoords[2] = 13.796877
+            GENERATE_RANDOM_INT_IN_RANGE (8, 16) (iPedsToGenerate)
+            iPedsQuantity = 0
+            WHILE iPedsQuantity < iPedsToGenerate 
+                GENERATE_RANDOM_INT_IN_RANGE (1, 4) (iPedPackToGenerate)
+
+                i = iPedPackToGenerate + iPedsQuantity
+                WHILE i > iPedsToGenerate
+                    iPedPackToGenerate--
+                    i = iPedPackToGenerate + iPedsQuantity
+                ENDWHILE
+
+                GENERATE_RANDOM_FLOAT_IN_RANGE (1441.818481, 1516.532593) (v3dRandomCoords[0])
+                GENERATE_RANDOM_FLOAT_IN_RANGE (-1719.910767, -1604.777222) (v3dRandomCoords[1])
+                
+                CLEO_CALL people_generator 0 (2, v3dRandomCoords[0], v3dRandomCoords[1], v3dRandomCoords[2], 74.359f, 0.85f, iPedPackToGenerate, -1)
+                
+                i = 0
+                WHILE i < iPedPackToGenerate
+                    j = i + iPedsQuantity
+                    hSquarePed = hGeneratedPeds[i]
+
+                    GENERATE_RANDOM_INT_IN_RANGE (1, 10) (k)
+
+                    IF k > 5
+                    AND k < 8
+                        TASK_LOOK_ABOUT (hSquarePed, -1)
+
+                        pTmp = j * 4
+                        pTmp += pPeopleSquareGenMaxTimes
+                        WRITE_MEMORY (pTmp, 4, 40000, TRUE)
+                    ELSE
+                        IF k < 5
+                            IF NOT iPedPackToGenerate = 1
+                                GENERATE_RANDOM_INT_IN_RANGE (0, 1) (iRandomNum)
+                                IF iRandomNum = TRUE
+                                    REQUEST_ANIMATION "MISC"
+                                    WHILE NOT HAS_ANIMATION_LOADED "MISC"
+                                        WAIT 0
+                                    ENDWHILE
+
+                                    TASK_PLAY_ANIM hSquarePed "IDLE_CHAT_02" "MISC" 4.0 TRUE 0 0 0 -1 
+                                    GENERATE_RANDOM_FLOAT_IN_RANGE 0.0 1.0 fRandom
+                                    WAIT 0
+                                    SET_CHAR_ANIM_CURRENT_TIME hSquarePed "IDLE_CHAT_02" fRandom
+                                ELSE
+                                    TASK_PLAY_ANIM hSquarePed "IDLE_CHAT" "PED" 4.0 TRUE 0 0 0 -1 
+                                    GENERATE_RANDOM_FLOAT_IN_RANGE 0.0 1.0 fRandom
+                                    WAIT 0
+                                    SET_CHAR_ANIM_CURRENT_TIME hSquarePed "IDLE_CHAT" fRandom
+                                ENDIF
+
+                            ELSE
+                                TASK_USE_MOBILE_PHONE hSquarePed TRUE
+                            ENDIF
+
+                            pTmp = j * 4
+                            pTmp += pPeopleSquareGenMaxTimes
+                            WRITE_MEMORY (pTmp, 4, 60000, TRUE)
+                            
+                        ELSE
+                            REQUEST_MODEL 3044
+                            REQUEST_ANIMATION "GANGS"
+                            WHILE NOT HAS_MODEL_LOADED 3044
+                            OR NOT HAS_ANIMATION_LOADED "GANGS"
+                                WAIT 0
+                            ENDWHILE
+
+                            MARK_MODEL_AS_NO_LONGER_NEEDED 3044
+
+                            CREATE_OBJECT 3044 0f 0f 0f iObject
+                            TASK_PICK_UP_OBJECT hSquarePed iObject 0.04 0.1 0.05 6 16 NULL NULL -1
+                            TASK_PLAY_ANIM hSquarePed "SMKCIG_PRTL" "GANGS" 4.0 TRUE 0 0 0 -1 
+                            GENERATE_RANDOM_FLOAT_IN_RANGE 0.0 1.0 fRandom
+                            WAIT 0
+                            SET_CHAR_ANIM_CURRENT_TIME hSquarePed "SMKCIG_PRTL" fRandom
+
+                            pTmp = j * 4
+                            pTmp += pPeopleSquareGenObjects
+                            WRITE_MEMORY pTmp 4 iObject TRUE
+
+                            pTmp = j * 4
+                            pTmp += pPeopleSquareGenMaxTimes
+                            WRITE_MEMORY (pTmp, 4, 60000, TRUE)
+
+                        ENDIF
+                    ENDIF
+
+                    pTmp = j * 4
+                    pTmp += pPeopleSquareGenPeds
+                    WRITE_MEMORY pTmp 4 hSquarePed TRUE
+
+                    GENERATE_RANDOM_INT_IN_RANGE (0, 30000) (iRandomTime)
+                    pTmp = j * 4
+                    pTmp += pPeopleSquareGenTimers
+                    WRITE_MEMORY pTmp 4 iRandomTime TRUE
+                    
+                    i++
+                ENDWHILE
+
+                iPedsQuantity += iPedPackToGenerate 
+            ENDWHILE
+
+            WHILE IS_CHAR_IN_ZONE hPlayerPed PER1
+                TIMERA = 0
+                WAIT 0
+
+                i = 0
+                WHILE i < iPedsQuantity
+                    pTmp = i * 4
+                    pTmp += pPeopleSquareGenMaxTimes
+                    READ_MEMORY (pTmp, 4, TRUE) (iMaxTime)
+
+                    pTmp = i * 4
+                    pTmp += pPeopleSquareGenTimers
+                    READ_MEMORY (pTmp, 4, TRUE) (iCurTime)
+                    iCurTime += TIMERA
+
+                    IF iCurTime >= iMaxTime
+                        WRITE_MEMORY (pTmp, 4, 0, TRUE) 
+                        GENERATE_RANDOM_INT_IN_RANGE (1, 10) (k)
+
+                        pTmp = i * 4
+                        pTmp += pPeopleSquareGenPeds
+                        READ_MEMORY (pTmp, 4, TRUE) (hSquarePed)
+
+                        CLEAR_CHAR_TASKS hSquarePed
+                        WAIT 0
+
+                        IF k > 5
+                        AND k < 8
+                            TASK_LOOK_ABOUT (hSquarePed, -1)
+
+                            pTmp = i * 4
+                            pTmp += pPeopleSquareGenMaxTimes
+                            WRITE_MEMORY (pTmp, 4, 40000, TRUE)
+                        ELSE
+                            IF k < 5
+                                IF NOT iPedPackToGenerate = 1
+                                    GENERATE_RANDOM_INT_IN_RANGE (0, 1) (iRandomNum)
+                                    IF iRandomNum = TRUE
+                                        REQUEST_ANIMATION "MISC"
+                                        WHILE NOT HAS_ANIMATION_LOADED "MISC"
+                                            WAIT 0
+                                        ENDWHILE
+
+                                        TASK_PLAY_ANIM hSquarePed "IDLE_CHAT_02" "MISC" 4.0 TRUE 0 0 0 -1 
+                                    ELSE
+                                        TASK_PLAY_ANIM hSquarePed "IDLE_CHAT" "PED" 4.0 TRUE 0 0 0 -1 
+                                    ENDIF
+
+                                ELSE
+                                    TASK_USE_MOBILE_PHONE hSquarePed TRUE
+                                ENDIF
+
+                                pTmp = i * 4
+                                pTmp += pPeopleSquareGenMaxTimes
+                                WRITE_MEMORY (pTmp, 4, 60000, TRUE)
+
+                            ELSE
+                                REQUEST_MODEL 3044
+                                REQUEST_ANIMATION "GANGS"
+                                WHILE NOT HAS_MODEL_LOADED 3044
+                                OR NOT HAS_ANIMATION_LOADED "GANGS"
+                                    WAIT 0
+                                ENDWHILE
+
+                                MARK_MODEL_AS_NO_LONGER_NEEDED 3044
+
+                                CREATE_OBJECT 3044 0f 0f 0f iObject
+                                TASK_PICK_UP_OBJECT hSquarePed iObject 0.04 0.1 0.05 6 16 NULL NULL -1
+                                TASK_PLAY_ANIM hSquarePed "SMKCIG_PRTL" "GANGS" 4.0 TRUE 0 0 0 -1 
+
+                                pTmp = i * 4
+                                pTmp += pPeopleSquareGenObjects
+                                WRITE_MEMORY pTmp 4 iObject TRUE
+
+                                pTmp = i * 4
+                                pTmp += pPeopleSquareGenMaxTimes
+                                WRITE_MEMORY (pTmp, 4, 60000, TRUE)
+
+                            ENDIF
+                        ENDIF
+                    ELSE
+                        WRITE_MEMORY (pTmp, 4, iCurTime, TRUE) 
+                    ENDIF
+
+                    i++
+                ENDWHILE
+            ENDWHILE
+
+            i = 0
+            WHILE i < iPedsQuantity
+                pTmp = i * 4
+                pTmp += pPeopleSquareGenPeds
+                READ_MEMORY pTmp 4 TRUE (hSquarePed)
+                WRITE_MEMORY pTmp 4 0x00000000 TRUE
+
+                IF DOES_CHAR_EXIST hSquarePed
+                    DELETE_CHAR hSquarePed
+                ENDIF 
+
+                pTmp = i * 4
+                pTmp += pPeopleSquareGenObjects
+
+                READ_MEMORY pTmp 4 TRUE (iObject)
+                WRITE_MEMORY pTmp 4 0x00000000 TRUE
+
+                IF DOES_OBJECT_EXIST iObject
+                    DELETE_OBJECT iObject
+                ENDIF 
+
+                i++
+            ENDWHILE
+
+            IF HAS_ANIMATION_LOADED "MISC"
+                REMOVE_ANIMATION "MISC"
+            ENDIF
+
+            IF HAS_ANIMATION_LOADED "GANGS"
+                REMOVE_ANIMATION "GANGS"
+            ENDIF
+
+        ELSE
+            IF LOCATE_CHAR_ANY_MEANS_2D hPlayerPed 1022.404236 -1123.798218 50f 50f 0
+                CLEO_CALL people_generator 0 (0, 1022.404236f, -1123.798218f, 23.870037f, 4.029474f, 0.70f, 6, -1)
+
+                i = 0
+                WHILE i < 6
+                    hSquarePed = hGeneratedPeds[i]
+
+                    pTmp = i * 4
+                    pTmp += pPeopleSquareGenPeds
+                    WRITE_MEMORY pTmp 4 hSquarePed TRUE
+                    i++
+                ENDWHILE
+
+                WHILE LOCATE_CHAR_ANY_MEANS_2D hPlayerPed 1022.404236 -1123.798218 50f 50f 0
+                    WAIT 0
+
+
+                ENDWHILE
+                i = 0
+                WHILE i < 6
+                    READ_MEMORY pTmp 4 TRUE (hSquarePed)
+                    WRITE_MEMORY pTmp 4 0x00000000 TRUE
+
+                    IF DOES_CHAR_EXIST hSquarePed
+                        DELETE_CHAR hSquarePed
+                    ENDIF 
+
+                    pTmp = i * 4
+                    pTmp += pPeopleSquareGenObjects
+
+                    i++
+                ENDWHILE
+            ENDIF
+        ENDIF
+    GOTO people_gen_squares_loop
+}
+
 fade_for_mission:
-    IF IS_PLAYER_PLAYING player
-        SET_PLAYER_CONTROL player OFF // Tip: turning player control off makes the player safe
+    IF IS_PLAYER_PLAYING iPlayer
+        SET_PLAYER_CONTROL iPlayer OFF // Tip: turning iPlayer control off makes the iPlayer safe
                                       // (i.e. cannot die or get arrested)
         SET_FADING_COLOUR 0 0 0
         DO_FADE 500 FADE_OUT
@@ -4843,9 +6746,11 @@ fade_for_mission:
         ENDWHILE
         CLEAR_PRINTS
         CLEAR_HELP
-        CLEAR_CHAR_TASKS scplayer
+        CLEAR_CHAR_TASKS hPlayerPed
     ENDIF
 RETURN
+
+
 
 // -------------------------------------------------- Independent Vehicle Handlings global vars -------------------------------------------------- //
 
@@ -4868,9 +6773,9 @@ usedHandlingSlots = 0
 
     curHandlingIndex = -1
 
-    IF IS_PLAYER_PLAYING player
-    AND IS_CHAR_SITTING_IN_ANY_CAR scplayer
-        STORE_CAR_CHAR_IS_IN_NO_SAVE scplayer (debug_car)
+    IF IS_PLAYER_PLAYING iPlayer
+    AND IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
+        STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed (debug_car)
         GET_VEHICLE_POINTER debug_car (debug_car_ptr)
         pHandling = debug_car_ptr + 0x38C // handlingData
         READ_MEMORY pHandling 4 0 (pHandling)
