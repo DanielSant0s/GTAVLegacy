@@ -5,139 +5,6 @@ DUMP
 00 // Alignment
 ENDDUMP
 
-indievehhandlings_label:
-DUMP // Size: 4096, increase handling size from 224 bytes to 341 bytes per vehicle
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-ENDDUMP
-
-
 lpTextBuffer:
 DUMP // Size: 512, reserved for text buffering
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
@@ -211,56 +78,6 @@ DUMP
     00000000 00000000 00000000
 ENDDUMP
 
-
-// Buffer for storing the sphere (CColSphere)
-temp_sphere:
-DUMP
-    00000000 00000000 00000000 00000000  00000000
-ENDDUMP
-
-// Line storage buffer (CColLine)
-temp_line:
-DUMP
-    00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000
-ENDDUMP
-
-// "Table" of ped behaviors
-ped_events:
-DUMP
-    00000000 // PLAYER1
-    00000000 // PLAYER2
-    00000000 // PLAYER_NETWORK
-    00000000 // PLAYER_UNUSED
-    00000000 // CIVMALE
-    00000000 // CIVFEMALE
-    00000000 // COP
-    00000000 // GANG1
-    00000000 // GANG2
-    00000000 // GANG3
-    00000000 // GANG4
-    00000000 // GANG5
-    00000000 // GANG6
-    00000000 // GANG7
-    00000000 // GANG8
-    00000000 // GANG9
-    00000000 // GANG10
-    00000000 // DEALER
-    00000000 // MEDIC
-    00000000 // FIREMAN
-    00000000 // CRIMINAL
-    00000000 // BUM
-    00000000 // PROSTITUTE
-    00000000 // SPECIAL
-    00000000 // MISSION1
-    00000000 // MISSION2
-    00000000 // MISSION3
-    00000000 // MISSION4
-    00000000 // MISSION5
-    00000000 // MISSION6
-    00000000 // MISSION7
-    00020001 // MISSION8
-ENDDUMP
-
 start:
 // Basic Init
 SCRIPT_NAME main
@@ -281,6 +98,14 @@ VAR_FLOAT switch_ability[3]
 VAR_INT life_pickup gas_pickup
 
 VAR_INT pTextBuffer pUnknownPtr
+
+DO_FADE 0 FADE_OUT
+DISPLAY_RADAR FALSE
+DISPLAY_HUD FALSE
+DISPLAY_ZONE_NAMES FALSE
+DISPLAY_CAR_NAMES FALSE
+CLEAR_HELP
+
 GET_LABEL_POINTER (lpTextBuffer) (pTextBuffer)
 GET_LABEL_POINTER (lpUnknownPtr) (pUnknownPtr)
 
@@ -345,6 +170,7 @@ SET_PROGRESS_TOTAL (0)
 SET_MISSION_RESPECT_TOTAL (0)
 
 SET_INT_STAT (181, 4)
+SET_INT_STAT (23, 40)
 SHOW_UPDATE_STATS (0)
 
 player_phone_theme[0] = 8
@@ -369,6 +195,7 @@ SET_CHAR_HEADING (hPlayerPed, 9.83518)
 
 flag_player_on_mission = FALSE
 DECLARE_MISSION_FLAG (flag_player_on_mission)
+SET_DEATHARREST_STATE ON
 
 GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, SHIRTABLUE, SHIRTA, 0)
 GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, PLAYER_FACE, HEAD, 1)
@@ -383,19 +210,35 @@ SET_TIME_OF_DAY (10, 0)
 
 is_drawing = 0
 
-SET_PLAYER_CONTROL (iPlayer, ON)
-DO_FADE (0, FADE_IN)
+WAIT 5000
 
+VAR_INT story_mode
+story_mode = FALSE
+
+WAIT (0)
 LOAD_AND_LAUNCH_MISSION initial.sc
 
 WAIT (0)
+IF story_mode = TRUE
+    LAUNCH_MISSION intro.sc
+ELSE
+    DO_FADE (1000, FADE_IN)
+    DISPLAY_RADAR TRUE
+    DISPLAY_HUD TRUE
+    DISPLAY_ZONE_NAMES TRUE
+    DISPLAY_CAR_NAMES TRUE
+    CLEAR_HELP
+ENDIF
+
+WAIT (0)
+
+SET_PLAYER_CONTROL (iPlayer, ON)
 
 //START_NEW_SCRIPT psave
 
 START_NEW_SCRIPT (debug_menu)
 START_NEW_SCRIPT (char_switcher)
 START_NEW_SCRIPT (weapon_selector)
-START_NEW_SCRIPT (wanted_blip)
 START_NEW_SCRIPT (improvedMove)
 START_NEW_SCRIPT (life_recovery)
 START_NEW_SCRIPT (manual_reload)
@@ -420,6 +263,8 @@ START_NEW_SCRIPT (people_gen_squares)
 START_NEW_SCRIPT (ability_system)
 START_NEW_SCRIPT (rpg_backview)
 START_NEW_SCRIPT (fire_oil_system)
+START_NEW_SCRIPT (submarine)
+START_NEW_SCRIPT (legalize_it_michael)
 //START_NEW_SCRIPT (SNOW_11)
 
 WAIT (0) // Start our scripts
@@ -684,6 +529,149 @@ VAR_INT num_carmod_instances dogcart1
             IS_INT_LVAR_GREATER_THAN_CONSTANT TIMERA -1 // RETURN_TRUE
         ENDIF
     CLEO_RETURN 0
+}
+
+{
+    submarine:
+    SCRIPT_NAME SUBMARN
+
+    LVAR_INT hKraken iLeftStickX iLeftStickY i
+    LVAR_FLOAT f g fSavedZ v3dSubCoords[3] v3dSubRotation[3] fSpeed fSin fCos fAngle
+    g = 1.5
+
+    submarine_main_loop:
+        WAIT 0
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 808.745544 -2019.298096 0.0 20.0 20.0 20.0 FALSE
+
+            REQUEST_MODEL JETMAX
+
+            WHILE NOT HAS_MODEL_LOADED JETMAX
+                WAIT 0
+            ENDWHILE
+
+            CREATE_CAR JETMAX 808.745544 -2019.298096 0.0 hKraken
+
+            MARK_CAR_AS_NO_LONGER_NEEDED hKraken
+
+            WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 808.745544 -2019.298096 0.0 20.0 20.0 20.0 FALSE
+                WAIT 0
+                IF IS_CHAR_SITTING_IN_CAR hPlayerPed hKraken
+                    WHILE IS_CHAR_SITTING_IN_CAR hPlayerPed hKraken
+                        WAIT 0
+                        GET_POSITION_OF_ANALOGUE_STICKS PAD1 i iLeftStickY i i
+                        
+
+                        IF NOT iLeftStickY = 0
+                        AND TIMERA > 150
+                            GET_CAR_HEADING hKraken fAngle
+                            IF iLeftStickY < -64
+                                g -= 0.35
+                                COS fAngle fCos
+                                SIN fAngle fSin
+                                fCos *= 60.0
+                                fSin *= 60.0
+                                APPLY_FORCE_TO_CAR hKraken 0.0 0.0 -0.22 fCos fSin 0.0
+                            ELSE
+                                IF iLeftStickY > 64
+                                    IF v3dSubCoords[2] <= 1.0f 
+                                        g += 0.35
+                                        COS fAngle fCos
+                                        SIN fAngle fSin
+                                        fCos *= -60.0
+                                        fSin *= -60.0
+                                        APPLY_FORCE_TO_CAR hKraken 0.0 0.0 0.22 fCos fSin 0.0
+                                    ENDIF
+                                ENDIF
+                            ENDIF
+                            TIMERA = 0
+                        ENDIF
+
+                        GET_CAR_COORDINATES hKraken v3dSubCoords[0] v3dSubCoords[1] v3dSubCoords[2]
+
+                        IF v3dSubCoords[2] > g
+                            APPLY_FORCE_TO_CAR hKraken 0.0 0.0 -0.22 0.0 0.0 0.0
+                        ENDIF
+
+                        GET_CAR_SPEED hKraken fSpeed
+
+                        IF g < -3.0
+                        AND IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+                            IF fSpeed < 35.0
+                                fSpeed += 15.0
+                            ENDIF
+
+                            SET_CAR_FORWARD_SPEED hKraken fSpeed
+                        ENDIF
+
+                    ENDWHILE
+                ENDIF
+            ENDWHILE
+        ENDIF
+    GOTO submarine_main_loop
+}
+
+{
+    legalize_it_michael:
+
+    LVAR_INT hTableObject hChairObject hBarryPed iSequenceTask iInitialObjectsLoaded hCigarObject i bOnMission
+
+    legalize_it_michael_main_loop:
+        WAIT 0
+        IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1468.043457 -1652.227905 13.046875 50.0 50.0 50.0 FALSE
+        AND switch_cur_char = PLAYER_MICHAEL
+
+            REQUEST_MODEL 2115 // Table
+            REQUEST_MODEL 1810 // Chair
+            REQUEST_MODEL 3044 // Cigar
+            REQUEST_ANIMATION "GANGS" // Smoke anim
+            REQUEST_ANIMATION "BOMBER" 
+            //REQUEST_MODEL MALE01 // Ped
+            LOAD_SPECIAL_CHARACTER 1 TRUTH
+
+            WHILE NOT HAS_MODEL_LOADED 2115
+            OR NOT HAS_MODEL_LOADED 1810
+            OR NOT HAS_MODEL_LOADED 3044
+            OR NOT HAS_SPECIAL_CHARACTER_LOADED 1
+            OR NOT HAS_ANIMATION_LOADED "GANGS"
+            OR NOT HAS_ANIMATION_LOADED "BOMBER"
+                WAIT 0
+            ENDWHILE
+
+            CREATE_CHAR PEDTYPE_CIVMALE SPECIAL01 1468.079829 -1650.901636 14.046875 hBarryPed
+            SET_CHAR_HEADING hBarryPed 152.380005
+
+            TASK_PLAY_ANIM_NON_INTERRUPTABLE hBarryPed "SEAT_idle" "PED" 4.0 TRUE FALSE FALSE FALSE 99999
+
+            CREATE_OBJECT 1810 1468.424805 -1650.651001 13.046875 hChairObject
+            SET_OBJECT_HEADING hChairObject 320.639938
+
+            CREATE_OBJECT 2115 1468.043457 -1652.227905 13.046875 hTableObject
+            SET_OBJECT_HEADING hTableObject 159.437317
+
+            CREATE_OBJECT 3044 1467.343457 -1651.527905 13.846875 hCigarObject
+
+            WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1468.043457 -1652.227905 13.046875 50.0 50.0 50.0 FALSE
+                WAIT 0
+                IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1468.043457 -1652.227905 13.046875 2.0 2.0 2.0 FALSE
+                AND NOT flag_player_on_mission = TRUE
+                    flag_player_on_mission = TRUE
+
+                    DO_FADE 1000 FADE_OUT
+                    WAIT 1000
+
+                    DELETE_CHAR hBarryPed
+                    DELETE_OBJECT hChairObject
+                    DELETE_OBJECT hTableObject
+                    DELETE_OBJECT hCigarObject
+                    LOAD_AND_LAUNCH_MISSION grass_roots_michael.sc
+
+                    WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1468.043457 -1652.227905 13.046875 4.0 4.0 2.0 FALSE
+                        WAIT 0
+                    ENDWHILE
+                ENDIF
+            ENDWHILE
+        ENDIF
+    GOTO legalize_it_michael_main_loop
 }
 
 {
@@ -3084,37 +3072,6 @@ VAR_INT beggar_camp_status[6]
     old_selected = selected
     GOTO cars5_loop
 }
-
-{
-    wanted_blip:
-
-        SCRIPT_NAME wantedb
-
-        wanted_blip_loop:
-        WAIT 0
-        IF IS_WANTED_LEVEL_GREATER iPlayer 0
-            WHILE IS_WANTED_LEVEL_GREATER iPlayer 0
-                WRITE_MEMORY 0x0026E29C 4 0x240500FF 0
-                WRITE_MEMORY 0x0026E2A4 4 0x240600A5 0
-                WRITE_MEMORY 0x0026E2A8 4 0x240700A5 0
-                WRITE_MEMORY 0x0026E2B0 4 0x240800FF 0
-                WAIT 1000
-                WRITE_MEMORY 0x0026E29C 4 0x240500A5 0
-                WRITE_MEMORY 0x0026E2A4 4 0x240600A5 0
-                WRITE_MEMORY 0x0026E2A8 4 0x240700FF 0
-                WRITE_MEMORY 0x0026E2B0 4 0x240800FF 0
-                WAIT 1000
-            ENDWHILE
-
-            WRITE_MEMORY 0x0026E29C 4 0x240500FF 0
-            WRITE_MEMORY 0x0026E2A4 4 0x240600FF 0
-            WRITE_MEMORY 0x0026E2A8 4 0x240700FF 0
-            WRITE_MEMORY 0x0026E2B0 4 0x240800FF 0
-            
-        ENDIF
-        GOTO wanted_blip_loop
-}
-
 
 {
     char_switcher:
@@ -6474,6 +6431,7 @@ CONST_INT PEOPLEGEN_CIRCLE 2
     people_gen_squares_loop:
         WAIT 0
         IF IS_CHAR_IN_ZONE hPlayerPed PER1
+        AND NOT flag_player_on_mission = TRUE
             v3dRandomCoords[2] = 13.796877
             GENERATE_RANDOM_INT_IN_RANGE (8, 16) (iPedsToGenerate)
             iPedsQuantity = 0
@@ -6578,6 +6536,7 @@ CONST_INT PEOPLEGEN_CIRCLE 2
             ENDWHILE
 
             WHILE IS_CHAR_IN_ZONE hPlayerPed PER1
+            AND NOT flag_player_on_mission = TRUE
                 TIMERA = 0
                 WAIT 0
 
@@ -6711,13 +6670,38 @@ CONST_INT PEOPLEGEN_CIRCLE 2
                     i++
                 ENDWHILE
 
+                CLEO_CALL people_generator 0 (2, 1033.302368 -1123.322876 23.891327 272.584106, 1.2f, 3, -1)
+
+                i = 6
+                WHILE i < 9
+                    j = i - 6
+                    hSquarePed = hGeneratedPeds[j]
+
+                    pTmp = i * 4
+                    pTmp += pPeopleSquareGenPeds
+                    WRITE_MEMORY pTmp 4 hSquarePed TRUE
+                    i++
+                ENDWHILE
+
+                CLEO_CALL people_generator 0 (2, 1010.137024 -1123.191406 23.899345 86.927002, 1.2f, 3, -1)
+
+                i = 9
+                WHILE i < 12
+                    j = i - 9
+                    hSquarePed = hGeneratedPeds[j]
+
+                    pTmp = i * 4
+                    pTmp += pPeopleSquareGenPeds
+                    WRITE_MEMORY pTmp 4 hSquarePed TRUE
+                    i++
+                ENDWHILE
+
                 WHILE LOCATE_CHAR_ANY_MEANS_2D hPlayerPed 1022.404236 -1123.798218 50f 50f 0
                     WAIT 0
-
-
                 ENDWHILE
+
                 i = 0
-                WHILE i < 6
+                WHILE i < 12
                     READ_MEMORY pTmp 4 TRUE (hSquarePed)
                     WRITE_MEMORY pTmp 4 0x00000000 TRUE
 
@@ -6750,89 +6734,9 @@ fade_for_mission:
     ENDIF
 RETURN
 
-
-
 // -------------------------------------------------- Independent Vehicle Handlings global vars -------------------------------------------------- //
 
 VAR_INT indieVehicles[12] indieHandlings[12] backupHandlings[12] usedHandlingSlots curHandlingIndex
 usedHandlingSlots = 0
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------- //
-
-{
-    separateVehicleHandling:
-    SCRIPT_NAME INDVEHH
-
-    LVAR_INT debug_car debug_car_ptr tmp_car_ptr debug_state pHandling pMass pIndieHandling pTmpHandling i handlingOffset
-    LVAR_FLOAT debug_car_mass new_mass
-
-    CONST_INT memcpy 0x54E3B0
-    CONST_INT memset 0x54E568
-
-    GET_LABEL_POINTER indievehhandlings_label (pIndieHandling)
-
-    curHandlingIndex = -1
-
-    IF IS_PLAYER_PLAYING iPlayer
-    AND IS_CHAR_SITTING_IN_ANY_CAR hPlayerPed
-        STORE_CAR_CHAR_IS_IN_NO_SAVE hPlayerPed (debug_car)
-        GET_VEHICLE_POINTER debug_car (debug_car_ptr)
-        pHandling = debug_car_ptr + 0x38C // handlingData
-        READ_MEMORY pHandling 4 0 (pHandling)
-
-        IF pHandling < 0x6B1FF0
-        OR pHandling > 0x6F3AB8
-            IF usedHandlingSlots < 12
-                handlingOffset = usedHandlingSlots * 0x154 // New handling size
-                pIndieHandling += handlingOffset
-
-                backupHandlings[usedHandlingSlots] = pHandling
-
-                CALL_FUNCTION memcpy 3 0 (pIndieHandling, pHandling, 0xE0)  // Copy handling
-
-                pHandling = debug_car_ptr + 0x38C // handlingData
-
-                WRITE_MEMORY pHandling 4 pIndieHandling 0 // Replace handling pointer
-
-                indieVehicles[usedHandlingSlots] = debug_car_ptr
-                indieHandlings[usedHandlingSlots] = pIndieHandling
-
-                curHandlingIndex = usedHandlingSlots
-
-                usedHandlingSlots++
-            ELSE
-                i = 0
-                WHILE i < 12
-                    pTmpHandling = indieVehicles[i] + 0x38C // handlingData
-                    READ_MEMORY pTmpHandling 4 0 (pTmpHandling)
-
-                    IF NOT pTmpHandling = indieHandlings[i]
-                        handlingOffset = i * 0x154 // New handling size
-                        pIndieHandling += handlingOffset
-
-                        backupHandlings[i] = pHandling
-
-                        CALL_FUNCTION memset 3 0 (pIndieHandling, 0, 0x154)  // Fill old handling
-                        CALL_FUNCTION memcpy 3 0 (pIndieHandling, pHandling, 0xE0)  // Copy handling
-
-                        pHandling = debug_car_ptr + 0x38C // handlingData
-
-                        WRITE_MEMORY pHandling 4 pIndieHandling 0 // Replace handling pointer
-
-                        indieVehicles[i] = debug_car_ptr
-                        indieHandlings[i] = pIndieHandling
-
-                        curHandlingIndex = i
-
-                        BREAK
-                    ENDIF
-
-                    i++
-                ENDWHILE
-            ENDIF
-        ENDIF
-
-    ENDIF
-
-    TERMINATE_THIS_SCRIPT
-}
