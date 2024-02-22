@@ -20,11 +20,6 @@ MISSION_END
 
     grass_roots_michael_mission:
 
-    IF GET_DYNAMIC_LIBRARY_PROCEDURE ("BindMissionAudio", 0) (BindMissionAudio)
-        CPRINTLN( "GTA V Legacy: [Plugin <> Script Interface] BindMissionAudio collected" )
-    ENDIF
-
-
     CREATE_CHAR PEDTYPE_CIVMALE SPECIAL01 1468.079829 -1650.901636 14.046875 hBarryPed
     SET_CHAR_HEADING hBarryPed 152.380005
 
@@ -56,6 +51,8 @@ MISSION_END
     DISPLAY_RADAR OFF
     DISPLAY_HUD OFF
     CLEAR_HELP
+
+    CLEAR_AREA 1468.043457 -1652.227905 13.046875 500.0 TRUE
 
     DO_FADE 1000 FADE_IN
     WAIT 1000
@@ -300,6 +297,8 @@ MISSION_END
 
     WAIT 2000
 
+    CLEAR_MISSION_AUDIO 1
+
     DELETE_OBJECT hChairObject
     DELETE_OBJECT hTableObject
     UNLOAD_SPECIAL_CHARACTER 1
@@ -406,6 +405,9 @@ MISSION_END
         WAIT 0
     ENDWHILE
 
+    PRINT_WITH_NUMBER_BIG M_PASS 5000 5000 1
+    ADD_SCORE iPlayer 5000
+
     RETURN
 
     grass_roots_michael_failed:
@@ -454,6 +456,8 @@ MISSION_END
 
         SET_PED_DENSITY_MULTIPLIER 1.0
         SET_CAR_DENSITY_MULTIPLIER 1.0
+
+        MISSION_HAS_FINISHED
 
         flag_player_on_mission = FALSE
     RETURN

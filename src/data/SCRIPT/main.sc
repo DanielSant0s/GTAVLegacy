@@ -195,7 +195,6 @@ SET_CHAR_HEADING (hPlayerPed, 9.83518)
 
 flag_player_on_mission = FALSE
 DECLARE_MISSION_FLAG (flag_player_on_mission)
-SET_DEATHARREST_STATE ON
 
 GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, SHIRTABLUE, SHIRTA, 0)
 GIVE_PLAYER_CLOTHES_OUTSIDE_SHOP (iPlayer, PLAYER_FACE, HEAD, 1)
@@ -215,12 +214,11 @@ WAIT 5000
 VAR_INT story_mode
 story_mode = FALSE
 
-WAIT (0)
 LOAD_AND_LAUNCH_MISSION initial.sc
-
 WAIT (0)
+
 IF story_mode = TRUE
-    LAUNCH_MISSION intro.sc
+    LOAD_AND_LAUNCH_MISSION intro.sc
 ELSE
     DO_FADE (1000, FADE_IN)
     DISPLAY_RADAR TRUE
@@ -265,6 +263,7 @@ START_NEW_SCRIPT (rpg_backview)
 START_NEW_SCRIPT (fire_oil_system)
 START_NEW_SCRIPT (submarine)
 START_NEW_SCRIPT (legalize_it_michael)
+START_NEW_SCRIPT (random_events)
 //START_NEW_SCRIPT (SNOW_11)
 
 WAIT (0) // Start our scripts
@@ -488,6 +487,918 @@ VAR_INT num_carmod_instances dogcart1
 
 
 {
+    random_events:
+    LVAR_INT iRand
+
+    random_events_loop:
+        WAIT 100 
+
+        GENERATE_RANDOM_INT_IN_RANGE (0, 100) (iRand)
+
+        IF iRand = 15
+        OR iRand = 50
+        OR iRand = 85
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 718.973694 -1101.235107 19.471481 100.0 100.0 3.0 FALSE
+                CLEO_CALL securicar_assault 0 718.973694 -1101.235107 19.471481 328.988770
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 718.973694 -1101.235107 19.471481 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 621.967651 -829.408081 23.572269 100.0 100.0 3.0 FALSE
+                CLEO_CALL securicar_assault 0 621.967651 -829.408081 23.572269 2.720037
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 621.967651 -829.408081 23.572269 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1649.060791 -1968.489014 23.287500 100.0 100.0 3.0 FALSE
+                CLEO_CALL securicar_assault 0 1649.060791 -1968.489014 23.287500 191.564285
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1649.060791 -1968.489014 23.287500 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 440.155334 -1515.068481 30.371260 100.0 100.0 3.0 FALSE
+                CLEO_CALL securicar_assault 0 440.155334 -1515.068481 30.371260 185.553589
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 440.155334 -1515.068481 30.371260 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1227.666016 -1523.618286 13.546875 100.0 100.0 3.0 FALSE
+                CLEO_CALL wallet_robbery 0 1227.666016 -1523.618286 13.546875 90.432434 1251.456543 -1523.751587 13.554897
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1227.666016 -1523.618286 13.546875 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1631.847534 -1689.786255 13.367046 100.0 100.0 3.0 FALSE
+                CLEO_CALL wallet_robbery 0 1631.847534 -1689.786255 13.367046 358.14 1631.834473 -1695.477295 13.364292
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1631.847534 -1689.786255 13.367046 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1137.094849, -1630.775391, 13.876565 100.0 100.0 3.0 FALSE
+                CLEO_CALL atm_robbery 0 1137.094849, -1630.775391, 13.876565, 174.737030 1142.308838, -1644.272095, 13.945395
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1137.094849, -1630.775391, 13.876565 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1009.123047 -948.001465 42.260448 100.0 100.0 3.0 FALSE
+                CLEO_CALL atm_robbery 0 1009.583862  -929.517822,  42.328125, 8.075090,  1009.123047, -948.001465, 42.260448
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1009.123047 -948.001465 42.260448 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 2396.475098 -1403.695068 24.000000 100.0 100.0 3.0 FALSE
+                CLEO_CALL bike_hijacking_1 0
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 2396.475098 -1403.695068 24.000000 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1861.382690 -1370.008789 13.137326 100.0 100.0 3.0 FALSE
+                CLEO_CALL bike_hijacking_2 0
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1861.382690 -1370.008789 13.137326 110.0 110.0 3.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 125.620537 -1483.763428 17.401913 100.0 100.0 15.0 FALSE
+                CLEO_CALL sport_bike_hijacking_1 0
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 125.620537 -1483.763428 17.401913 110.0 110.0 15.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed -86.535606 -1151.513916 1.755659 100.0 100.0 15.0 FALSE
+                CLEO_CALL car_hijacking_1 0
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed -86.535606 -1151.513916 1.755659 110.0 110.0 15.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+            IF LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1648.484619 -1136.189697 23.643808 100.0 100.0 15.0 FALSE
+                CLEO_CALL car_hijacking_2 0
+                WHILE LOCATE_CHAR_ANY_MEANS_3D hPlayerPed 1648.484619 -1136.189697 23.643808 110.0 110.0 15.0 FALSE
+                    WAIT 0
+                ENDWHILE
+            ENDIF
+
+        ENDIF
+    GOTO random_events_loop
+}
+
+{
+    LVAR_FLOAT x y z h
+    securicar_assault:
+
+    LVAR_INT hSecurityCar hDriverPed hGuardPed hDriverSeq hMoneyPickup iMoneyAmount hcarBlip
+    LVAR_FLOAT v3dCarCoords[3] v3dDetMin[3] v3dDetMax[3] v3dMoneyCoords[3]
+
+    REQUEST_MODEL SECURICA
+    REQUEST_MODEL WMYSGRD
+    REQUEST_MODEL 1550 // CJ_MONEY_BAG
+    REQUEST_MODEL M4
+    
+    WHILE NOT HAS_MODEL_LOADED SECURICA 
+    OR NOT HAS_MODEL_LOADED WMYSGRD
+    OR NOT HAS_MODEL_LOADED M4
+    OR NOT HAS_MODEL_LOADED 1550
+        WAIT 0
+    ENDWHILE
+
+    WHILE IS_POINT_ON_SCREEN x y z 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_CAR SECURICA x y z hSecurityCar
+    SET_CAR_PROOFS hSecurityCar TRUE TRUE TRUE FALSE FALSE
+    SET_CAR_HEADING hSecurityCar h
+    CHANGE_CAR_COLOUR hSecurityCar 1, 86
+
+    CREATE_CHAR PEDTYPE_CIVMALE WMYSGRD 0.0 0.0 0.0 hDriverPed
+    WARP_CHAR_INTO_CAR hDriverPed hSecurityCar
+    CREATE_CHAR PEDTYPE_CIVMALE WMYSGRD 0.0 0.0 0.0 hGuardPed
+    WARP_CHAR_INTO_CAR_AS_PASSENGER hGuardPed hSecurityCar 3
+
+    TASK_CAR_DRIVE_WANDER hDriverPed hSecurityCar 12.0 2
+
+    ADD_BLIP_FOR_CAR (hSecurityCar) (hcarBlip)
+    CHANGE_BLIP_DISPLAY (hcarBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hcarBlip, 0x63C5DAFF)
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CAR_3D hPlayerPed hSecurityCar 100.0 100.0 15.0 FALSE
+        GET_OFFSET_FROM_CAR_IN_WORLD_COORDS hSecurityCar 0.0 0.0 0.0 v3dCarCoords[0] v3dCarCoords[1] v3dCarCoords[2]
+		v3dDetMin[0] = v3dCarCoords[0] - 10.0
+        v3dDetMin[1] = v3dCarCoords[1] - 10.0
+        v3dDetMin[2] = v3dCarCoords[2] - 10.0
+
+		v3dDetMax[0] = v3dCarCoords[0] + 10.0
+		v3dDetMax[1] = v3dCarCoords[1] + 10.0
+		v3dDetMax[2] = v3dCarCoords[2] + 10.0
+
+        IF IS_EXPLOSION_IN_AREA EXPLOSION_GRENADE v3dDetMin[0] v3dDetMin[1] v3dDetMin[2] v3dDetMax[0] v3dDetMax[1] v3dDetMax[2]
+        OR IS_EXPLOSION_IN_AREA EXPLOSION_ROCKET v3dDetMin[0] v3dDetMin[1] v3dDetMin[2] v3dDetMax[0] v3dDetMax[1] v3dDetMax[2]
+        OR IS_EXPLOSION_IN_AREA EXPLOSION_MINE v3dDetMin[0] v3dDetMin[1] v3dDetMin[2] v3dDetMax[0] v3dDetMax[1] v3dDetMax[2]
+        OR IS_EXPLOSION_IN_AREA EXPLOSION_ROCKET_WEAK v3dDetMin[0] v3dDetMin[1] v3dDetMin[2] v3dDetMax[0] v3dDetMax[1] v3dDetMax[2]
+        OR IS_EXPLOSION_IN_AREA EXPLOSION_SMALL v3dDetMin[0] v3dDetMin[1] v3dDetMin[2] v3dDetMax[0] v3dDetMax[1] v3dDetMax[2]
+        OR IS_EXPLOSION_IN_AREA EXPLOSION_TINY v3dDetMin[0] v3dDetMin[1] v3dDetMin[2] v3dDetMax[0] v3dDetMax[1] v3dDetMax[2]
+
+            SET_CAR_CRUISE_SPEED hSecurityCar 0.0
+
+            OPEN_CAR_DOOR hSecurityCar 4
+            OPEN_CAR_DOOR hSecurityCar 5
+
+            TASK_EVERYONE_LEAVE_CAR hSecurityCar
+
+            GIVE_WEAPON_TO_CHAR hDriverPed WEAPONTYPE_M4 99999
+            GIVE_WEAPON_TO_CHAR hGuardPed WEAPONTYPE_M4 99999
+
+            SET_CHAR_SHOOT_RATE hDriverPed 70
+            SET_CHAR_SHOOT_RATE hGuardPed 70
+
+            TASK_KILL_CHAR_ON_FOOT hDriverPed hPlayerPed
+            TASK_KILL_CHAR_ON_FOOT hGuardPed hPlayerPed
+
+            GET_OFFSET_FROM_CAR_IN_WORLD_COORDS hSecurityCar 0.0 -4.0 0.0 v3dMoneyCoords[0] v3dMoneyCoords[1] v3dMoneyCoords[2]
+
+            CREATE_PICKUP 1550 PICKUP_ONCE v3dMoneyCoords[0] v3dMoneyCoords[1] v3dMoneyCoords[2] (hMoneyPickup)
+
+            WHILE NOT HAS_PICKUP_BEEN_COLLECTED hMoneyPickup
+                IF NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPlayerPed hSecurityCar 50.0 50.0 15.0 FALSE
+                    GOTO securicar_assault_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            GENERATE_RANDOM_INT_IN_RANGE 3000 8000 (iMoneyAmount)
+            ADD_SCORE 0 iMoneyAmount
+
+            WHILE NOT IS_CHAR_DEAD hDriverPed
+            OR NOT IS_CHAR_DEAD hGuardPed
+                IF NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPlayerPed hSecurityCar 50.0 50.0 15.0 FALSE
+                    GOTO securicar_assault_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            GOTO securicar_assault_free_assets
+        ENDIF
+
+        WAIT 0
+    ENDWHILE
+
+securicar_assault_free_assets:
+    IF DOES_BLIP_EXIST hcarBlip
+        REMOVE_BLIP hcarBlip
+    ENDIF
+
+    MARK_CHAR_AS_NO_LONGER_NEEDED hDriverPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hGuardPed
+    MARK_CAR_AS_NO_LONGER_NEEDED hSecurityCar
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED 1550
+    MARK_MODEL_AS_NO_LONGER_NEEDED WMYSGRD
+    MARK_MODEL_AS_NO_LONGER_NEEDED M4
+    MARK_MODEL_AS_NO_LONGER_NEEDED SECURICA
+
+    CLEO_RETURN 0
+}
+
+{
+    LVAR_FLoAT x1 y1 z1 h1 x2 y2 z2
+    wallet_robbery:
+
+    LVAR_INT hPed hThief hThiefBlip hMoneyPickup hPedBlip
+    LVAR_FLOAT v3dThiefCoords[3]
+
+    WHILE IS_POINT_ON_SCREEN x1 y1 z1 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_RANDOM_CHAR (x1 y1 z1) (hPed)
+    SET_CHAR_HEADING (hPed, h1)
+    TASK_WANDER_STANDARD hPed
+
+    CREATE_RANDOM_CHAR (x2 y2 z2) (hThief)
+    TASK_GOTO_CHAR hThief hPed -1 1.5
+
+    WHILE NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hThief hPed 1.5 1.5 1.5 FALSE,
+        WAIT 0
+    ENDWHILE
+
+    TASK_KILL_CHAR_ON_FOOT_TIMED hThief hPed 2500
+
+    TASK_TURN_CHAR_TO_FACE_CHAR hPed hThief
+
+    WAIT 500
+
+    TASK_PLAY_ANIM hPed "gas_cwr" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    WAIT 2500
+
+    TASK_SMART_FLEE_CHAR hThief hPed 100.0 -1
+
+    ADD_BLIP_FOR_CHAR (hThief) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThief hPed 100.0 100.0 3.0 FALSE
+        IF IS_CHAR_DEAD hThief
+        AND HAS_CHAR_BEEN_DAMAGED_BY_CHAR hThief hPlayerPed
+            REMOVE_BLIP hThiefBlip
+
+            GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS (hThief, 0.0, -1.0, 0.0) (v3dThiefCoords[0], v3dThiefCoords[1], v3dThiefCoords[2])
+            CREATE_MONEY_PICKUP (v3dThiefCoords[0], v3dThiefCoords[1], v3dThiefCoords[2], 5000, FALSE) (hMoneyPickup)
+
+            WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                WAIT 0
+                IF HAS_PICKUP_BEEN_COLLECTED hMoneyPickup
+                    PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+
+                    ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+                    CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+                    CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+                    WHILE NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 1.5 1.5 3.0 FALSE
+                        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                            GOTO robbery_1_free_assets
+                        ENDIF
+                        WAIT 0
+                    ENDWHILE
+                    ADD_SCORE 0 -4500
+                    GOTO robbery_1_free_assets
+                ENDIF
+            ENDWHILE
+
+            GOTO robbery_1_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+
+robbery_1_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThief
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    IF DOES_PICKUP_EXIST hMoneyPickup
+        REMOVE_PICKUP hMoneyPickup
+    ENDIF
+
+    CLEO_RETURN 0
+
+}
+
+{
+    LVAR_FLOAT x1 y1 z1 h1 x2 y2 z2
+    atm_robbery:
+    
+    LVAR_INT hPed hThief hThiefBlip hMoneyPickup hPedBlip
+    LVAR_FLOAT v3dThiefCoords[3]
+
+    WHILE IS_POINT_ON_SCREEN x1 y1 z1 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_RANDOM_CHAR (x1 y1 z1) (hPed)
+    SET_CHAR_HEADING (hPed, h1)
+    TASK_PLAY_ANIM hPed "ATM" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    CREATE_RANDOM_CHAR (x2 y2 z2) (hThief)
+    TASK_GOTO_CHAR hThief hPed -1 1.5
+
+    WHILE NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hThief hPed 1.5 1.5 1.5 FALSE,
+        WAIT 0
+    ENDWHILE
+
+    TASK_KILL_CHAR_ON_FOOT_TIMED hThief hPed 2500
+
+    TASK_TURN_CHAR_TO_FACE_CHAR hPed hThief
+
+    WAIT 500
+
+    TASK_PLAY_ANIM hPed "gas_cwr" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    WAIT 2500
+
+    TASK_SMART_FLEE_CHAR hThief hPed 100.0 -1
+
+    ADD_BLIP_FOR_CHAR (hThief) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThief hPed 100.0 100.0 3.0 FALSE
+        IF IS_CHAR_DEAD hThief
+        AND HAS_CHAR_BEEN_DAMAGED_BY_CHAR hThief hPlayerPed
+            REMOVE_BLIP hThiefBlip
+
+            GET_OFFSET_FROM_CHAR_IN_WORLD_COORDS (hThief, 0.0, -1.0, 0.0) (v3dThiefCoords[0], v3dThiefCoords[1], v3dThiefCoords[2])
+            CREATE_MONEY_PICKUP (v3dThiefCoords[0], v3dThiefCoords[1], v3dThiefCoords[2], 5000, FALSE) (hMoneyPickup)
+
+            WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                WAIT 0
+                IF HAS_PICKUP_BEEN_COLLECTED hMoneyPickup
+                    PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+
+                    ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+                    CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+                    CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+                    WHILE NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 1.5 1.5 3.0 FALSE
+                        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                            GOTO atm_robbery_1_free_assets
+                        ENDIF
+                        WAIT 0
+                    ENDWHILE
+                    ADD_SCORE 0 -4500
+                    GOTO atm_robbery_1_free_assets
+                ENDIF
+            ENDWHILE
+
+            GOTO atm_robbery_1_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+
+atm_robbery_1_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThief
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    IF DOES_PICKUP_EXIST hMoneyPickup
+        REMOVE_PICKUP hMoneyPickup
+    ENDIF
+
+    CLEO_RETURN 0
+
+}
+
+{
+    bike_hijacking_1:
+    LVAR_INT hBike hThiefPed hPed hThiefBlip hPedBlip
+
+    REQUEST_MODEL BIKE
+
+    WHILE NOT HAS_MODEL_LOADED BIKE
+        WAIT 0
+    ENDWHILE
+
+    WHILE IS_POINT_ON_SCREEN 2400.548340 -1398.222534 24.000000 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_CAR BIKE 2400.548340 -1398.222534 24.000000 (hBike)
+
+    CREATE_RANDOM_CHAR 2402.947998 -1402.807007 24.034048 (hPed)
+    SET_CHAR_HEADING hPed 32.439930
+
+    CREATE_RANDOM_CHAR 2398.609131 -1400.452271 24.000000 hThiefPed
+    SET_CHAR_HEADING hThiefPed 322.855896
+
+    TASK_PLAY_ANIM hPed "fucku" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    TASK_ENTER_CAR_AS_DRIVER hThiefPed hBike -1
+
+    WHILE NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+        WAIT 0
+    ENDWHILE
+
+    ADD_BLIP_FOR_CHAR (hThiefPed) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    TASK_GOTO_CHAR hPed hThiefPed -1 1.5
+
+    TASK_CAR_DRIVE_WANDER hThiefPed hBike 10.0 2
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThiefPed hPed 100.0 100.0 3.0 FALSE
+        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+            GOTO bike_hijacking_1_free_assets
+        ENDIF
+
+        IF IS_CHAR_DEAD hThiefPed
+        AND NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+            PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+            REMOVE_BLIP hThiefBlip
+
+            ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+            CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+            CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+            CLEAR_CHAR_TASKS hPed 
+
+            TASK_GOTO_CAR hPed hBike -1 2.0
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPed hBike 2.0 2.0 2.0 FALSE
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                    GOTO bike_hijacking_1_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_ENTER_CAR_AS_DRIVER hPed hBike -1
+
+            WHILE NOT IS_CHAR_SITTING_IN_CAR hPed hBike
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                    GOTO bike_hijacking_1_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_CAR_DRIVE_WANDER hPed hBike 10.0 2
+
+            ADD_SCORE 0 60000
+
+            GOTO bike_hijacking_1_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+bike_hijacking_1_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThiefPed
+    MARK_CAR_AS_NO_LONGER_NEEDED hBike
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED BIKE
+    
+    CLEO_RETURN 0
+}
+
+{
+    bike_hijacking_2:
+    LVAR_INT hBike hThiefPed hPed hThiefBlip hPedBlip
+
+    REQUEST_MODEL BIKE
+
+    WHILE NOT HAS_MODEL_LOADED BIKE
+        WAIT 0
+    ENDWHILE
+
+    WHILE IS_POINT_ON_SCREEN 1861.382690 -1370.008789 13.137326 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_CAR BIKE 1861.382690 -1370.008789 13.137326 (hBike)
+
+    CREATE_RANDOM_CHAR 1863.230713 -1375.315186 13.481759 (hPed)
+    SET_CHAR_HEADING hPed 16.871861
+
+    CREATE_RANDOM_CHAR 1858.280762 -1371.886963 13.562500 hThiefPed
+    SET_CHAR_HEADING hThiefPed 322.855896
+
+    TASK_PLAY_ANIM hPed "fucku" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    TASK_ENTER_CAR_AS_DRIVER hThiefPed hBike -1
+
+    WHILE NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+        WAIT 0
+    ENDWHILE
+
+    ADD_BLIP_FOR_CHAR (hThiefPed) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    TASK_GOTO_CHAR hPed hThiefPed -1 1.5
+
+    TASK_CAR_DRIVE_WANDER hThiefPed hBike 10.0 2
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThiefPed hPed 100.0 100.0 3.0 FALSE
+        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+            GOTO bike_hijacking_2_free_assets
+        ENDIF
+
+        IF IS_CHAR_DEAD hThiefPed
+        AND NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+            PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+            REMOVE_BLIP hThiefBlip
+
+            ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+            CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+            CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+            CLEAR_CHAR_TASKS hPed 
+
+            TASK_GOTO_CAR hPed hBike -1 2.0
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPed hBike 2.0 2.0 2.0 FALSE
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                    GOTO bike_hijacking_2_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_ENTER_CAR_AS_DRIVER hPed hBike -1
+
+            WHILE NOT IS_CHAR_SITTING_IN_CAR hPed hBike
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 3.0 FALSE
+                    GOTO bike_hijacking_2_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_CAR_DRIVE_WANDER hPed hBike 10.0 2
+
+            GOTO bike_hijacking_2_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+bike_hijacking_2_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThiefPed
+    MARK_CAR_AS_NO_LONGER_NEEDED hBike
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED BIKE
+    
+    CLEO_RETURN 0
+}
+
+{
+    sport_bike_hijacking_1:
+    LVAR_INT hBike hThiefPed hPed hThiefBlip hPedBlip
+
+    REQUEST_MODEL PCJ600
+
+    WHILE NOT HAS_MODEL_LOADED PCJ600
+        WAIT 0
+    ENDWHILE
+
+    WHILE IS_POINT_ON_SCREEN 125.620537 -1483.763428 17.401913 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_CAR PCJ600 125.620537 -1483.763428 17.401913 (hBike)
+    SET_CAR_HEADING hBike 70.685844
+
+    CREATE_RANDOM_CHAR 131.119781 -1490.121948 18.731892 (hPed)
+    SET_CHAR_HEADING hPed 16.871861
+
+    CREATE_RANDOM_CHAR 126.638214 -1474.845703 20.021196 hThiefPed
+    SET_CHAR_HEADING hThiefPed 148.106201
+
+    TASK_PLAY_ANIM hPed "fucku" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    TASK_ENTER_CAR_AS_DRIVER hThiefPed hBike -1
+
+    WHILE NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+        WAIT 0
+    ENDWHILE
+
+    ADD_BLIP_FOR_CHAR (hThiefPed) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    TASK_GOTO_CHAR hPed hThiefPed -1 1.5
+
+    TASK_CAR_DRIVE_WANDER hThiefPed hBike 20.0 2
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThiefPed hPed 100.0 100.0 15.0 FALSE
+        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+            GOTO sport_bike_hijacking_1_free_assets
+        ENDIF
+
+        IF IS_CHAR_DEAD hThiefPed
+        AND NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+            PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+            REMOVE_BLIP hThiefBlip
+
+            ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+            CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+            CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+            CLEAR_CHAR_TASKS hPed 
+
+            TASK_GOTO_CAR hPed hBike -1 2.0
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPed hBike 2.0 2.0 2.0 FALSE
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+                    GOTO sport_bike_hijacking_1_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_ENTER_CAR_AS_DRIVER hPed hBike -1
+
+            WHILE NOT IS_CHAR_SITTING_IN_CAR hPed hBike
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+                    GOTO sport_bike_hijacking_1_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_CAR_DRIVE_WANDER hPed hBike 20.0 2
+
+            GOTO sport_bike_hijacking_1_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+sport_bike_hijacking_1_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThiefPed
+    MARK_CAR_AS_NO_LONGER_NEEDED hBike
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED PCJ600
+    
+    CLEO_RETURN 0
+}
+
+{
+    car_hijacking_1:
+    LVAR_INT hBike hThiefPed hPed hThiefBlip hPedBlip
+
+    REQUEST_MODEL BLADE
+
+    WHILE NOT HAS_MODEL_LOADED BLADE
+        WAIT 0
+    ENDWHILE
+
+    WHILE IS_POINT_ON_SCREEN -86.535606 -1151.513916 1.755659 5.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_CAR BLADE -92.713806 -1150.437500 1.732354 (hBike)
+    CHANGE_CAR_COLOUR hBike 126, 0
+    SET_CAR_HEADING hBike 70.685844
+
+    CREATE_RANDOM_CHAR -80.266090 -1169.084961 2.185834 (hPed)
+    SET_CHAR_HEADING hPed 28.503769
+
+    CREATE_RANDOM_CHAR -93.822495 -1160.265869 2.140777 hThiefPed
+    SET_CHAR_HEADING hThiefPed 314.266602
+
+    
+
+    TASK_ENTER_CAR_AS_DRIVER hThiefPed hBike -1
+
+    TASK_PLAY_ANIM hPed "fucku" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    WHILE NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+        WAIT 0
+    ENDWHILE
+    
+
+    ADD_BLIP_FOR_CHAR (hThiefPed) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    TASK_GOTO_CHAR hPed hThiefPed -1 1.5
+
+    TASK_CAR_DRIVE_WANDER hThiefPed hBike 20.0 2
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThiefPed hPed 100.0 100.0 15.0 FALSE
+        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+            GOTO car_hijacking_1_free_assets
+        ENDIF
+
+        IF IS_CHAR_DEAD hThiefPed
+        AND NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+            PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+            REMOVE_BLIP hThiefBlip
+
+            ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+            CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+            CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+            CLEAR_CHAR_TASKS hPed 
+
+            TASK_GOTO_CAR hPed hBike -1 2.0
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPed hBike 2.0 2.0 2.0 FALSE
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+                    GOTO car_hijacking_1_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_ENTER_CAR_AS_DRIVER hPed hBike -1
+
+            WHILE NOT IS_CHAR_SITTING_IN_CAR hPed hBike
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+                    GOTO car_hijacking_1_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_CAR_DRIVE_WANDER hPed hBike 20.0 2
+
+            GOTO car_hijacking_1_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+car_hijacking_1_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThiefPed
+    MARK_CAR_AS_NO_LONGER_NEEDED hBike
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED BLADE
+    
+    CLEO_RETURN 0
+}
+
+
+{
+    car_hijacking_2:
+    LVAR_INT hBike hThiefPed hPed hThiefBlip hPedBlip
+    REQUEST_MODEL HUNTLEY
+
+    WHILE NOT HAS_MODEL_LOADED HUNTLEY
+        WAIT 0
+    ENDWHILE
+
+    WHILE IS_POINT_ON_SCREEN 1648.484619 -1136.189697 23.643808 10.0
+        WAIT 0
+    ENDWHILE
+
+    CREATE_CAR HUNTLEY 1648.484619 -1136.189697 23.643808 (hBike)
+    CHANGE_CAR_COLOUR hBike 80, 0
+    SET_CAR_HEADING hBike 180.0
+
+    CREATE_RANDOM_CHAR 1630.815186 -1140.996826 23.906250 (hPed)
+    SET_CHAR_HEADING hPed 285.244415
+
+    CREATE_RANDOM_CHAR 1654.015869 -1143.408569 24.072096 hThiefPed
+    SET_CHAR_HEADING hThiefPed 84.082474
+
+    
+
+    TASK_ENTER_CAR_AS_DRIVER hThiefPed hBike -1
+
+    TASK_PLAY_ANIM hPed "fucku" "PED" 4.0 FALSE FALSE FALSE FALSE -1 
+
+    WHILE NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+        WAIT 0
+    ENDWHILE
+    
+
+    ADD_BLIP_FOR_CHAR (hThiefPed) (hThiefBlip)
+    CHANGE_BLIP_DISPLAY (hThiefBlip, BLIP_ONLY)
+    CHANGE_BLIP_COLOUR (hThiefBlip, 0xFF0000FF)
+
+    TASK_GOTO_CHAR hPed hThiefPed -1 1.5
+
+    TASK_CAR_DRIVE_WANDER hThiefPed hBike 20.0 2
+
+    WHILE LOCATE_CHAR_ANY_MEANS_CHAR_3D hThiefPed hPed 100.0 100.0 15.0 FALSE
+        IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+            GOTO car_hijacking_2_free_assets
+        ENDIF
+
+        IF IS_CHAR_DEAD hThiefPed
+        AND NOT IS_CHAR_SITTING_IN_CAR hThiefPed hBike
+            PRINT_HELP_STRING "If you retrieve a stolen item, you can choose to keep it or return it for a reward."
+            REMOVE_BLIP hThiefBlip
+
+            ADD_BLIP_FOR_CHAR (hPed) (hPedBlip)
+            CHANGE_BLIP_DISPLAY (hPedBlip, BLIP_ONLY)
+            CHANGE_BLIP_COLOUR (hPedBlip, 0x63C5DAFF)
+
+            CLEAR_CHAR_TASKS hPed 
+
+            TASK_GOTO_CAR hPed hBike -1 2.0
+
+            WHILE NOT LOCATE_CHAR_ANY_MEANS_CAR_3D hPed hBike 2.0 2.0 2.0 FALSE
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+                    GOTO car_hijacking_2_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            TASK_ENTER_CAR_AS_DRIVER hPed hBike -1
+
+            WHILE NOT IS_CHAR_SITTING_IN_CAR hPed hBike
+                IF NOT LOCATE_CHAR_ANY_MEANS_CHAR_3D hPlayerPed hPed 100.0 100.0 15.0 FALSE
+                    GOTO car_hijacking_2_free_assets
+                ENDIF
+                WAIT 0
+            ENDWHILE
+
+            ADD_SCORE 0 60000
+
+            TASK_CAR_DRIVE_WANDER hPed hBike 20.0 2
+
+            GOTO car_hijacking_2_free_assets
+        ENDIF
+        WAIT 0
+    ENDWHILE
+
+car_hijacking_2_free_assets:
+    MARK_CHAR_AS_NO_LONGER_NEEDED hPed
+    MARK_CHAR_AS_NO_LONGER_NEEDED hThiefPed
+    MARK_CAR_AS_NO_LONGER_NEEDED hBike
+
+    IF DOES_BLIP_EXIST hPedBlip
+        REMOVE_BLIP hPedBlip
+    ENDIF
+
+    IF DOES_BLIP_EXIST hThiefBlip
+        REMOVE_BLIP hThiefBlip
+    ENDIF
+
+    MARK_MODEL_AS_NO_LONGER_NEEDED HUNTLEY 
+    
+    CLEO_RETURN 0
+}
+
+
+
+
+{
     // Checking that the ped has a weapon
     LVAR_INT pPed i weaponSlot
     HasPedAnyWeapon: // i - ped pointer
@@ -624,8 +1535,6 @@ VAR_INT num_carmod_instances dogcart1
             REQUEST_MODEL 1810 // Chair
             REQUEST_MODEL 3044 // Cigar
             REQUEST_ANIMATION "GANGS" // Smoke anim
-            REQUEST_ANIMATION "BOMBER" 
-            //REQUEST_MODEL MALE01 // Ped
             LOAD_SPECIAL_CHARACTER 1 TRUTH
 
             WHILE NOT HAS_MODEL_LOADED 2115
@@ -633,7 +1542,6 @@ VAR_INT num_carmod_instances dogcart1
             OR NOT HAS_MODEL_LOADED 3044
             OR NOT HAS_SPECIAL_CHARACTER_LOADED 1
             OR NOT HAS_ANIMATION_LOADED "GANGS"
-            OR NOT HAS_ANIMATION_LOADED "BOMBER"
                 WAIT 0
             ENDWHILE
 
@@ -670,6 +1578,23 @@ VAR_INT num_carmod_instances dogcart1
                     ENDWHILE
                 ENDIF
             ENDWHILE
+
+            IF DOES_CHAR_EXIST hBarryPed
+                DELETE_CHAR hBarryPed
+            ENDIF
+
+            IF DOES_OBJECT_EXIST hChairObject
+                DELETE_OBJECT hChairObject
+            ENDIF
+
+            IF DOES_OBJECT_EXIST hTableObject
+                DELETE_OBJECT hTableObject
+            ENDIF
+
+            IF DOES_OBJECT_EXIST hCigarObject
+                DELETE_OBJECT hCigarObject
+            ENDIF
+
         ENDIF
     GOTO legalize_it_michael_main_loop
 }
@@ -4731,7 +5656,7 @@ VAR_INT beggar_camp_status[6]
     taxi:
     SCRIPT_NAME TAXI
     VAR_FLOAT temp_float[4]
-    LVAR_INT temp_driver temp_car car_model taxis[5] n i
+    LVAR_INT temp_driver temp_car car_model taxis[5] n i hTaxiMenu
     LVAR_FLOAT x1 y1 x2 y2 z1 z2 scplayer_x scplayer_y
 
     CONST_INT CRadar_ms_RadarTrace 0x701F00
@@ -4792,16 +5717,19 @@ VAR_INT beggar_camp_status[6]
                                     ENDIF
                                     //PRINT_FORMATTED_NOW "esta perto" 1 
                                     IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                    AND is_drawing = FALSE
+                                        is_drawing = TRUE
                                         TIMERA = 0
                                         TASK_CAR_MISSION temp_driver taxis[n] -1 1 0f 0
                                         WHILE IS_BUTTON_PRESSED PAD1 TRIANGLE
                                             WAIT 0
                                             IF TIMERA > 1500
+                                                is_drawing = FALSE
                                                 BREAK
                                             ENDIF
                                         ENDWHILE
                                         IF TIMERA < 1500
-                                            SET_PLAYER_CONTROL 0 0
+                                            SET_PLAYER_CONTROL 0 FALSE
                                             GET_OFFSET_FROM_CAR_IN_WORLD_COORDS taxis[n] -1f 0f 0f x1 y1 z1  
                                             GET_OFFSET_FROM_CAR_IN_WORLD_COORDS taxis[n] 1f 0f 0f x2 y2 z2
                                             GET_CHAR_COORDINATES hPlayerPed scplayer_x scplayer_y z1
@@ -4813,22 +5741,71 @@ VAR_INT beggar_camp_status[6]
                                                 TASK_ENTER_CAR_AS_PASSENGER hPlayerPed taxis[n] 10000 2
                                             ENDIF
                                             WHILE NOT IS_CHAR_IN_ANY_CAR hPlayerPed
+                                                IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                                    WHILE IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                                        WAIT 0
+                                                    ENDWHILE
+                                                    TASK_CAR_MISSION temp_driver taxis[n] -1 0 25f 0
+                                                    TASK_CAR_DRIVE_WANDER temp_driver taxis[n] 25f 0
+
+                                                    MARK_CAR_AS_NO_LONGER_NEEDED taxis[n]
+                                                    MARK_CHAR_AS_NO_LONGER_NEEDED temp_driver
+
+                                                    CLEAR_CHAR_TASKS_IMMEDIATELY hPlayerPed
+                                                    SET_PLAYER_CONTROL 0 TRUE
+                                                    is_drawing = FALSE
+
+                                                    WAIT 250
+
+                                                    GOTO taxi_loop
+                                                ENDIF
                                                 WAIT 0
                                             ENDWHILE
                                             // 067C: attach_camera_to_char hPlayerPed offset 0.0 -0.17 0.7 rotation 0.0 1.5 0.4 tilt 0.0 switchstyle 2
                                             ATTACH_CAMERA_TO_CHAR hPlayerPed 0.0 -0.17 0.7 , -0.5 1.5 0.4 0.0 2
                                             TASK_LOOK_AT_CHAR temp_driver hPlayerPed -1
-                                            menu_flags = 0
-                                            STREAM_SCRIPT MODMENU
-                                            LOAD_ALL_MODELS_NOW
-                                            START_NEW_STREAMED_SCRIPT MODMENU 1  // Tip: You can send values just like START_NEW_SCRIPT
-                                            WHILE menu_flags = 0
-                                            OR IS_BUTTON_PRESSED PAD1 CROSS
+
+                                            CREATE_MENU TAXI 50f 50f 300f 1 TRUE TRUE 0 (hTaxiMenu)
+                                            SET_MENU_COLUMN hTaxiMenu 0 DUMMY HOME AIRP WAYP DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY DUMMY
+                                            SET_MENU_COLUMN_ORIENTATION hTaxiMenu 0 1
+
+                                            WHILE IS_THING_GREATER_THAN_THING TIMERA -1
+                                                IF IS_BUTTON_PRESSED PAD1 CROSS
+                                                    WHILE IS_BUTTON_PRESSED PAD1 CROSS
+                                                        WAIT 0
+                                                    ENDWHILE
+                                                    GET_MENU_ITEM_SELECTED (hTaxiMenu) (menu_flags)
+                                                    is_drawing = FALSE
+                                                    BREAK
+                                                ENDIF
+                                                IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                                    WHILE IS_BUTTON_PRESSED PAD1 TRIANGLE
+                                                        WAIT 0
+                                                    ENDWHILE
+                                                    is_drawing = FALSE
+                                                    TASK_LEAVE_ANY_CAR hPlayerPed
+                                                    
+                                                    DELETE_MENU hTaxiMenu
+
+                                                    WAIT 1000
+
+                                                    SET_PLAYER_CONTROL 0 TRUE
+                                                    
+                                                    TASK_CAR_MISSION temp_driver taxis[n] -1 0 25f 0
+                                                    TASK_CAR_DRIVE_WANDER temp_driver taxis[n] 25f 0
+
+                                                    MARK_CAR_AS_NO_LONGER_NEEDED taxis[n]
+                                                    MARK_CHAR_AS_NO_LONGER_NEEDED temp_driver
+
+                                                    GOTO taxi_loop
+                                                ENDIF
                                                 WAIT 0
                                             ENDWHILE
-                                            //switch_cur_char = PLAYER_MICHAEL
+
+                                            DELETE_MENU hTaxiMenu
+
                                             SWITCH menu_flags
-                                                CASE 1 // HOME
+                                                CASE 0 // HOME
                                                     IF switch_cur_char = PLAYER_FRANKLIN
                                                         x1 = 1684.828
                                                         y1 = -2108.3677
@@ -4845,12 +5822,12 @@ VAR_INT beggar_camp_status[6]
                                                         z1 = 32f
                                                     ENDIF
                                                 BREAK
-                                                CASE 2 // AIRP
+                                                CASE 1 // AIRP
                                                     x1 = 1682.5110 
                                                     y1 = -2251.3920 
                                                     z1 = 13f
                                                 BREAK
-                                                CASE 3 // WAYPOINT
+                                                CASE 2 // WAYPOINT
                                                     GET_TARGET_BLIP_COORDS x1 y1 z1
                                                 BREAK
                                             ENDSWITCH
@@ -6733,10 +7710,3 @@ fade_for_mission:
         CLEAR_CHAR_TASKS hPlayerPed
     ENDIF
 RETURN
-
-// -------------------------------------------------- Independent Vehicle Handlings global vars -------------------------------------------------- //
-
-VAR_INT indieVehicles[12] indieHandlings[12] backupHandlings[12] usedHandlingSlots curHandlingIndex
-usedHandlingSlots = 0
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------- //
