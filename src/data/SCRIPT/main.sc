@@ -73,11 +73,6 @@ DUMP // Size: 64, 16 handlers with 4 byte size
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 ENDDUMP
 
-lpUnknownPtr:
-DUMP
-    00000000 00000000 00000000
-ENDDUMP
-
 start:
 // Basic Init
 SCRIPT_NAME main
@@ -97,7 +92,7 @@ VAR_FLOAT switch_ability[3]
 
 VAR_INT life_pickup gas_pickup
 
-VAR_INT pTextBuffer pUnknownPtr
+VAR_INT pTextBuffer
 
 DO_FADE 0 FADE_OUT
 DISPLAY_RADAR FALSE
@@ -107,7 +102,6 @@ DISPLAY_CAR_NAMES FALSE
 CLEAR_HELP
 
 GET_LABEL_POINTER (lpTextBuffer) (pTextBuffer)
-GET_LABEL_POINTER (lpUnknownPtr) (pUnknownPtr)
 
 VAR_INT pPeopleSquareGenObjects pPeopleSquareGenPeds pPeopleSquareGenTimers pPeopleSquareGenMaxTimes
 GET_LABEL_POINTER (lpPeopleSquareGenObjects) (pPeopleSquareGenObjects)
