@@ -1,0 +1,5 @@
+ELEGY 1500.0 3500.0 2.2 0.0 0.3 -0.15 75 0.65 0.9 0.5 5 200.0 28.0 5.0 R P 8.0 0.5 0 35.0 1.0 0.20 0.0 0.32 -0.10 0.6 0.3 0.25 0.60 35000 40002800 4000001 1 1 1
+
+562, elegy, elegy, car, ELEGY, ELEGY, null, richfamily, 7, 0, 0, -1, 0.76, 0.76, 1
+
+elegy, exh_a_l, exh_c_l, fbmp_a_l, fbmp_c_l, nto_b_s, nto_b_tw, rbmp_a_l, rbmp_c_l, rf_a_l, rf_c_l, spl_a_l_b, spl_c_l_b, wg_l_a_l, wg_l_c_l

@@ -1,1 +1,0 @@
-413, 	pony,		pony,		car, 		PONY, 		PONY, 		van,	worker,		10, 	0,	0,		-1, 0.92, 0.92,		-1

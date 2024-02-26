@@ -2738,13 +2738,9 @@ VAR_INT beggar_camp_status[6]
 
     p = pVeh + 0x5D0 // mSubClass
     READ_MEMORY p 4 FALSE (i)
-    IF i = 9 // BIKE
-    OR i = 10 //BMX
-        pEntity = pVeh
-        x = CARX
-        y = CARY
-        z = CARZ
-        GOSUB SetEntityPosSimple
+    IF i = VEHICLE_SUBCLASS_BIKE // BIKE
+    OR i = VEHICLE_SUBCLASS_BMX //BMX
+        CLEO_CALL SetEntityPosSimple 0 (pVeh CARX CARY CARZ)
     ENDIF
 
     SET_CAR_HEADING hVeh CARA
@@ -2786,6 +2782,12 @@ VAR_INT beggar_camp_status[6]
     SET_PLAYER_CONTROL 0 ON
 
     RETURN
+}
+
+{
+    LVAR_INT pEntity // In
+    LVAR_FLOAT x y z // In
+    LVAR_INT pMatrix pCoord
 
     SetEntityPosSimple:
     pMatrix = pEntity + 0x14
@@ -2796,8 +2798,7 @@ VAR_INT beggar_camp_status[6]
     WRITE_MEMORY pCoord 4 (y) FALSE
     pCoord += 0x4 // y
     WRITE_MEMORY pCoord 4 (z) FALSE
-    RETURN
-
+    CLEO_RETURN 0 ()
 }
 
 /*
@@ -3553,7 +3554,7 @@ VAR_INT beggar_camp_status[6]
             CASE 1
                 selected = 0
                 old_selected = -1
-                SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER TOPFUN BANDITO RANCHER RANCHER DUMMY DUMMY
+                SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER ELEGANT BANDITO RANCHER RANCHER DUMMY DUMMY
                 SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
                 GOTO cars_loop
                 BREAK
@@ -3650,7 +3651,7 @@ VAR_INT beggar_camp_status[6]
                 veh_model = FELTZER
                 BREAK
             CASE 6
-                veh_model = TOPFUN
+                veh_model = ELEGANT
                 BREAK
             CASE 7
                 veh_model = BANDITO
@@ -3915,7 +3916,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
         selected = 0
         old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS WALTON HOTRINA MAJESTI SANDKIN CHEETAH ZR350 ELEGY COPCARL TRACTOR YOSEMIT DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS WALTON HOTRINA MAJESTI SANDKIN CHEETAH ZR350 ELEGY BRAVURA SWEEPER URANUS DUMMY DUMMY
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars5_loop
     ENDIF
@@ -3950,13 +3951,13 @@ VAR_INT beggar_camp_status[6]
                 veh_model = ELEGY
                 BREAK
             CASE 7
-                veh_model = COPCARLA
+                veh_model = BRAVURA
                 BREAK
             CASE 8
-                veh_model = RCGOBLIN
+                veh_model = SWEEPER
                 BREAK
             CASE 9
-                veh_model = YOSEMITE
+                veh_model = URANUS
                 BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
@@ -3988,8 +3989,84 @@ VAR_INT beggar_camp_status[6]
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars4_loop
     ENDIF
+    IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
+        selected = 0
+        old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS TOWTRUC PREVION FCR900 FORTUNE SULTAN NEBULA SUNRISE CADRONA SWEEPER URANUS DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
+        GOTO cars6_loop
+    ENDIF
     old_selected = selected
     GOTO cars5_loop
+
+    cars6_loop:
+    WAIT 0
+    GET_MENU_ITEM_SELECTED hCurrMenu (selected)
+    
+    IF NOT old_selected = selected
+        SWITCH selected
+            CASE 0
+                veh_model = TOWTRUCK
+                BREAK
+            CASE 1
+                veh_model = PREVION
+                BREAK
+            CASE 2
+                veh_model = FCR900
+                BREAK
+            CASE 3
+                veh_model = FORTUNE
+                BREAK
+            CASE 4
+                veh_model = SULTAN
+                BREAK
+            CASE 5
+                veh_model = NEBULA
+                BREAK
+            CASE 6
+                veh_model = SUNRISE
+                BREAK
+            CASE 7
+                veh_model = CADRONA
+                BREAK
+            CASE 8
+                veh_model = SWEEPER
+                BREAK
+            CASE 9
+                veh_model = URANUS
+                BREAK
+        ENDSWITCH
+        REQUEST_MODEL veh_model
+        WHILE NOT HAS_MODEL_LOADED veh_model
+            WAIT 0
+        ENDWHILE
+        CREATE_CAR veh_model px py pz vehicle
+        SET_CAR_HEADING vehicle pa
+        MARK_MODEL_AS_NO_LONGER_NEEDED veh_model
+        MARK_CAR_AS_NO_LONGER_NEEDED vehicle
+    ENDIF
+    IF IS_BUTTON_PRESSED PAD1 SQUARE
+        WRITE_MEMORY (pAllowRadioWheelDrawing, 1, 1 TRUE)
+        WARP_CHAR_INTO_CAR hPlayerPed vehicle
+        SET_PLAYER_CONTROL 0 1
+        is_drawing = 0
+        DELETE_MENU hCurrMenu
+        GOTO menu_init
+    ENDIF
+    IF IS_BUTTON_PRESSED PAD1 TRIANGLE
+        selected = 0
+        old_selected = -1
+        GOTO main_menu_loop
+    ENDIF
+    IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
+        selected = 0
+        old_selected = -1
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS WALTON HOTRINA MAJESTI SANDKIN CHEETAH ZR350 ELEGY BRAVURA SWEEPER URANUS DUMMY DUMMY
+        SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
+        GOTO cars5_loop
+    ENDIF
+    old_selected = selected
+    GOTO cars6_loop
 }
 
 {

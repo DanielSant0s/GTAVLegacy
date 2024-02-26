@@ -1,0 +1,15 @@
+Thank you so much for downloading my mods!
+
+To install this one, simply drag the "Futo" folder to your modloader folder (strongly recomended) or just import the files manually into GTA3.img
+
+(In fact, you don´t even need previon.txd since it uses the original one, but I added it for if you want to install it as another car)
+
+And there you go! Have fun :)
+
+I also recomend to have VehFuncs installed, so you get a working steering wheel and engine animations, but it´s not necessary for the mod to work.
+
+Hope you like this mod, and if you do, check out my Youtube channel for more stuff like this :)
+
+https://www.youtube.com/@MorrisLlama
+
+Love u! -Morris Llama

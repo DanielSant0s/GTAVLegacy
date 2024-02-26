@@ -1,0 +1,19 @@
+#VEHICLES.IDE
+15146, 	obeytail, 	obeytail, 	car, 		OBEYTAIL, 	OBEYTAIL, 	null,	richfamily, 	10, 	0,	0,		-1, 0.7, 0.7,		0
+
+#HANDLING
+OBEYTAIL     1600.0    4000.0   2.2    0.0 0.0 -0.2  75  0.65 0.75 0.5  	5 165.0 24.0 10.0 R P 	10.0  0.5  0 27.0  	1.0  0.08  0.0   0.30 -0.20 0.5  0.3		0.2  0.56 35000 	0			400000		0  1	0
+
+#CARGRP
+obeytail  # POPCYCLE_GROUP_BUSINESS
+obeytail  # POPCYCLE_GROUP_CASUAL_RICH
+obeytail  # POPCYCLE_GROUP_CASUAL_AVERAGE
+
+#CARMODS
+obeytail, exh_b_l, exh_b_m, exh_b_t, exh_b_ts, nto_b_l, nto_b_s, nto_b_tw, spl_b_bab_m, spl_b_bar_l, spl_b_bbb_m, spl_b_mar_m
+
+#CARCOLS
+obeytail, 11,1, 24,1, 36,1, 40,1, 75,1, 91,1, 123,1, 4,1
+
+#VEHICLEAUDIOSETTINGS
+obeytail                                    0             87     86     0         0.85         1.0          3         0.943874     2           0          4          0           45                0.0
