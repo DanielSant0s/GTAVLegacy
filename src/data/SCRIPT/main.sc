@@ -3554,7 +3554,7 @@ VAR_INT beggar_camp_status[6]
             CASE 1
                 selected = 0
                 old_selected = -1
-                SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER ELEGANT BANDITO RANCHER RANCHER DUMMY DUMMY
+                SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER ELEGANT BANDITO RANCHER RANCHER MERIT VINCENT
                 SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
                 GOTO cars_loop
                 BREAK
@@ -3662,6 +3662,12 @@ VAR_INT beggar_camp_status[6]
             CASE 9
                 veh_model = RNCHLURE
                 BREAK
+            CASE 10
+                veh_model = MERIT
+                BREAK
+            CASE 11
+                veh_model = VINCENT
+                BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
@@ -3688,7 +3694,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
             selected = 0
             old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS SABRE BLISTAC VIRGO STALLIO GLENSHI INFERNU HOTRING COMET SUPERGT SADLER DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS SABRE BLISTAC VIRGO STALLIO GLENSHI INFERNU HOTRING COMET SUPERGT SADLER PREMIER ADMIRAL
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars2_loop
     ENDIF
@@ -3731,6 +3737,12 @@ VAR_INT beggar_camp_status[6]
             CASE 9
                 veh_model = SADLER
                 BREAK
+            CASE 10
+                veh_model = PREMIER
+                BREAK
+            CASE 11
+                veh_model = ADMIRAL
+                BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
@@ -3757,7 +3769,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER TOPFUN BANDITO RANCHER RANCHER DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS MANANA WASHING BANSHEE BUFFALO LANDSTK FELTZER TOPFUN BANDITO RANCHER RANCHER MERIT VINCENT
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars_loop
     ENDIF
@@ -3807,6 +3819,12 @@ VAR_INT beggar_camp_status[6]
             CASE 9
                 veh_model = NRG500
                 BREAK
+            CASE 10
+                veh_model = STRETCH
+                BREAK
+            CASE 11
+                veh_model = SLAMVAN
+                BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
@@ -3833,7 +3851,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS SABRE BLISTAC VIRGO STALLIO GLENSHI INFERNU HOTRING COMET SUPERGT SADLER DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS SABRE BLISTAC VIRGO STALLIO GLENSHI INFERNU HOTRING COMET SUPERGT SADLER PREMIER ADMIRAL
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars2_loop
     ENDIF
@@ -3882,6 +3900,12 @@ VAR_INT beggar_camp_status[6]
                 BREAK
             CASE 9
                 veh_model = YOSEMITE
+                BREAK
+            CASE 10
+                veh_model = STRETCH
+                BREAK
+            CASE 11
+                veh_model = SLAMVAN
                 BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
@@ -3959,6 +3983,12 @@ VAR_INT beggar_camp_status[6]
             CASE 9
                 veh_model = URANUS
                 BREAK
+            CASE 10
+                veh_model = STRETCH
+                BREAK
+            CASE 11
+                veh_model = SLAMVAN
+                BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
         WHILE NOT HAS_MODEL_LOADED veh_model
@@ -3992,7 +4022,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
         selected = 0
         old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS TOWTRUC PREVION FCR900 FORTUNE SULTAN NEBULA SUNRISE CADRONA SWEEPER URANUS DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS TOWTRUC PREVION FCR900 FORTUNE SULTAN NEBULA SUNRISE CADRONA TAHOMA PRIMO STRETCH SLAMVAN
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars6_loop
     ENDIF
@@ -4030,10 +4060,16 @@ VAR_INT beggar_camp_status[6]
                 veh_model = CADRONA
                 BREAK
             CASE 8
-                veh_model = SWEEPER
+                veh_model = TAHOMA
                 BREAK
             CASE 9
-                veh_model = URANUS
+                veh_model = PRIMO
+                BREAK
+            CASE 10
+                veh_model = STRETCH
+                BREAK
+            CASE 11
+                veh_model = SLAMVAN
                 BREAK
         ENDSWITCH
         REQUEST_MODEL veh_model
