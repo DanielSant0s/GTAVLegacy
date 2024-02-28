@@ -1,0 +1,7 @@
+Author: Calvin.linardi
+
+
+rcbandit, 2,96, 79,42, 82,54, 67,86, 126,96, 70,96, 110,54, 67,98
+rccam, 0,3, 3,0, 3,3, 14,3, 86,0
+rctiger, 1,1
+rcgoblin, 1,1

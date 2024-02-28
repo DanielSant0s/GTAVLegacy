@@ -1,0 +1,25 @@
+Shuttle bus
+
+Credits:
+-Calvin.linardi
+-Savidge for template
+-Compeast for advert exture
+-Direct for canny livery
+
+Can be replaced: Journey
+
+Vehicle.ide
+----------------
+6625, 	shutbus, 	shutbus, 	car, 		SHUTBUS,	SHUTBUS, 	null,	worker, 	4, 	0,	0,		-1, 0.864, 0.864,	-1
+
+handling.cfg
+----------------
+SHUTBUS      3500.0   13865.8   3.0    0.0 0.0  0.0  80  0.62 0.70 0.46 	5 140.0 14.0 25.0 R D 	4.5   0.60 0 30.0  	1.5  0.11  0.0   0.30 -0.15 0.5  0.0		0.46 0.53 22000 	88			1			0  3	0
+
+carcols.dat
+----------------
+shutbus, 1,1
+
+carmods.dat
+----------------
+shutbus, nto_b_l, nto_b_s, nto_b_tw

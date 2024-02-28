@@ -1,0 +1,9 @@
+veh_mods.ide
+objs
+11703, exh_b_hrc, hercules, 100, 0 	;Heavy Exhaust
+11704, bnt_lr_hrc, hercules, 100, 0	;Bullhorn Ornament
+11705, bnt_lr_hrc2, hercules, 100, 0	;Chrome Arches
+11706, misc_c_b_hrc, hercules, 100, 0	;Chrome Grille
+11707, rf_b_sc_hrc, hercules, 100, 0	;Horns
+11708, rf_b_sc_hrc2, hercules, 100, 0	;Chrome Trimming
+end

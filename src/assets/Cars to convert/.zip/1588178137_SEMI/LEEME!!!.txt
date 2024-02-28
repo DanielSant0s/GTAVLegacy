@@ -1,0 +1,57 @@
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=GTA SA MTL BARRACKS SEMI SA STYLE-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=
+
+                              Muchas gracias por Bajar el mod!!!! ;)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=
+
+DESCRIPCION:
+
+BARRACKS OL original de GTA SA, adaptado a una version de camion remolcador similar al BARRACKS SEMI de GTA V.
+
+* Logos de MTL, FLATBED y ZANCUDO provenientes de GTA V
+* Esquema de pintura de Camuflaje 
+* Suspension levantada, ruedas mas grandes y Ruedas Morochas en la parte tracera
+* Frontal completo adapatdo a un capot inverso (Como en las Versiones, GTA V y la vida real)
+  - AñadidOS retrovisores y mataburros al capot.
+* Totalmente Repintable con detalles en 2 tonos
+* Puede aparecer con o sin techo
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+INSTALACION:
+
+* puedes instalarlo usando "San Andreas Mod Installer (SAMI)", "Alci`s IMG Editor" o alguna otra herramienta similar
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+DATA:
+
+Usar estas lineas en la Carpeta "DATA" del juego
+
+carcols.dat:
+petro, 44,36, 13,118, 14,123, 120,123, 112,120, 84,110, 76,102  
+ 
+handling.cfg:
+PETROL       3800.0   20000.0   2.0    0.0 0.0 -0.2  90  0.85 0.75 0.4  	5 120.0 25.0 20.0 R D 	8.0   0.30 0 35.0  	1.0  0.10  0.0   0.25 -0.20 0.5  0.0		0.35 0.25 35000 	20206018	1300001		0  1	2
+
+vehicles.ide:
+514, 	petro, 		petro, 		car, 		PETROL, 	PETROL, 	truck,	worker,	 	5,	0,	0,		-1, 1.5, 1.5,	-1
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+cREDITOS:
+
+* Modelos y Texturas: Rockstargames.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+ Muchas gracias por Bajar el mod!!!! ;)
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+by: jalbert1998

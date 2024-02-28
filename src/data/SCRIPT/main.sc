@@ -3776,7 +3776,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 RIGHTSHOULDER2
         selected = 0
         old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS ALPHA BFINJEC BF400 EMPEROR FORKLIF HOTRINB HUNTLEY JESTER JOURNEY NRG500 DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS ALPHA BFINJEC BF400 EMPEROR FORKLIF HOTRINB HUNTLEY JESTER JOURNEY NRG500 SPARROW DUMMY
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars3_loop
     ENDIF
@@ -3820,7 +3820,7 @@ VAR_INT beggar_camp_status[6]
                 veh_model = NRG500
                 BREAK
             CASE 10
-                veh_model = STRETCH
+                veh_model = SPARROW
                 BREAK
             CASE 11
                 veh_model = SLAMVAN
@@ -3933,7 +3933,7 @@ VAR_INT beggar_camp_status[6]
     IF IS_BUTTON_PRESSED PAD1 LEFTSHOULDER2
         selected = 0
         old_selected = -1
-        SET_MENU_COLUMN hCurrMenu 0 RMOPTS ALPHA BFINJEC BF400 EMPEROR FORKLIF HOTRINB HUNTLEY JESTER JOURNEY NRG500 DUMMY DUMMY
+        SET_MENU_COLUMN hCurrMenu 0 RMOPTS ALPHA BFINJEC BF400 EMPEROR FORKLIF HOTRINB HUNTLEY JESTER JOURNEY NRG500 SPARROW DUMMY
         SET_MENU_COLUMN_ORIENTATION hCurrMenu 0 1
         GOTO cars3_loop
     ENDIF

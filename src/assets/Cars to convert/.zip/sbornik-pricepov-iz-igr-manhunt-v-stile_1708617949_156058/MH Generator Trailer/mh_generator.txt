@@ -1,0 +1,7 @@
+Manhunt Generator trailer
+Author: Qwerty Van Hallen, Rockstar Games
+
+vehicle.ide
+611, 	utiltr1, 	utiltr1, 	trailer,	UTIL_TR1, 	UTILTR1, 	null,	ignore,	 	4,	0,	0,		-1, 0.46, 0.46,		-1
+carcols.dat
+utiltr1, 6,6

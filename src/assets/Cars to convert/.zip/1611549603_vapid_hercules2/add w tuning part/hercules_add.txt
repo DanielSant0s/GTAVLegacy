@@ -1,0 +1,21 @@
+Hercules Addons
+
+Vehicle.ide
+----------------
+ID, 	hercules, 	hercules, 	car, 		HERCULE, 	HERCULE, 	truck,	worker, 	10, 	0,	0,		-1, 0.84, 0.84,		-1
+
+handling.cfg
+----------------
+HERCULE       3500.0   13865.8   2.3    0.0 0.0 -0.2  80  0.75 0.70 0.46 	5 140.0 14.0 20.0 R D 	4.5   0.60 0 30.0  	1.2  0.20  0.0   0.35 -0.15 0.45 0.0		0.46 0.53 22000 	4080		1			1  3	2
+
+----------------
+car4
+hercules, 59,59,14,0, 78,78,13,0, 84,104,84,0, 61,14,13,0, 123,123,13,0, 73,73,46,0, 46,46,14,0, 54,76,13,0
+
+carmods.dat (Generic Tuninig)
+----------------
+hercules, bnt_b_sc_l, bnt_b_sc_m, exh_b_l, exh_b_t, exh_b_ts, lgt_b_rspt, lgt_b_sspt, nto_b_l, nto_b_s, nto_b_tw, rf_b_sc_r
+
+gtasa_vehicleAudioSettings
+----------------
+hercules                                    0             84     83     0         0.65         1.33484      9         0.840896          4           0          7          0           15                0.0

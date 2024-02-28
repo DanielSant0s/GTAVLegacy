@@ -1,0 +1,12 @@
+handling.cfg:
+BLOODRA 1100.0 2500.0 2.0 0.0 0.0 -0.2 85 0.75 0.9 0.45 4 200.0 55.0 4.0 R P 6.0 0.65 0 25.0 0.6 0.12 0.0 0.10 -0.05 0.5 0.5 0.25 0.50 35000 00002104 00000010 1 1 25
+
+vehicles.ide:
+504, 	bloodra, 	bloodra, 	car, 		BLOODRA, 	BLOODRA, 	BF_injection,	ignore, 	1,	0,	0,		-1, 0.77, 0.77,		-1
+
+carcols.dat:
+bloodra, 1,1,65,0, 65,65,7,0, 1,1,3,0, 61,36,1,0, 54,54,65,0, 94,94,1,0, 17,17,1,0
+note that 3 colors are used here, so you should put this line between "car4" and "camper"
+
+carmods.dat:
+bloodra, nto_b_l, nto_b_s, nto_b_tw

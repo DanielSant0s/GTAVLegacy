@@ -1,0 +1,6 @@
+$ PIBOMB			PROJECTILE	30.0 40.0	ID	-1		8	grenade		1	 95		0.0   0.0   0.0		1  0	1.0	 1.0	 0 99  6	 0 99  8  99	100			0.25 -1.0 800.0	 1.0
+
+
+gtasa_weapon_config.dat:
+ID    PIBOMB                              -1         1                          0                       8                       27   89    130  1.0     GRENADE       
+

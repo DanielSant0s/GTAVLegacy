@@ -1,0 +1,18 @@
+Recovery truck
+
+Credits:
+-Calvin.linardi
+
+Can be replaced: Mule
+
+Vehicle.ide
+--------------
+6626, 	rectruk, 	rectruk, 	car, 		RECTRUK, 	RECTRUK, 	van,	worker,		10,	0,	0,		-1, 0.864, 0.864,	-1
+
+Handling.cfg
+--------------
+RECTRUK 4100.0 15003.7 3.0 0.0 0.0 0.0 80 0.55 0.70 0.48 5 150.0 20.0 40.0 R D 4.5 0.50 0 35.0 1.8 0.12 0.0 0.30 -0.1 0.5 0.0 0.30 0.40 27000 4009 1 0 1 13
+
+carcol.dat
+--------------
+rectruk, 25,1, 28,1, 43,1, 67,1, 72,1, 9,1, 95,1, 24,1

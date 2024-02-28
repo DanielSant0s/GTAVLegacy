@@ -1,0 +1,4 @@
+Manhunt 2 Travel trailer
+Author: Qwerty Van Hallen, Rockstar Games
+
+611, 	utiltr1, 	utiltr1, 	trailer,	UTIL_TR1, 	UTILTR1, 	null,	ignore,	 	4,	0,	0,		-1, 0.72, 0.72,		-1

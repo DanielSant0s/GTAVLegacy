@@ -1,0 +1,23 @@
+Tour bus
+
+Credits:
+-Calvin.linardi
+-Savidge for template
+
+Can be replaced: journey
+
+vehicle.ide
+-------------
+6627, 	tourbus, 	tourbus, 	car, 		TOURBUS,	TOURBUS, 	null,	worker, 	4, 	0,	1f10,		-1, 0.864, 0.864,	-1
+
+Handling.cfg
+-------------
+TOURBUS      3500.0   13865.8   3.0    0.0 0.0  0.0  80  0.62 0.70 0.46 	5 140.0 14.0 25.0 R D 	4.5   0.60 0 30.0  	1.5  0.11  0.0   0.30 -0.15 0.5  0.0		0.46 0.53 22000 	88			1			0  3	0
+
+carcols.dat
+-------------
+tourbus, 1,1
+
+carmods.dat
+-------------
+tourbus, nto_b_l, nto_b_s, nto_b_tw

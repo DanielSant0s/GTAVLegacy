@@ -1,0 +1,25 @@
+speedo van
+
+Credits:
+-Calvin.linardi
+-Ai Excel for original models
+-Direct for the extras
+-GCT for the wheels
+
+Can be replaced: Pony, burrito, rumpo
+
+Vehicle.ide
+-------------
+6638, 	speedo, 	speedo, 	car, 		SPEEDO, 	SPEEDO, 	van,	worker,		10,	0,	0,		-1, 0.864, 0.864,	0
+
+handling.cfg
+-------------
+SPEEDO         2600.0    8666.7   3.0    0.0 0.0 -0.25 80  0.55 0.90 0.50 	5 160.0 15.0 25.0 R D 	6.0   0.80 0 30.0  	2.6  0.07  0.0   0.35 -0.15 0.25 0.0		0.2  0.50 20000 	4001		1			0  3	13
+
+carcol.dat
+-------------
+speedo, 1,1, 32,32, 20,20, 110,110, 66,66, 84,84, 118,118, 121,121
+
+carmods.dat
+-------------
+speedo, exh_b_l, exh_b_t, exh_b_ts, lgt_b_sspt, nto_b_l, nto_b_s, nto_b_tw, rf_b_sc_r, spl_b_bar_m, spl_b_bbr_m, spl_b_mar_m

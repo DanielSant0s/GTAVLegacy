@@ -1,0 +1,13 @@
+Instructions: place the DFF, TXD and FXT files along with this text file into the modloader folder. In case you don't use modloder you can replace the files and place the line of codes in their respective files.
+
+carmods.dat
+
+tornado, exh_lr_t1, exh_lr_t2, nto_b_l, nto_b_s, nto_b_tw, rbmp_lr_t1, rbmp_lr_t2, wg_l_lr_t1
+
+
+carcols.dat
+
+
+car4
+
+tornado, 3,3,3,3, 93,1,93,1, 0,0,3,3, 110,1,110,1, 3,1,1,1, 6,1,6,1, 1,116,116,1, 99,99,99,99
